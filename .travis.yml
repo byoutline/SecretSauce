@@ -1,0 +1,18 @@
+language: android
+
+jdk: openjdk7
+
+notifications:
+  email:
+    - sebastian.kacprzak@byoutline.com
+
+env:
+  matrix:
+    - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
+
+android:
+  components:
+    - build-tools-22.0.1
+
+script: ./gradlew build
