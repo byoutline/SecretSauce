@@ -100,6 +100,7 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
         return lp;
     }
 
+    @SuppressWarnings("unchecked")
     public void stopTrackingProgress() {
         for (CachedFieldWithArg field : fields) {
             field.removeStateListener(this);
@@ -119,6 +120,7 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
         showProgressOf(Collections.<CachedFieldWithArg>emptyList(), Arrays.asList(newEndpoints));
     }
 
+    @SuppressWarnings("unchecked")
     public synchronized void showProgressOf(List<CachedFieldWithArg> newFields, List<CachedEndpointWithArg> newEndpoints) {
         stopTrackingProgress();
         for (CachedFieldWithArg field : newFields) {
