@@ -6,6 +6,7 @@ import com.byoutline.secretsauce.BaseApp;
 
 
 /**
+ * {@link AsyncTask} that loads {@link SharedPreferences} to memory in background.
  * Created by Sebastian Kacprzak <sebastian.kacprzak at byoutline.com> on 27.03.15.
  */
 public class SharedPrefsLoaderAsyncTask extends AsyncTask<Void, Void, SharedPreferences> {
