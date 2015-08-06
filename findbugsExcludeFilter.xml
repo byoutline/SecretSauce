@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+   <Match>
+     <Class name="~.*\.R\$.*"/>
+     <OR>
+       <Bug pattern="NM_CLASS_NAMING_CONVENTION" />
+       <Bug pattern="NM_FIELD_NAMING_CONVENTION" />
+     </OR>
+   </Match>
+</FindBugsFilter>
