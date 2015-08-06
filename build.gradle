@@ -1,5 +1,17 @@
 apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+}
+
+apply from: 'gradle/byoutline/checkGenerics.gradle'
+
 repositories {
     mavenCentral()
 }
@@ -11,8 +23,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 40
-        versionName "0.4.5"
+        versionCode Integer.valueOf(VERSION_CODE)
+        versionName VERSION_NAME
     }
     buildTypes {
         release {
@@ -60,11 +72,3 @@ dependencies {
     compile 'joda-time:joda-time:2.7'
 }
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
-    }
-}

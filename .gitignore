@@ -24,6 +24,9 @@ build/
 *.ipr
 *.swp
 
+# Passwords
+/push.properties
+
 # Netbeans
 .nb-gradle
 
