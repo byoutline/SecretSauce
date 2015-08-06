@@ -5,9 +5,6 @@
 # files for the dex VM
 *.dex
 
-# Java class files
-*.class
-
 # generated files
 bin/
 gen/
