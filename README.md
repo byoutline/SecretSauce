@@ -22,7 +22,7 @@ Contains:
     * Checkable views 
     * LinkTextView (TextView where URLs are clickable) 
     * RoundedDrawable, RoundedImageView 
-    * ViewUtilis (that show toasts, sets styled text fragments, converts dp to px, converts dp to pixel, and more) 
+    * ViewUtils (that show toasts, sets styled text fragments, converts dp to px, converts dp to pixel, and more) 
     * JdkBasedTimeZoneProvider (for faster loading of JodaTime) 
     * Common events (For usage with Otto bus)
     * BaseApp (to ensure initialization) 
