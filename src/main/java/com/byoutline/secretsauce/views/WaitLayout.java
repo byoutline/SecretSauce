@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import com.byoutline.cachedfield.CachedField;
 import com.byoutline.cachedfield.CachedFieldWithArg;
 import com.byoutline.cachedfield.FieldState;
 import com.byoutline.cachedfield.FieldStateListener;
@@ -23,13 +24,18 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Apache License 2.0
+ * {@link FrameLayout} that display progress over content with {@link ProgressBar}. Elements
+ * are disabled when progress bar is visible.
+ * <p>
+ * Additionally you can register all your {@link CachedField}/{@link CachedFieldWithArg}/{@link CachedEndpointWithArg}
+ * and progress will be shown and hidden automatically.
+ * </p>
  *
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
 public class WaitLayout extends FrameLayout implements FieldStateListener, EndpointStateListener {
-    private static final float BASE_DENSITY = 160f;
     private static final int BASE_PROGRESSBAR_SIZE = 76;
+    private final List<CachedField> fieldsNoArgs = new ArrayList<>(2);
     private final List<CachedFieldWithArg> fields = new ArrayList<>(2);
     private final List<CachedEndpointWithArg> endpoints = new ArrayList<>(2);
 
@@ -102,33 +108,47 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
 
     @SuppressWarnings("unchecked")
     public void stopTrackingProgress() {
+        for (CachedField field : fieldsNoArgs) {
+            field.removeStateListener(this);
+        }
         for (CachedFieldWithArg field : fields) {
             field.removeStateListener(this);
         }
         for (CachedEndpointWithArg endpoint : endpoints) {
             endpoint.removeEndpointListener(this);
         }
+        fieldsNoArgs.clear();
         fields.clear();
         endpoints.clear();
     }
 
+    public void showProgressOf(CachedField... newFields) {
+        showProgressOf(Arrays.asList(newFields), Collections.<CachedFieldWithArg>emptyList(), Collections.<CachedEndpointWithArg>emptyList());
+    }
+
     public void showProgressOf(CachedFieldWithArg... newFields) {
-        showProgressOf(Arrays.asList(newFields), Collections.<CachedEndpointWithArg>emptyList());
+        showProgressOf(Collections.<CachedField>emptyList(), Arrays.asList(newFields), Collections.<CachedEndpointWithArg>emptyList());
     }
 
     public void showProgressOf(CachedEndpointWithArg... newEndpoints) {
-        showProgressOf(Collections.<CachedFieldWithArg>emptyList(), Arrays.asList(newEndpoints));
+        showProgressOf(Collections.<CachedField>emptyList(), Collections.<CachedFieldWithArg>emptyList(), Arrays.asList(newEndpoints));
     }
 
     @SuppressWarnings("unchecked")
-    public synchronized void showProgressOf(List<CachedFieldWithArg> newFields, List<CachedEndpointWithArg> newEndpoints) {
+    public synchronized void showProgressOf(List<CachedField> newFieldsWithoutArgs,
+                                            List<CachedFieldWithArg> newFields,
+                                            List<CachedEndpointWithArg> newEndpoints) {
         stopTrackingProgress();
+        for (CachedField field : newFieldsWithoutArgs) {
+            field.addStateListener(this);
+        }
         for (CachedFieldWithArg field : newFields) {
             field.addStateListener(this);
         }
         for (CachedEndpointWithArg endpoint : newEndpoints) {
             endpoint.addEndpointListener(this);
         }
+        fieldsNoArgs.addAll(newFieldsWithoutArgs);
         fields.addAll(newFields);
         endpoints.addAll(newEndpoints);
     }
