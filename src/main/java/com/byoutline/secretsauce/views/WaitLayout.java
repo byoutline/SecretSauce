@@ -155,12 +155,21 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
 
     private void checkState() {
         boolean loading = false;
+        List<CachedField> currentFieldsNoArgs = new ArrayList<>(fieldsNoArgs);
         List<CachedFieldWithArg> currentFields = new ArrayList<>(fields);
         List<CachedEndpointWithArg> currentEndpoints = new ArrayList<>(endpoints);
-        for (CachedFieldWithArg field : currentFields) {
+        for (CachedField field : currentFieldsNoArgs) {
             if (field.getState() == FieldState.CURRENTLY_LOADING) {
                 loading = true;
                 break;
+            }
+        }
+        if (!loading) {
+            for (CachedFieldWithArg field : currentFields) {
+                if (field.getState() == FieldState.CURRENTLY_LOADING) {
+                    loading = true;
+                    break;
+                }
             }
         }
         if (!loading) {
