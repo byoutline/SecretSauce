@@ -11,7 +11,11 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -29,6 +33,7 @@ import com.byoutline.secretsauce.events.ShowValidationErrorsEvent;
 import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -44,6 +49,47 @@ public class ViewUtils {
     public static final int MSG_REQUEST_CHANGE_STATE = 400;
     public static final int MSG_IMMEDIATE_CHANGE_STATE = 401;
     private static WeakReference<Toast> prevToastRef = new WeakReference<>(null);
+
+    public static void setStyledMsg(TextView styledTv, String source, String stylingText, CustomTypefaceSpan customSpan, ForegroundColorSpan foregroundDarkColor) {
+        int interlocutorStartNamePosition = source.indexOf(stylingText);
+        int interlocurotEndNamePos = interlocutorStartNamePosition + stylingText.length();
+        if (!TextUtils.isEmpty(stylingText) && interlocutorStartNamePosition != -1) {
+            SpannableStringBuilder styledText = new SpannableStringBuilder(source);
+            styledText.setSpan(customSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            styledText.setSpan(foregroundDarkColor, interlocutorStartNamePosition, interlocurotEndNamePos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            styledTv.setText(styledText);
+        } else {
+            styledTv.setText(source);
+        }
+    }
+
+    public static void setStyledMsg(TextView styledTv, String source, List<String> stylingTexts, List<CustomTypefaceSpan> customSpans, List<ForegroundColorSpan> foregroundDarkColors) {
+        int i = 0;
+        boolean formatted = false;
+        SpannableStringBuilder styledText = new SpannableStringBuilder(source);
+        CustomTypefaceSpan customSpan;
+        ForegroundColorSpan foregroundColorSpan;
+
+        for (String stylingText : stylingTexts) {
+            int interlocutorStartNamePosition = source.indexOf(stylingText);
+            int interlocurotEndNamePos = interlocutorStartNamePosition + stylingText.length();
+            if (!TextUtils.isEmpty(stylingText) && interlocutorStartNamePosition != -1) {
+
+                customSpan = customSpans.get(i);
+                foregroundColorSpan = foregroundDarkColors.get(i);
+
+                styledText.setSpan(customSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+                styledText.setSpan(foregroundColorSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                formatted = true;
+                i++;
+            }
+        }
+        if (formatted) {
+            styledTv.setText(styledText);
+        } else {
+            styledTv.setText(source);
+        }
+    }
 
     public static void showView(View view, boolean visibility) {
         if (view != null) {
