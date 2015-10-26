@@ -52,19 +52,15 @@ public class DialogsManager {
     }
 
     public void registerAndPostEvents() {
-        synchronized (isRegisteredWorkaround) {
-            if (isRegisteredWorkaround.compareAndSet(false, true)) {
-                Settings.BUS.register(this);
-            }
+        if (isRegisteredWorkaround.compareAndSet(false, true)) {
+            Settings.BUS.register(this);
         }
         postDismissDialogsUid();
     }
 
     public void unregister() {
-        synchronized (isRegisteredWorkaround) {
-            if (isRegisteredWorkaround.compareAndSet(true, false)) {
-                Settings.BUS.unregister(this);
-            }
+        if (isRegisteredWorkaround.compareAndSet(true, false)) {
+            Settings.BUS.unregister(this);
         }
     }
 
