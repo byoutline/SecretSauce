@@ -15,7 +15,7 @@ Contains:
   * PicassoScrollListener (that stops loading images during fast scroll) 
   * FontCache 
   * LogUtils (for situation when Timber is not appropriate) 
-  * [NetworkChangeReceiver] -BroadcastReceiver that uses Bus to post Android broadcasts 
+  * [NetworkChangeReceiver] -wrapper from BroadcastReceiver that uses Bus to post Android broadcasts 
   * SharedPrefsLoaderAsyncTask(for loading SharedPreferences in background thread) 
   * AnimationRunnable (helps with custom view transitions between two states) 
   * Custom font views 
