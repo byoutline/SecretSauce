@@ -1,6 +1,7 @@
 #   NetworkChangeReceiver
 
-Simple BroadcastReceiver that enables to receive information about data connection immediately.
+Wrapper from BroadcastReceiver that uses Bus to post Android broadcasts instead of doing the job itself.
+If you prefer to use the Bus instead of the standard broadcast, this is for you.
 
 ###How to use?
 
@@ -10,13 +11,13 @@ Simple BroadcastReceiver that enables to receive information about data connecti
 
 
 ```java
-  @Provides
+    @Provides
     @Singleton
     public ConnectivityManager providesConnectivityManager(Context context) {
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
-   @Provides
+    @Provides
     @Singleton
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
         return new NetworkChangeReceiver(connectivityManager);
@@ -26,7 +27,7 @@ Simple BroadcastReceiver that enables to receive information about data connecti
 - add injecting to the Activity where it will be used
 
 ```java
-  @Inject
+      @Inject
       NetworkChangeReceiver networkChangeReceiver;
 ```
 
@@ -40,14 +41,14 @@ Simple BroadcastReceiver that enables to receive information about data connecti
       }    
   @Override
   protected void onPause() {
-      super.onResume();
+      super.onPause();
       networkChangeReceiver.onPause(this);
       }   
 ```
 - to listen when network status changed add @Subscribe method
 
 ```java
-  @Subscribe
+      @Subscribe
       public void onInternetConnectionChanged(InternetStateChangedEvent event){
       //your code
       //event.isOrWillBeEnabled==true when network is or will be enabled, otherwise false
