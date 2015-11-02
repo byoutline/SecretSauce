@@ -10,7 +10,7 @@ Contains:
   * WebViewActivity (for displaying basic full screen webview, that accepts URL and data to post) 
   * WaitDialog (Full screen blocking spinner that survives device rotations and keeps tracks of multiple invocations) 
   * SimpleDialog (that displays layout id in dialog) 
-  * [WaitLayout] (Displays spinner on any item, can synchronize with CachedFields and CachedEndpoints) 
+  * [WaitLayout] -Displays spinner on any item, can synchronize with CachedFields and CachedEndpoints 
   * DatePickerFragment 
   * PicassoScrollListener (that stops loading images during fast scroll) 
   * FontCache 
