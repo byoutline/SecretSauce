@@ -28,4 +28,4 @@ Contains:
   * BaseApp (to ensure initialization) 
   * Some deprecated classes that are still there for backwards compatibility
 
-[NetworkChangeReceiver]: <https://github.com/byoutline/SecretSauce/blob/master/NetworkChangeReceiverUsing.md>
+[NetworkChangeReceiver]: <NetworkChangeReceiverUsing.md>
