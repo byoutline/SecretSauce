@@ -4,7 +4,7 @@ Simple BroadcastReceiver that enables to receive information about data connecti
 
 ###How to use?
 
-it may be helpfull to read:[Dagger] and [Otto]
+(it may be helpfull to read:[Dagger] and [Otto])
 
 - add provides methods to a module:
 
@@ -23,7 +23,7 @@ it may be helpfull to read:[Dagger] and [Otto]
     }
 ```
 
--add injecting to the Activity where it will be used
+- add injecting to the Activity where it will be used
 
 ```java
   @Inject
@@ -44,7 +44,7 @@ it may be helpfull to read:[Dagger] and [Otto]
       networkChangeReceiver.onPause(this);
       }   
 ```
--to listen when network status changed add @Subscribe method
+- to listen when network status changed add @Subscribe method
 
 ```java
   @Subscribe
