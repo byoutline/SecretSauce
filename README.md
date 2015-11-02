@@ -15,7 +15,7 @@ Contains:
   * PicassoScrollListener (that stops loading images during fast scroll) 
   * FontCache 
   * LogUtils (for situation when Timber is not appropriate) 
-  * NetworkChangeReceiver (that uses Bus to post Android broadcasts) 
+  * [NetworkChangeReceiver] -BroadcastReceiver that uses Bus to post Android broadcasts 
   * SharedPrefsLoaderAsyncTask(for loading SharedPreferences in background thread) 
   * AnimationRunnable (helps with custom view transitions between two states) 
   * Custom font views 
@@ -27,3 +27,5 @@ Contains:
   * Common events (For usage with Otto bus)
   * BaseApp (to ensure initialization) 
   * Some deprecated classes that are still there for backwards compatibility
+
+[NetworkChangeReceiver]: <https://github.com/byoutline/SecretSauce/blob/master/NetworkChangeReceiverUsing.md>
