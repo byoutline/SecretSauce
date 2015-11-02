@@ -31,5 +31,21 @@ You can use it as any other layout.For example:
                 tools:text="@string/something" />
 
         </LinearLayout>
-    </com.byoutline.secretsauce.views.WaitLayout>
+</com.byoutline.secretsauce.views.WaitLayout>
+```
+
+In addition, to make it possible to react on CachedField changes, you must add:
+```
+...
+WaitLayout exampleWaitLayout =(WaitLayout)findViewById(R.id.exampleWaitLayout)
+...
+exampleWaitLayout.showProgressOf(cachedField);
+...
+```
+in code where data is beeing changed. Also, you can manually use method to show and hide loading bar:
+
+```
+exampleWaitLayout.showLoadingBar();
+//or
+exampleWaitLayout.hideLoadingBar();
 ```
