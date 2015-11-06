@@ -1,17 +1,8 @@
 package com.byoutline.secretsauce.fragments;
 
-public class MenuOption {
+public interface MenuOption {
 
-    private final String mTitle;
-    public final Class mFragmentClass;
+    String getTitle();
+    Class getFragmentClass();
 
-    public MenuOption(String title, Class fragmentClass) {
-        mTitle = title;
-        mFragmentClass = fragmentClass;
-    }
-
-    @Override
-    public String toString() {
-        return mTitle;
-    }
 }
