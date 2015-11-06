@@ -235,7 +235,7 @@ public abstract class NavigationDrawerFragment extends Fragment {
         mDrawerToggle.setDrawerIndicatorEnabled(show);
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         if (mAdapter == null) {
             return;
         }
