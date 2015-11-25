@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+
 import com.byoutline.secretsauce.di.AppComponentInterface;
 import com.byoutline.secretsauce.utils.LogUtils;
 import com.byoutline.secretsauce.utils.SharedPrefsLoaderAsyncTask;
@@ -20,7 +21,6 @@ public abstract class BaseApp extends Application {
 
     private static String TAG = LogUtils.makeLogTag(BaseApp.class);
 
-    public static final String INJECT_NAME_SESSION_ID = "InjectSessionId";
     private SharedPrefsLoaderAsyncTask sharedPrefsLoader;
 
     protected abstract void initComponents();
