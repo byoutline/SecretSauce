@@ -1,5 +1,6 @@
 package com.byoutline.secretsauce.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -198,7 +199,7 @@ public abstract class AbstractBaseActionBarActivityV7 extends ActionBarActivity
      *                       enter, exit, popEnter, popExit (4 elements) if argument in null default
      *                       animation is applied
      */
-
+    @SuppressLint("ResourceType")
     public void showFragmentWithReplacing(Fragment fragment, boolean replace, boolean addToBackStack, int[] animations) {
         if (mSupportFragmentManager == null) {
             mSupportFragmentManager = getSupportFragmentManager();
