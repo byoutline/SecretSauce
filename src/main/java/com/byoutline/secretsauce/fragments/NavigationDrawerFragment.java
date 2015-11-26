@@ -258,7 +258,7 @@ public abstract class NavigationDrawerFragment extends Fragment {
         }
     }
 
-    public int getmCurrentSelectedPosition() {
+    public int getCurrentSelectedPosition() {
         return mCurrentSelectedPosition;
     }
 
