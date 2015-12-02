@@ -36,7 +36,7 @@ public class CheckableDelegate {
             parent.refreshDrawableState();
             setCheckedRecursive(parent, checked);
             if (onCheckedChangeListener != null) {
-                onCheckedChangeListener.onCheckedChanged(null, checked);
+                onCheckedChangeListener.onCheckedChanged(parent, checked);
             }
         }
     }
@@ -66,11 +66,10 @@ public class CheckableDelegate {
     public interface OnCheckedChangeListener {
         /**
          * Called when the checked state of a compound button has changed.
-         *
-         * @param layout    The compound button view whose state has changed.
+         *  @param layout    The compound button view whose state has changed.
          * @param isChecked The new checked state of buttonView.
          */
-        void onCheckedChanged(CheckableLinearLayout layout, boolean isChecked);
+        void onCheckedChanged(ViewGroup layout, boolean isChecked);
     }
 
     /**************************/

@@ -12,7 +12,6 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
 
     private final CheckableDelegate delegate = new CheckableDelegate(this);
 
-
     public CheckableFrameLayout(Context context) {
         this(context, null);
         init();
@@ -56,6 +55,10 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
     }
 
     public boolean isChecked() {
+        if(delegate == null) {
+            // view not yet initialized
+            return false;
+        }
         return delegate.isChecked();
     }
 

@@ -55,6 +55,10 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
     }
 
     public boolean isChecked() {
+        if(delegate == null) {
+            // view not yet initialized
+            return false;
+        }
         return delegate.isChecked();
     }
 
