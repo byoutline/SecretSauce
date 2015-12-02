@@ -2,24 +2,15 @@ package com.byoutline.secretsauce.views;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Checkable;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 public class CheckableLinearLayout extends LinearLayout implements Checkable {
 
-    private boolean mChecked;
-
-    private static final int[] CHECKED_STATE_SET = {
-            android.R.attr.state_checked
-    };
-    private CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
+    private final CheckableDelegate delegate = new CheckableDelegate(this);
 
     public CheckableLinearLayout(Context context) {
         this(context, null);
@@ -28,6 +19,11 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
 
     public CheckableLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    public CheckableLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         init();
     }
 
@@ -55,36 +51,15 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
     /**************************/
 
     public void toggle() {
-        setChecked(!mChecked);
+        delegate.toggle();
     }
 
     public boolean isChecked() {
-        return mChecked;
+        return delegate.isChecked();
     }
 
     public void setChecked(boolean checked) {
-        if (mChecked != checked) {
-            mChecked = checked;
-            refreshDrawableState();
-            setCheckedRecursive(this, checked);
-            if (onCheckedChangeListener != null) {
-                onCheckedChangeListener.onCheckedChanged(null, checked);
-            }
-        }
-    }
-
-    private void setCheckedRecursive(ViewGroup parent, boolean checked) {
-        int count = parent.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View v = parent.getChildAt(i);
-            if (v instanceof Checkable) {
-                ((Checkable) v).setChecked(checked);
-            }
-
-            if (v instanceof ViewGroup) {
-                setCheckedRecursive((ViewGroup) v, checked);
-            }
-        }
+        delegate.setChecked(checked);
     }
 
     /**************************/
@@ -97,7 +72,7 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
     protected int[] onCreateDrawableState(int extraSpace) {
         final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
         if (isChecked()) {
-            mergeDrawableStates(drawableState, CHECKED_STATE_SET);
+            mergeDrawableStates(drawableState, CheckableDelegate.CHECKED_STATE_SET);
         }
         return drawableState;
     }
@@ -114,8 +89,8 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
         }
     }
 
-    public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
-        this.onCheckedChangeListener = onCheckedChangeListener;
+    public void setOnCheckedChangeListener(CheckableDelegate.OnCheckedChangeListener onCheckedChangeListener) {
+        delegate.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
 
@@ -125,48 +100,11 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
      * **********************
      */
 
-    static class SavedState extends BaseSavedState {
-        boolean checked;
-
-        SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        private SavedState(Parcel in) {
-            super(in);
-            checked = (Boolean) in.readValue(null);
-        }
-
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
-            out.writeValue(checked);
-        }
-
-        @Override
-        public String toString() {
-            return "CheckableLinearLayout.SavedState{"
-                    + Integer.toHexString(System.identityHashCode(this))
-                    + " checked=" + checked + "}";
-        }
-
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
-    }
-
     @Override
     public Parcelable onSaveInstanceState() {
         // Force our ancestor class to save its state
         Parcelable superState = super.onSaveInstanceState();
-        SavedState ss = new SavedState(superState);
+        CheckableDelegate.SavedState ss = new CheckableDelegate.SavedState(superState);
 
         ss.checked = isChecked();
         return ss;
@@ -174,7 +112,7 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
-        SavedState ss = (SavedState) state;
+        CheckableDelegate.SavedState ss = (CheckableDelegate.SavedState) state;
 
         super.onRestoreInstanceState(ss.getSuperState());
         setChecked(ss.checked);
