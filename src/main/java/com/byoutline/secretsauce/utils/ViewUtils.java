@@ -9,13 +9,11 @@ import android.content.pm.Signature;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.text.Spannable;
+import android.support.annotation.StringRes;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -29,8 +27,9 @@ import android.widget.*;
 import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.events.ShowValidationErrorsEvent;
+import com.byoutline.secretsauce.utils.internal.SpanStyler;
+import com.byoutline.secretsauce.utils.internal.ToastDisplayer;
 
-import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -48,47 +47,21 @@ public class ViewUtils {
     public static final int FILTER_DELAY_MILLIS = 500;         //TODO: Set experimental delay time
     public static final int MSG_REQUEST_CHANGE_STATE = 400;
     public static final int MSG_IMMEDIATE_CHANGE_STATE = 401;
-    private static WeakReference<Toast> prevToastRef = new WeakReference<>(null);
 
     public static void setStyledMsg(TextView styledTv, String source, String stylingText, CustomTypefaceSpan customSpan, ForegroundColorSpan foregroundDarkColor) {
-        int interlocutorStartNamePosition = source.indexOf(stylingText);
-        int interlocurotEndNamePos = interlocutorStartNamePosition + stylingText.length();
-        if (!TextUtils.isEmpty(stylingText) && interlocutorStartNamePosition != -1) {
-            SpannableStringBuilder styledText = new SpannableStringBuilder(source);
-            styledText.setSpan(customSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-            styledText.setSpan(foregroundDarkColor, interlocutorStartNamePosition, interlocurotEndNamePos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            styledTv.setText(styledText);
-        } else {
-            styledTv.setText(source);
-        }
+        SpanStyler.setStyledMsg(styledTv, source, stylingText, customSpan, foregroundDarkColor);
     }
 
     public static void setStyledMsg(TextView styledTv, String source, List<String> stylingTexts, List<CustomTypefaceSpan> customSpans, List<ForegroundColorSpan> foregroundDarkColors) {
-        int i = 0;
-        boolean formatted = false;
-        SpannableStringBuilder styledText = new SpannableStringBuilder(source);
-        CustomTypefaceSpan customSpan;
-        ForegroundColorSpan foregroundColorSpan;
+        SpanStyler.setStyledMsg(styledTv, source, stylingTexts, customSpans, foregroundDarkColors);
+    }
 
-        for (String stylingText : stylingTexts) {
-            int interlocutorStartNamePosition = source.indexOf(stylingText);
-            int interlocurotEndNamePos = interlocutorStartNamePosition + stylingText.length();
-            if (!TextUtils.isEmpty(stylingText) && interlocutorStartNamePosition != -1) {
-
-                customSpan = customSpans.get(i);
-                foregroundColorSpan = foregroundDarkColors.get(i);
-
-                styledText.setSpan(customSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-                styledText.setSpan(foregroundColorSpan, interlocutorStartNamePosition, interlocurotEndNamePos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                formatted = true;
-                i++;
-            }
-        }
-        if (formatted) {
-            styledTv.setText(styledText);
-        } else {
-            styledTv.setText(source);
-        }
+    public static SpannableStringBuilder getStyledText(String source, List<String> stylingTexts,
+                                                       Map<String, CustomTypefaceSpan> typeFaceSpan,
+                                                       Map<String, ForegroundColorSpan> textSpanColor,
+                                                       Map<String, CustomClickableSpan> clickableSpans,
+                                                       Map<String, ImageSpan> iconsSpans) {
+        return SpanStyler.getStyledText(source, stylingTexts, typeFaceSpan, textSpanColor, clickableSpans, iconsSpans);
     }
 
     public static void showView(View view, boolean visibility) {
@@ -184,58 +157,31 @@ public class ViewUtils {
     }
 
     public static void showToast(final String text, final int length, final boolean cancelPrev) {
-        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            // on ui thread.
-            showToastInner(text, length, cancelPrev);
-        } else {
-            Handler mainHandler = new Handler(Settings.CONTEXT.getMainLooper());
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    showToastInner(text, length, cancelPrev);
-                }
-            });
-        }
-    }
-
-    private static void showToastInner(String text, int length, boolean cancelPrev) {
-        if (cancelPrev) {
-            Toast toast = prevToastRef.get();
-            if (toast != null) {
-                toast.cancel();
-            }
-        }
-        Toast toast = Toast.makeText(Settings.CONTEXT, text, length);
-        prevToastRef = new WeakReference<>(toast);
-        toast.show();
+        ToastDisplayer.showToast(text, length, cancelPrev);
     }
 
     public static void showToast(String text) {
-        boolean cancelPrev = false;
-        showToast(text, Toast.LENGTH_SHORT, cancelPrev);
+        ToastDisplayer.showToast(text);
     }
 
     public static void showToast(String text, boolean cancelPrev) {
-        showToast(text, Toast.LENGTH_SHORT, cancelPrev);
+        ToastDisplayer.showToast(text, cancelPrev);
     }
 
     public static void showLongToast(String text) {
-        boolean cancelPrev = false;
-        showToast(text, Toast.LENGTH_LONG, cancelPrev);
+        ToastDisplayer.showLongToast(text);
     }
 
-    public static void showLongToast(int resId) {
-        boolean cancelPrev = false;
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_LONG, cancelPrev);
+    public static void showLongToast(@StringRes int resId) {
+        ToastDisplayer.showLongToast(resId);
     }
 
-    public static void showToast(int resId) {
-        boolean cancelPrev = false;
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_SHORT, cancelPrev);
+    public static void showToast(@StringRes int resId) {
+        ToastDisplayer.showToast(resId);
     }
 
-    public static void showToast(int resId, boolean cancelPrev) {
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_SHORT, cancelPrev);
+    public static void showToast(@StringRes int resId, boolean cancelPrev) {
+        ToastDisplayer.showToast(resId, cancelPrev);
     }
 
     public static void setText(TextView tv, String text) {
@@ -386,5 +332,4 @@ public class ViewUtils {
             return View.generateViewId();
         }
     }
-
 }
