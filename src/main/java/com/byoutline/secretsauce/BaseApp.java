@@ -4,17 +4,17 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
-
+import com.byoutline.ottocachedfield.OttoCachedField;
 import com.byoutline.secretsauce.di.AppComponentInterface;
 import com.byoutline.secretsauce.utils.LogUtils;
 import com.byoutline.secretsauce.utils.SharedPrefsLoaderAsyncTask;
 import com.squareup.otto.Bus;
 
-import javax.annotation.Nonnull;
-import javax.inject.Provider;
-
 
 /**
+ * Application that loads shared preferences asynchronously, and provides
+ * alternative interface for setting default libraries value.
+ *
  * @author Sebastian Kacprzak <sebastian.kacprzak at byoutline.com>
  */
 public abstract class BaseApp extends Application {
@@ -23,17 +23,7 @@ public abstract class BaseApp extends Application {
 
     private SharedPrefsLoaderAsyncTask sharedPrefsLoader;
 
-    protected abstract void initComponents();
-
-    @Nonnull
-    protected abstract AppComponentInterface createAppComponent();
-
     protected abstract boolean isDebug();
-
-    protected abstract int getContainerId();
-
-    @Nonnull
-    protected abstract String getDefaultFontName();
 
     protected Typeface getActionBarFont() {
         return null;
@@ -42,19 +32,21 @@ public abstract class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initComponents();
-        AppComponentInterface component = createAppComponent();
-        initByOutlineLibs(component.getBus(), component.getSessionIdProvider());
         sharedPrefsLoader = new SharedPrefsLoaderAsyncTask(this);
         sharedPrefsLoader.execute();
     }
 
     /**
-     * Initialize libs created by Outline.
+     * Sets default values used by libraries.
+     *
+     * @param component
      */
-    private void initByOutlineLibs(Bus bus, Provider<String> sessionIdProvider) {
-        com.byoutline.secretsauce.Settings.set(getApplicationContext(), isDebug(), getContainerId(), bus, getDefaultFontName(), getActionBarFont());
-        com.byoutline.ottocachedfield.OttoCachedField.init(sessionIdProvider, bus);
+    public void init(AppComponentInterface component) {
+        Bus bus = component.getBus();
+        Settings.set(getApplicationContext(), isDebug(),
+                component.getContainerId(), bus,
+                component.getDefaultFontName(), getActionBarFont());
+        OttoCachedField.init(component.getSessionIdProvider(), bus);
     }
 
     public SharedPreferences getSharedPrefs() {
@@ -65,7 +57,6 @@ public abstract class BaseApp extends Application {
             return loadSharedPrefsSync();
         }
     }
-
 
     public SharedPreferences loadSharedPrefsSync() {
         return PreferenceManager.getDefaultSharedPreferences(this);
