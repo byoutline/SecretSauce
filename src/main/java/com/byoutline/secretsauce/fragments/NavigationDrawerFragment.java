@@ -12,7 +12,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,10 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.byoutline.secretsauce.R;
-import com.byoutline.secretsauce.activities.AbstractBaseActionBarActivityV7;
-import com.byoutline.secretsauce.activities.BaseAppCompatActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -303,19 +299,6 @@ public abstract class NavigationDrawerFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * Per the navigation drawer design guidelines, updates the action bar to show the global app
-     * 'context', rather than just what's in the current screen.
-     */
-    private void showGlobalContextActionBar() {
-        FragmentActivity fragActivity = getActivity();
-        if (fragActivity instanceof AbstractBaseActionBarActivityV7) {
-            ((AbstractBaseActionBarActivityV7) fragActivity).setTitle(getAppNameId());
-        } else if (fragActivity instanceof BaseAppCompatActivity) {
-            ((BaseAppCompatActivity) fragActivity).setTitle(getAppNameId());
-        }
     }
 
     public void closeDrawers() {

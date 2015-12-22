@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
  * Base activity with some common code for fragment manipulation.
  */
 public abstract class BaseAppCompatActivity extends AppCompatActivity
-        implements HostActivityV4, NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements HostActivityV4 {
 
     private static final String TAG = LogUtils.internalMakeLogTag(BaseAppCompatActivity.class);
     protected FragmentManager mSupportFragmentManager;
