@@ -7,9 +7,8 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import com.byoutline.secretsauce.R;
-import com.byoutline.secretsauce.fragments.MenuOption;
 import com.byoutline.secretsauce.utils.LogUtils;
-import org.apache.http.util.EncodingUtils;
+import com.byoutline.shadow.org.apache.http.util.EncodingUtils;
 
 public class WebViewActivityV7 extends BaseAppCompatActivity {
 
@@ -98,11 +97,5 @@ public class WebViewActivityV7 extends BaseAppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         webview.restoreState(savedInstanceState);
-    }
-
-    @Override
-    public Class<? extends android.support.v4.app.Fragment> onNavigationDrawerItemSelected(MenuOption menuOption) {
-        // No navigation drawer by default.
-        return null;
     }
 }
