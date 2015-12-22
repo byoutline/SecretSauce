@@ -2,8 +2,6 @@ package com.byoutline.secretsauce.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
@@ -21,15 +19,9 @@ import android.widget.TextView;
 import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.dagger.SecretSauceModule;
-import com.byoutline.secretsauce.events.ChangeWaitFragmentStateEvent;
-import com.byoutline.secretsauce.events.EventSubscriber;
-import com.byoutline.secretsauce.events.InternalDismissDialogsEvent;
 import com.byoutline.secretsauce.fragments.DatePickerFragment;
 import com.byoutline.secretsauce.fragments.NavigationDrawerFragment;
-import com.byoutline.secretsauce.fragments.WaitDialogFragment;
-import com.byoutline.secretsauce.utils.LogUtils;
 import com.byoutline.secretsauce.utils.ViewUtils;
-import com.squareup.otto.Subscribe;
 
 import javax.annotation.Nullable;
 
@@ -40,13 +32,10 @@ import javax.annotation.Nullable;
 public abstract class BaseAppCompatActivity extends AppCompatActivity
         implements HostActivityV4 {
 
-    private static final String TAG = LogUtils.internalMakeLogTag(BaseAppCompatActivity.class);
     protected FragmentManager mSupportFragmentManager;
-    protected android.app.FragmentManager mFragmentManager;
     @Nullable
     protected NavigationDrawerFragment navigationDrawerFragment;
 
-    private final DelayedWaitDialogDisplayer delayedWaitDialogDisplayer = new DelayedWaitDialogDisplayer();
 
     TextView toolbarTitle;
     protected Toolbar toolbar;
@@ -59,22 +48,6 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
             //calculate key hash for Facebook - display in logs
             ViewUtils.getKeyHash("com.byoutline.secretsauce", getApplicationContext());
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Settings.BUS.register(eventSubscriber);
-        SecretSauceModule.dialogsManager.registerAndPostEvents();
-        changeWaitFragmentState(SecretSauceModule.waitDialogModel.shouldBeVisible());
-    }
-
-    @Override
-    public void onPause() {
-        delayedWaitDialogDisplayer.removeMessages();
-        SecretSauceModule.dialogsManager.unregister();
-        Settings.BUS.unregister(eventSubscriber);
-        super.onPause();
     }
 
     /**
@@ -276,99 +249,14 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
      */
     public boolean dismissDialogWithUid(String uid) {
         SecretSauceModule.dialogsManager.removeVisibleDialog(uid);
-        DialogFragment dialog = (DialogFragment) getSupportFragmentManager().findFragmentByTag(uid);
+        DialogFragment dialog = (DialogFragment) mSupportFragmentManager.findFragmentByTag(uid);
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = mSupportFragmentManager.beginTransaction();
         if (dialog != null && (dialog.isAdded())) {
             dialog.dismiss();
             return true;
         }
         return false;
-    }
-
-    protected void showWaitFragmentDelayed() {
-        delayedWaitDialogDisplayer.showWaitFragmentDelayed();
-    }
-
-    protected void showWaitFragmentImmediately() {
-        if (!SecretSauceModule.waitDialogModel.shouldBeVisible()) {
-            return;
-        }
-        Fragment prev = getSupportFragmentManager().findFragmentByTag(WaitDialogFragment.TAG);
-        if (prev != null && prev.isVisible()) {
-            return;
-        }
-        WaitDialogFragment dialog = new WaitDialogFragment();
-        dialog.setCancelable(false);
-        LogUtils.LOGV("WAIT", "showWaitFragmentImmediately");
-        showDialogFragment(dialog, WaitDialogFragment.TAG);
-    }
-
-    protected void hideWaitFragment() {
-        delayedWaitDialogDisplayer.removeMessages();
-    }
-
-    private void refreshWaitFragment() {
-        LogUtils.LOGV(TAG, "refreshWaitFragment " + SecretSauceModule.waitDialogModel.shouldBeVisible());
-        if (SecretSauceModule.waitDialogModel.shouldBeVisible()) {
-            showWaitFragmentImmediately();
-        } else {
-            hideWaitFragment();
-        }
-    }
-
-    private void changeWaitFragmentState(boolean shouldBeVisible) {
-        if (shouldBeVisible) {
-            showWaitFragmentDelayed();
-        } else {
-            hideWaitFragment();
-        }
-    }
-
-    private final EventSubscriber eventSubscriber = new EventSubscriber() {
-
-        @Subscribe
-        public void onChangeWaitFragmentState(ChangeWaitFragmentStateEvent event) {
-            changeWaitFragmentState(event.shouldBeVisible);
-        }
-
-        @Subscribe
-        public void onInternalDismissDialogs(InternalDismissDialogsEvent event) {
-            for (String dialogUid : event.dialogUids) {
-                dismissDialogWithUid(dialogUid);
-            }
-        }
-    };
-
-    class DelayedWaitDialogDisplayer {
-
-        public static final int WHAT_FOR_SHOW_WAIT = 1;
-        //        public static final int WHAT_FOR_SHOW_REFRESH = 2;
-        public static final int WAIT_DIALOG_DELAY_MILLIS = 500;
-//        public static final int WAIT_DIALOG_REFRESH_DELAY_MILLIS = 50;
-
-        private Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == WHAT_FOR_SHOW_WAIT) {
-                    showWaitFragmentImmediately();
-//                } else if (msg.what == WHAT_FOR_SHOW_REFRESH) {
-//                    refreshWaitFragment();
-                }
-            }
-        };
-
-        public void showWaitFragmentDelayed() {
-            handler.sendEmptyMessageDelayed(WHAT_FOR_SHOW_WAIT, WAIT_DIALOG_DELAY_MILLIS);
-        }
-
-//        public void refreshWaitFragmentDelayed() {
-//            handler.sendEmptyMessageDelayed(WHAT_FOR_SHOW_REFRESH, WAIT_DIALOG_REFRESH_DELAY_MILLIS);
-//        }
-
-        public void removeMessages() {
-            handler.removeMessages(WHAT_FOR_SHOW_WAIT);
-        }
     }
 }
 
