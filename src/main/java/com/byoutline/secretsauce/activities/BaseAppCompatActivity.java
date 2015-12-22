@@ -225,10 +225,6 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
         fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
     }
 
-    public void showFragment(android.app.Fragment fragment, boolean addToBackStack) {
-        showFragmentWithReplacing(fragment, true, addToBackStack, null);
-    }
-
     @Override
     public void onBackPressed() {
         if (navigationDrawerFragment != null && navigationDrawerFragment.isDrawerOpen()) {
@@ -236,44 +232,6 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
             return;
         }
         super.onBackPressed();
-    }
-
-    /**
-     * @param fragment
-     * @param replace
-     * @param addToBackStack
-     * @param animations     array which stores animation in order, enter, exit (2 elements) or
-     *                       enter, exit, popEnter, popExit (4 elements) if argument in null default
-     *                       animation is applied
-     */
-
-    public void showFragmentWithReplacing(android.app.Fragment fragment, boolean replace, boolean addToBackStack, int[] animations) {
-
-        if (mFragmentManager == null) {
-            mFragmentManager = getFragmentManager();
-        }
-        android.app.FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        if (animations != null) {
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            fragmentTransaction.setTransitionStyle(R.style.FragAnimation);
-            if (animations.length == 2) {
-                fragmentTransaction.setCustomAnimations(animations[0], animations[1]);
-            } else if (animations.length == 4) {
-                fragmentTransaction.setCustomAnimations(animations[0], animations[1], animations[2], animations[3]);
-            }
-        }
-
-        if (replace) {
-            fragmentTransaction.replace(Settings.CONTAINER_VIEW_ID, fragment);
-        } else {
-            fragmentTransaction.add(Settings.CONTAINER_VIEW_ID, fragment);
-        }
-
-        if (addToBackStack) {
-            fragmentTransaction.addToBackStack(null);
-        }
-        fragmentTransaction.commit();
-        fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
     }
 
     @Override
