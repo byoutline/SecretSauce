@@ -1,5 +1,5 @@
 # SecretSauce
-  * 0.5.1 implementing `NavigationDrawerCallback` is now optional for `BaseAppCompatActivty`. 
+  * 0.5.1 implementing `NavigationDrawerFragment.NavigationDrawerCallbacks` is now optional for `BaseAppCompatActivty`. 
     Deprecated activities removed.
     Methods for showing non support fragments removed from `BaseAppCompatActivty`
     Support for `WaitDialog` removed from `BaseAppCompatActivty`. Use `WaitDialogHandler` in your activity if you need it.
