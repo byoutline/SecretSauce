@@ -2,6 +2,7 @@ package com.byoutline.secretsauce.fragments;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
@@ -10,9 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,10 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.byoutline.secretsauce.R;
-import com.byoutline.secretsauce.activities.AbstractBaseActionBarActivityV7;
-import com.byoutline.secretsauce.activities.BaseAppCompatActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -53,7 +49,7 @@ public abstract class NavigationDrawerFragment extends Fragment {
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
-    private NavigationDrawerCallbacks mCallbacks;
+    private NavigationDrawerCallbacks itemSelectListener;
 
     /**
      * Helper component that ties the action bar to the navigation drawer.
@@ -81,9 +77,6 @@ public abstract class NavigationDrawerFragment extends Fragment {
     protected abstract int getNavigationDrawerListId();
 
     protected abstract ArrayAdapter<MenuOption> getListAdapter(Activity activity);
-
-    @StringRes
-    protected abstract int getAppNameId();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -251,7 +244,7 @@ public abstract class NavigationDrawerFragment extends Fragment {
                 mDrawerLayout.closeDrawer(mFragmentContainerView);
             }
 
-            mCallbacks.onNavigationDrawerItemSelected(menuOption);
+            itemSelectListener.onNavigationDrawerItemSelected(menuOption);
         } else {
 
             mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -263,19 +256,19 @@ public abstract class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mCallbacks = (NavigationDrawerCallbacks) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof NavigationDrawerCallbacks) {
+            itemSelectListener = (NavigationDrawerCallbacks) context;
+        } else {
+            itemSelectListener = new NavigationDrawerCallbacksStub();
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
+        itemSelectListener = new NavigationDrawerCallbacksStub();
     }
 
     @Override
@@ -305,19 +298,6 @@ public abstract class NavigationDrawerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Per the navigation drawer design guidelines, updates the action bar to show the global app
-     * 'context', rather than just what's in the current screen.
-     */
-    private void showGlobalContextActionBar() {
-        FragmentActivity fragActivity = getActivity();
-        if (fragActivity instanceof AbstractBaseActionBarActivityV7) {
-            ((AbstractBaseActionBarActivityV7) fragActivity).setTitle(getAppNameId());
-        } else if (fragActivity instanceof BaseAppCompatActivity) {
-            ((BaseAppCompatActivity) fragActivity).setTitle(getAppNameId());
-        }
-    }
-
     public void closeDrawers() {
         mDrawerLayout.closeDrawers();
     }
@@ -332,5 +312,13 @@ public abstract class NavigationDrawerFragment extends Fragment {
          * @param position
          */
         Class<? extends Fragment> onNavigationDrawerItemSelected(MenuOption position);
+    }
+
+    public class NavigationDrawerCallbacksStub implements NavigationDrawerCallbacks {
+
+        @Override
+        public Class<? extends Fragment> onNavigationDrawerItemSelected(MenuOption position) {
+            return null;
+        }
     }
 }
