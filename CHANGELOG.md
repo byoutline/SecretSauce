@@ -1,8 +1,9 @@
 # SecretSauce
-  * 0.5.1 implementing `NavigationDrawerFragment.NavigationDrawerCallbacks` is now optional for `BaseAppCompatActivty`. 
+  * 0.5.2 Bump dependencies.
+  * 0.5.1 implementing `NavigationDrawerFragment.NavigationDrawerCallbacks` is now optional for `BaseAppCompatActivity`.
     Deprecated activities removed.
-    Methods for showing non support fragments removed from `BaseAppCompatActivty`
-    Support for `WaitDialog` removed from `BaseAppCompatActivty`. Use `WaitDialogHandler` in your activity if you need it.
+    Methods for showing non support fragments removed from `BaseAppCompatActivity`
+    Support for `WaitDialog` removed from `BaseAppCompatActivity`. Use `WaitDialogHandler` in your activity if you need it.
   * 0.5.0 `getContainerId` and `getDefaultFontName` moved from `BaseApp` to `AppComponentInterface`
   * 0.4.9 `@Named(BaseApp.INJECT_NAME_SESSION_ID)` replaced with `@SessionId`;
     `CheckableFrameLayout` and `ChackableLinearLayout` updated to pass real view instead of null;
