@@ -10,12 +10,12 @@ Contains:
   * WebViewActivity (for displaying basic full screen webview, that accepts URL and data to post) 
   * WaitDialog (Full screen blocking spinner that survives device rotations and keeps tracks of multiple invocations) 
   * SimpleDialog (that displays layout id in dialog) 
-  * WaitLayout (Displays spinner on any item, can synchronize with CachedFields and CachedEndpoints) 
+  * [WaitLayout] -Displays spinner on any item, can synchronize with CachedFields and CachedEndpoints 
   * DatePickerFragment 
   * PicassoScrollListener (that stops loading images during fast scroll) 
   * FontCache 
   * LogUtils (for situation when Timber is not appropriate) 
-  * NetworkChangeReceiver (that uses Bus to post Android broadcasts) 
+  * [NetworkChangeReceiver] -wrapper from BroadcastReceiver that uses Bus to post Android broadcasts 
   * SharedPrefsLoaderAsyncTask(for loading SharedPreferences in background thread) 
   * AnimationRunnable (helps with custom view transitions between two states) 
   * Custom font views 
@@ -27,3 +27,6 @@ Contains:
   * Common events (For usage with Otto bus)
   * BaseApp (to ensure initialization) 
   * Some deprecated classes that are still there for backwards compatibility
+
+[NetworkChangeReceiver]: <NetworkChangeReceiverUsing.md>
+[WaitLayout]: <WaitLayoutUsing.md>
