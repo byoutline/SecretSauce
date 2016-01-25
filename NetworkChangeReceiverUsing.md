@@ -5,7 +5,7 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
 
 ###How to use?
 
-(it may be helpfull to read:[Dagger] and [Otto])
+(it may be helpful to read:[Dagger] and [Otto])
 
 - add provides methods to a module:
 
@@ -38,20 +38,21 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
   protected void onResume() {
       super.onResume();
       networkChangeReceiver.onResume(this);
-      }    
+  }    
+  
   @Override
   protected void onPause() {
-      super.onPause();
       networkChangeReceiver.onPause(this);
-      }   
+      super.onPause();
+  }   
 ```
 - to listen when network status changed add @Subscribe method
 
 ```java
       @Subscribe
       public void onInternetConnectionChanged(InternetStateChangedEvent event){
-      //your code
-      //event.isOrWillBeEnabled==true when network is or will be enabled, otherwise false
+         //your code
+         //event.isOrWillBeEnabled==true when network is or will be enabled, otherwise false
       } 
 ```
 
