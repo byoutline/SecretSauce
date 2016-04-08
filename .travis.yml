@@ -1,15 +1,29 @@
 language: android
 
+sudo: false
+
 jdk: oraclejdk8
 
 notifications:
   email:
     - sebastian.kacprzak@byoutline.com
+    - michal.piekarski@byoutline.com
 
 env:
   matrix:
     - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
+
+
+#before_script:
+#  - echo $JVM_OPTS
+#  - unset GRADLE_OPTS JVM_OPTS
+#  - export GRADLE_OPTS=-Dorg.gradle.jvmargs="-Xmx1560m -XX:+HeapDumpOnOutOfMemoryError"
+#  - export JVM_OPTS=-Xmx512m
+#  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+#  - emulator -avd test -no-skin -no-audio -no-window -no-boot-anim &
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82
 
 android:
   components:
@@ -19,4 +33,4 @@ android:
     - build-tools-25.0.2
     - extra-android-m2repository
 
-script: ./gradlew build
+script: ./gradlew build  #connectedCheck- espresso test  run on Circle CI
