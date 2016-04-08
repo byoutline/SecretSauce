@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.events.InternetStateChangedEvent;
 import com.squareup.otto.Produce;

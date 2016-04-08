@@ -11,6 +11,13 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
 
 
 ```java
+
+    @Provides
+    @Singleton
+    Bus provideBus() {
+        return new PostFromAnyThreadBus();
+    }
+
     @Provides
     @Singleton
     public ConnectivityManager providesConnectivityManager(Context context) {
@@ -23,12 +30,18 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
         return new NetworkChangeReceiver(connectivityManager);
     }
 ```
-
+   You can use `PostFromAnyThreadBus` by adding dependency:
+   ```groovy
+   compile 'com.byoutline.ottoeventcallback:anythreadbus:1.0.0'
+   ```
 - add injecting to the Activity where it will be used
 
 ```java
       @Inject
       NetworkChangeReceiver networkChangeReceiver;
+      
+      @Inject
+      Bus bus;
 ```
 
 - in that activity override onResume() and onPause() methods
@@ -37,12 +50,14 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
   @Override
   protected void onResume() {
       super.onResume();
+      bus.register(this);
       networkChangeReceiver.onResume(this);
   }    
   
   @Override
   protected void onPause() {
       networkChangeReceiver.onPause(this);
+      bus.unregister(this);
       super.onPause();
   }   
 ```
@@ -57,4 +72,4 @@ If you prefer to use the Bus instead of the standard broadcast, this is for you.
 ```
 
 [Dagger]: <http://square.github.io/dagger/>
- [Otto]: <http://square.github.io/otto/>
+[Otto]: <http://square.github.io/otto/>
