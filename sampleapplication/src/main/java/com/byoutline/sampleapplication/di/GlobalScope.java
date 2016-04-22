@@ -1,9 +1,8 @@
 package com.byoutline.sampleapplication.di;
 
+import javax.inject.Scope;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import javax.inject.Scope;
 
 /**
  * Created by michalp on 12.04.16.

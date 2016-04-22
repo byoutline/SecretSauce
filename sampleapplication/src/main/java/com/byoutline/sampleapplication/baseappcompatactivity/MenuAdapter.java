@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -59,5 +59,4 @@ public class MenuAdapter extends ArrayAdapter<MenuOption> {
             this.root = root;
         }
     }
-
 }

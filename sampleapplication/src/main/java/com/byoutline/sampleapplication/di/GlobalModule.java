@@ -11,9 +11,8 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by michalp on 12.04.16.
+ * Creates instances needed by activities and fragments.
  */
-
 @Module
 public class GlobalModule {
 
@@ -42,5 +41,4 @@ public class GlobalModule {
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
         return new NetworkChangeReceiver(connectivityManager);
     }
-
 }

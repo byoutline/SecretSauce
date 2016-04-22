@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.DialogSamples;
+package com.byoutline.sampleapplication.dialogactivity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,18 +14,16 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DialogActivityExample extends BaseAppCompatActivity {
 
-    private static final String UID = "dialogUID123";
-
     @Inject
     Bus bus;
 
-    @Bind(R.id.waitDialogBtn)
+    @BindView(R.id.waitDialogBtn)
     Button waitDialogBtn;
 
     /**
@@ -58,16 +56,13 @@ public class DialogActivityExample extends BaseAppCompatActivity {
 
     @OnClick(R.id.waitDialogBtn)
     public void onClick(View view) {
-     showWaitDialog();
+        showWaitDialog();
     }
 
     private void showWaitDialog() {
-        /**
-         * ShowWaitDialogEvent show dialog fragment to the user by proper event
-         */
         bus.post(new ShowWaitFragmentEvent());
         /**
-         * betwen post ShowWaitFragmentEvent and HideWaitFragmentEvent
+         * between post ShowWaitFragmentEvent and HideWaitFragmentEvent
          * wait dialog will be visible to the user
          *
          * to simulate some work, we use postDelayed() on button,

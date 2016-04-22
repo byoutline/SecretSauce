@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.datePickerExample;
+package com.byoutline.sampleapplication.datepicker;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -27,14 +27,12 @@ public class DatePickerSampleActivity extends AppCompatActivity {
     @Inject
     Bus bus;
 
-    @Bind(R.id.dateTv)
+    @BindView(R.id.dateTv)
     CustomFontTextView dateTv;
 
     @OnClick(R.id.dateBtn)
     public void onClick() {
-        /*
-         * show date picker fragment
-         */
+        // show date picker fragment
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.show(getFragmentManager(), TAG);
     }
@@ -53,9 +51,7 @@ public class DatePickerSampleActivity extends AppCompatActivity {
      */
     @Subscribe
     public void receiveDateChanges(DateSetEvent event) {
-        /*
-         * set received date in TextView
-         */
+        // Display received data.
         dateTv.setText(event.dateString);
     }
 
@@ -69,11 +65,5 @@ public class DatePickerSampleActivity extends AppCompatActivity {
     protected void onPause() {
         bus.unregister(this);
         super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        ButterKnife.unbind(this);
-        super.onDestroy();
     }
 }

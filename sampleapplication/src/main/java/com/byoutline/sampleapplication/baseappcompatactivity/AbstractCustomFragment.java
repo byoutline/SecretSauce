@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 /**
- * Created by michalp on 12.04.16.
+ * Fragment with some convenient method like keyboard or toolbar handling)
  */
 public abstract class AbstractCustomFragment extends Fragment {
 
@@ -18,19 +18,13 @@ public abstract class AbstractCustomFragment extends Fragment {
         setActionbar();
     }
 
-    public boolean showOrderSpinner() {
-        return false;
-    }
-
     private void setActionbar() {
         AbstractCustomActivity baseActivity = getBaseActivity();
         if (baseActivity != null) {
-
             baseActivity.setDrawerIndicatorEnabled(!showBackButtonInActionbar());
             if (!TextUtils.isEmpty(getFragmentActionbarName())) {
                 baseActivity.setTitle(getFragmentActionbarName());
             }
-
         }
     }
 
@@ -54,7 +48,6 @@ public abstract class AbstractCustomFragment extends Fragment {
     public void finish() {
         getActivity().getSupportFragmentManager().popBackStack();
     }
-
 
     public void setAutoKeyboardHideOnEdittextOutTouch(final View view) {
         // Set up touch listener for non-text box views to hide keyboard.

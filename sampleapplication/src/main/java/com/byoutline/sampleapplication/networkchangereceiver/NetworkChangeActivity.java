@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.networkChangeExample;
+package com.byoutline.sampleapplication.networkchangereceiver;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -22,20 +22,18 @@ import butterknife.ButterKnife;
 public class NetworkChangeActivity extends AppCompatActivity {
 
     /**
-     * remember about permission (ACCES_NETWORK_STATE)
+     * remember about permission (ACCESS_NETWORK_STATE)
      * Bus is needed to receive event
      * <p/>
      * disable or enable internet connection to see results
      */
-
-
     @Inject
     NetworkChangeReceiver networkChangeReceiver;
 
     @Inject
     Bus bus;
 
-    @Bind(R.id.networkTv)
+    @BindView(R.id.networkTv)
     TextView networkTv;
 
     @Override
@@ -60,19 +58,13 @@ public class NetworkChangeActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    protected void onDestroy() {
-        ButterKnife.unbind(this);
-        super.onDestroy();
-    }
-
     @Subscribe
     public void onInternetConnectionChanged(InternetStateChangedEvent event) {
         //your code
         if (event.isOrWillBeEnabled) {
-            networkTv.setText("Network awailable");
+            networkTv.setText(R.string.network_change_receiver_network_available);
         } else {
-            networkTv.setText("Some problem with network");
+            networkTv.setText(R.string.network_change_receiver_network_not_available);
         }
     }
 }
