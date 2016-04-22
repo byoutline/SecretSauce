@@ -11,7 +11,7 @@ A collection of static methods that help and simplify everyday work.
  * public static float convertDpToPixel(float dp, Context context),
  
     convert dp value to number of pixels, needed when setup views
-    programatically (for instance toolbar elevation),
+    programmatically (for instance toolbar elevation),
     we have also `public static float convertPixelsToDp(float px, Context context)`
     
  *  public static void showView(View view, boolean visibility),

@@ -1,0 +1,5 @@
+ext {
+    support_version = '25.0.0'
+    ottocachedfield_version = '1.6.3'
+    jsr_305_version = '3.0.0'
+}

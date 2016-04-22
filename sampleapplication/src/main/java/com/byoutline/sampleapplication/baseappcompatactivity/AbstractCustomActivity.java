@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import com.byoutline.sampleapplication.R;
 import com.byoutline.secretsauce.activities.BaseAppCompatActivity;
@@ -6,7 +6,7 @@ import com.byoutline.secretsauce.activities.BaseAppCompatActivity;
 /**
  * Created by michalp on 12.04.16.
  */
-public class AbstractCustomActivity extends BaseAppCompatActivity {
+public abstract class AbstractCustomActivity extends BaseAppCompatActivity {
     protected void injectViewsAndSetUpToolbar() {
         injectViewsAndSetUpToolbar(R.id.toolbar, R.id.toolbar_title_tv);
     }

@@ -2,15 +2,17 @@ package com.byoutline.sampleapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.byoutline.sampleapplication.DialogSamples.DialogActivityExample;
-import com.byoutline.sampleapplication.DrawableExample.DrawableActivityExample;
-import com.byoutline.sampleapplication.baseCompatAppActivityExamples.BaseAppCompatExampleActivity;
-import com.byoutline.sampleapplication.customViewsExample.CustomViewsExamples;
-import com.byoutline.sampleapplication.datePickerExample.DatePickerSampleActivity;
-import com.byoutline.sampleapplication.networkChangeExample.NetworkChangeActivity;
+import com.byoutline.sampleapplication.baseappcompatactivity.BaseAppCompatExampleActivity;
+import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity;
+import com.byoutline.sampleapplication.datepicker.DatePickerSampleActivity;
+import com.byoutline.sampleapplication.dialogactivity.DialogActivityExample;
+import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity;
+import com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample;
 import com.byoutline.secretsauce.activities.WebViewActivityV7;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,44 +24,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent intent;
-        switch (view.getId()) {
-            case R.id.baseAppCompatActivityButton:
-                intent = new Intent(this, BaseAppCompatExampleActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.webVievActivityExample:
-                /**
-                 * first: remember about internet permission
-                 * second: add this activity to manifest file
-                 */
-                intent = new Intent(this, WebViewActivityV7.class);
-                intent.putExtra(WebViewActivityV7.BUNDLE_URL, "https://github.com/byoutline/SecretSauce");
-                startActivity(intent);
-                break;
-            case R.id.networkChangeReceiverExample:
-                intent = new Intent(this, NetworkChangeActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.datePickerExample:
-                intent = new Intent(this, DatePickerSampleActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.roundedExample:
-                intent = new Intent(this, DrawableActivityExample.class);
-                startActivity(intent);
-                break;
-            case R.id.customViewsExample:
-                intent = new Intent(this, CustomViewsExamples.class);
-                startActivity(intent);
-                break;
-            case R.id.dialogExample:
-                intent = new Intent(this, DialogActivityExample.class);
-                startActivity(intent);
-                break;
-            default:
-
+        Intent intent = getActivityIntentForView(view.getId());
+        if (intent != null) {
+            startActivity(intent);
         }
+    }
 
+    @Nullable
+    private Intent getActivityIntentForView(@IdRes int viewId) {
+        switch (viewId) {
+            case R.id.baseAppCompatActivityButton:
+                return new Intent(this, BaseAppCompatExampleActivity.class);
+            case R.id.webVievActivityExample:
+                // Remember about adding internet permission to manifest
+                // and adding WebViewActivityV7 to manifest file.
+                Intent intent = new Intent(this, WebViewActivityV7.class);
+                intent.putExtra(WebViewActivityV7.BUNDLE_URL, "https://github.com/byoutline/SecretSauce");
+                return intent;
+            case R.id.networkChangeReceiverExample:
+                return new Intent(this, NetworkChangeActivity.class);
+            case R.id.datePickerExample:
+                return new Intent(this, DatePickerSampleActivity.class);
+            case R.id.roundedExample:
+                return new Intent(this, DrawableActivityExample.class);
+            case R.id.customViewsExample:
+                return new Intent(this, CustomFontViewsActivity.class);
+            case R.id.dialogExample:
+                return new Intent(this, DialogActivityExample.class);
+        }
+        return null;
     }
 }

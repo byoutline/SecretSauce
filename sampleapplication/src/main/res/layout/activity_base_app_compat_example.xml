@@ -40,7 +40,7 @@
          the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="com.byoutline.sampleapplication.baseCompatAppActivityExamples.NavigationDrawerFragmentImplementation"
+        android:name="com.byoutline.sampleapplication.baseappcompatactivity.NavigationDrawerFragmentImplementation"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"

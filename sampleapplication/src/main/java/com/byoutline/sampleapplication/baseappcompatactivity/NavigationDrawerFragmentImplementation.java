@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.app.Activity;
 import android.widget.ArrayAdapter;
@@ -8,11 +8,6 @@ import com.byoutline.secretsauce.fragments.MenuOption;
 import com.byoutline.secretsauce.fragments.NavigationDrawerFragment;
 
 public class NavigationDrawerFragmentImplementation extends NavigationDrawerFragment {
-
-
-    public NavigationDrawerFragmentImplementation() {
-        // Required empty public constructor
-    }
 
     @Override
     protected int getNavigationDrawerFragmentLayoutId() {
@@ -26,7 +21,6 @@ public class NavigationDrawerFragmentImplementation extends NavigationDrawerFrag
 
     @Override
     protected ArrayAdapter<MenuOption> getListAdapter(Activity activity) {
-        ArrayAdapter adapter = new MenuAdapter(activity);
-        return adapter;
+        return new MenuAdapter(activity);
     }
 }

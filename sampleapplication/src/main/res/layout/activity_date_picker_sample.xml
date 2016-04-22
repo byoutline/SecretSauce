@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/indigo"
     android:layout_height="match_parent"
-    tools:context=".datePickerExample.DatePickerSampleActivity">
+    tools:context=".datepicker.DatePickerSampleActivity">
 
     <com.byoutline.secretsauce.views.CustomFontTextView
         android:id="@+id/dateTv"

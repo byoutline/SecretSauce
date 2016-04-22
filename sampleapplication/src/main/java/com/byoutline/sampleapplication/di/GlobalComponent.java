@@ -1,11 +1,10 @@
 package com.byoutline.sampleapplication.di;
 
-import com.byoutline.sampleapplication.DialogSamples.DialogActivityExample;
-import com.byoutline.sampleapplication.baseCompatAppActivityExamples.FirstFragment;
-import com.byoutline.sampleapplication.datePickerExample.DatePickerSampleActivity;
-import com.byoutline.sampleapplication.networkChangeExample.NetworkChangeActivity;
+import com.byoutline.sampleapplication.baseappcompatactivity.FirstFragment;
+import com.byoutline.sampleapplication.datepicker.DatePickerSampleActivity;
+import com.byoutline.sampleapplication.dialogactivity.DialogActivityExample;
+import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity;
 import com.squareup.otto.Bus;
-
 import dagger.Component;
 
 

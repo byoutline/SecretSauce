@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -9,28 +9,25 @@ import android.widget.Button;
 
 import com.byoutline.sampleapplication.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by michalp on 12.04.16.
  */
 public class FirstFragment extends AbstractCustomFragment {
 
-    @Bind(R.id.mainBtn)
+    @BindView(R.id.mainBtn)
     Button mainBtn;
-
-    public static FirstFragment newInstance() {
-        FirstFragment fragment = new FirstFragment();
-        return fragment;
-    }
+    private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -41,9 +38,7 @@ public class FirstFragment extends AbstractCustomFragment {
 
     @Override
     public String getFragmentActionbarName() {
-        /**
-         * here setup action bar title for you fragment
-         */
+        // Setup action bar title for fragment
         return getString(R.string.first_fragment);
     }
 
@@ -52,17 +47,17 @@ public class FirstFragment extends AbstractCustomFragment {
         return false;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     @OnClick(R.id.mainBtn)
     public void onClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("Welcome First Time!");
-        builder.setPositiveButton("OK",null);
+        builder.setPositiveButton("OK", null);
         builder.show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.byoutline.sampleapplication.baseCompatAppActivityExamples.NavigationDrawerFragmentImplementation">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.byoutline.sampleapplication.baseappcompatactivity.NavigationDrawerFragmentImplementation">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:textColor="@color/colorPrimary"
         android:text="@string/hello_blank_fragment"
-        android:background="@color/white" />
+        android:background="@color/white"/>
 
 
 </FrameLayout>

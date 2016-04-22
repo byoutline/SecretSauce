@@ -17,7 +17,7 @@ import dagger.Provides;
 
 
 /**
- * Created by michalp on 12.04.16.
+ * Module that configures how to create instances of object required by Application.
  */
 @Module
 public class AppModule {
@@ -65,6 +65,4 @@ public class AppModule {
     int provideContainerId() {
         return R.id.container;
     }
-
-
 }

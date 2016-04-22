@@ -1,18 +1,18 @@
-package com.byoutline.sampleapplication.baseCompatAppActivityExamples;
+package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.support.v4.app.Fragment;
 
 import com.byoutline.secretsauce.fragments.MenuOption;
 
 /**
- * Created by michalp on 12.04.16.
+ * Storage class menu item data.
  */
 public class CustomMenuOption implements MenuOption {
     private final String title;
-    private final Class<? extends Fragment> fragmentclass;
+    private final Class<? extends Fragment> fragmentClass;
 
-    public CustomMenuOption(String optionTitle, Class<? extends Fragment> fragmentclass) {
-        this.fragmentclass = fragmentclass;
+    public CustomMenuOption(String optionTitle, Class<? extends Fragment> fragmentClass) {
+        this.fragmentClass = fragmentClass;
         title = optionTitle;
     }
 
@@ -23,6 +23,6 @@ public class CustomMenuOption implements MenuOption {
 
     @Override
     public Class getFragmentClass() {
-        return fragmentclass;
+        return fragmentClass;
     }
 }
