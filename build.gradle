@@ -7,6 +7,7 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.android.tools.build:gradle:2.1.0'
     }
 }
@@ -49,7 +50,7 @@ configurations {
 }
 
 dependencies {
-    ext.support_version = '23.3.0'
+    ext.support_version = '23.4.0'
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
