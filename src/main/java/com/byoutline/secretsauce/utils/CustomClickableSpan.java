@@ -19,10 +19,6 @@ public class CustomClickableSpan extends ClickableSpan {
         this.listener = listener;
     }
 
-    interface TextSpanClickedListener {
-        void onTextClicked(String text);
-    }
-
     @Override
     public void onClick(View widget) {
         if (!(widget instanceof TextView)) {
@@ -42,6 +38,10 @@ public class CustomClickableSpan extends ClickableSpan {
     public void updateDrawState(TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(false);
+    }
+
+    public interface TextSpanClickedListener {
+        void onTextClicked(String text);
     }
 
     private static class StubListener implements TextSpanClickedListener {

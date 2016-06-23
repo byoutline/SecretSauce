@@ -1,4 +1,5 @@
 # SecretSauce
+  * 0.5.3 Make listener interface in CustomClickableSpan public.
   * 0.5.2 Bump dependencies.
   * 0.5.1 implementing `NavigationDrawerFragment.NavigationDrawerCallbacks` is now optional for `BaseAppCompatActivity`.
     Deprecated activities removed.
