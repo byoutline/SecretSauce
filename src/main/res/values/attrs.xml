@@ -3,6 +3,7 @@
     <declare-styleable name="CustomFontTextView">
         <attr name="customFont" format="string" />
         <attr name="textAngle" format="integer" />
+        <attr name="suffixSpace" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="RoundedImageView">
