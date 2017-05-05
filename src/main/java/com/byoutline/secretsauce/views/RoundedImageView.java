@@ -23,15 +23,16 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
+
 import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.utils.LogUtils;
 
 
 @SuppressWarnings("UnusedDeclaration")
-public class RoundedImageView extends ImageView {
+public class RoundedImageView extends AppCompatImageView {
 
     public static final String TAG = LogUtils.internalMakeLogTag(RoundedImageView.class);
     public static final int DEFAULT_RADIUS = 0;
@@ -39,7 +40,7 @@ public class RoundedImageView extends ImageView {
     private int mCornerRadius = DEFAULT_RADIUS;
     public static final int DEFAULT_BORDER_WIDTH = 0;
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
-    private static final ScaleType[] SCALE_TYPES = {
+    private static final AppCompatImageView.ScaleType[] SCALE_TYPES = {
             ScaleType.MATRIX,
             ScaleType.FIT_XY,
             ScaleType.FIT_START,
