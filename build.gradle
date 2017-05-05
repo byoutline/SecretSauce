@@ -8,7 +8,7 @@ buildscript {
 
     dependencies {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.3.0'
     }
 }
 
@@ -19,12 +19,12 @@ repositories {
 apply from: 'gradle/byoutline/checkGenerics.gradle'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode Integer.valueOf(VERSION_CODE)
         versionName VERSION_NAME
     }
@@ -50,7 +50,7 @@ configurations {
 }
 
 dependencies {
-    ext.support_version = '23.4.0'
+    ext.support_version = '25.2.0'
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
