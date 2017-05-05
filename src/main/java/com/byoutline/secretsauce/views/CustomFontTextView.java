@@ -16,6 +16,10 @@ import com.byoutline.secretsauce.utils.FontCache;
 public class CustomFontTextView extends AppCompatTextView {
     private static final int DEFAULT_ANGLE = 0;
     private int mTextAngle = DEFAULT_ANGLE;
+    /**
+     * This can be used as a workaround for wrap_content calculating width with regular font even if italic is used
+     */
+    private boolean suffixSpace = false;
 
     public CustomFontTextView(Context context) {
         super(context);
@@ -37,6 +41,7 @@ public class CustomFontTextView extends AppCompatTextView {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomFontTextView);
         String customFont = a.getString(R.styleable.CustomFontTextView_customFont);
         mTextAngle = a.getInt(R.styleable.CustomFontTextView_textAngle, DEFAULT_ANGLE);
+        suffixSpace = a.getBoolean(R.styleable.CustomFontTextView_suffixSpace, false);
         setCustomFont(ctx, customFont);
         a.recycle();
     }
@@ -77,5 +82,13 @@ public class CustomFontTextView extends AppCompatTextView {
         if (changeAngle) {
             canvas.restore();
         }
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        if (suffixSpace && !TextUtils.isEmpty(text) && text.charAt(text.length() - 1) != ' ') {
+            text = text + " ";
+        }
+        super.setText(text, type);
     }
 }
