@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SampleApplication</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_fragment">First Fragment Item</string>
+    <string name="title_activity_custom_views_examples">customViewsExamples</string>
+    <string name="network_change_receiver_network_available">Network available</string>
+    <string name="network_change_receiver_network_not_available">Network not available</string>
+    <string name="custom_font_views_html_string"><![CDATA[Click on <a href=https://github.com/byoutline/SecretSauce>https://github.com/byoutline/SecretSauce </a> or click <a href=here>here</a> to see toast]]></string>
+    <string name="custom_font_views_toast">Click on URL in textView</string>
+    <string name="baseappcompat_title">Sample Title</string>
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/indigo"
+    tools:context=".customfontviews.CustomFontViewsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.byoutline.secretsauce.views.CustomFontTextView
+                style="@style/customFontStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Some sample"
+                android:textSize="26sp" />
+
+            <com.byoutline.secretsauce.views.CustomFontTextView
+                style="@style/customFontStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Another sample"
+                android:textSize="26sp" />
+
+            <com.byoutline.secretsauce.views.CheckableCustomFontTextView
+                style="@style/customFontStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/check_selector"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="checkable custom font text view"
+                app:textAngle="5" />
+
+            <com.byoutline.secretsauce.views.LinkTextView
+                android:id="@+id/link_listener"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:text="hello"
+                android:textSize="16sp" />
+
+            <com.byoutline.secretsauce.views.CustomFontEditText
+                style="@style/customFontStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="write sth" />
+
+            <com.byoutline.secretsauce.views.CheckableLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/check_selector"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <com.byoutline.secretsauce.views.CustomFontTextView
+                    style="@style/customFontStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CustomFontTextView in CheckableLinearLayout"
+                    android:textSize="18sp" />
+
+                <com.byoutline.secretsauce.views.CustomFontTextView
+                    style="@style/customFontStyle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:text="CustomFontTextView in CheckableLinearLayout"
+                    android:textSize="18sp" />
+            </com.byoutline.secretsauce.views.CheckableLinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

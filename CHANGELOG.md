@@ -1,4 +1,7 @@
 # SecretSauce
+  * 0.5.3 _06.05.2017_ Make listener interface in `CustomClickableSpan` public.
+    `CustomFontTextView` now checks `suffixSpace` attribute that can be used to workaround
+    wrong measurement on `wrap_content` when font is italic.
   * 0.5.2 Bump dependencies.
   * 0.5.1 implementing `NavigationDrawerFragment.NavigationDrawerCallbacks` is now optional for `BaseAppCompatActivity`.
     Deprecated activities removed.

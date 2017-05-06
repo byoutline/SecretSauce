@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    android:background="@color/indigo"
+            tools:context="com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <com.byoutline.secretsauce.views.RoundedImageView
+            android:id="@+id/roundedView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            app:all_rounded_corners="true"
+            app:border_color="@color/colorAccent"
+            app:border_width="5dp"
+            app:corner_radius="10dp"
+            app:is_oval="false"/>
+
+        <com.byoutline.secretsauce.views.RoundedImageView
+            android:id="@+id/roundedView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_launcher"
+            app:all_rounded_corners="true"
+            app:border_color="@color/colorAccent"
+            app:border_width="5dp"
+            app:corner_radius="10dp"
+            app:is_oval="true"/>
+
+        <com.byoutline.secretsauce.views.RoundedImageView
+            android:id="@+id/roundedView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:src="@mipmap/ic_launcher"
+            app:all_rounded_corners="true"
+            app:border_color="@color/colorAccent"
+            app:border_width="10dp"
+            app:corner_radius="10dp"
+            app:is_oval="true"/>
+
+        <com.byoutline.secretsauce.views.RoundedImageView
+            android:id="@+id/roundedView4"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:all_rounded_corners="true"
+            app:border_color="@color/colorAccent"
+            app:border_width="5dp"
+            app:corner_radius="10dp"
+            app:is_oval="false"
+            app:round_background="true"/>
+
+        <com.byoutline.secretsauce.views.RoundedImageView
+            android:id="@+id/roundedView5"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:all_rounded_corners="true"
+            app:border_color="@color/colorAccent"
+            app:border_width="5dp"
+            app:corner_radius="30dp"
+            app:is_oval="false"
+            app:round_background="false"/>
+
+    </LinearLayout>
+</ScrollView>

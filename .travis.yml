@@ -1,21 +1,29 @@
 language: android
 
-jdk: openjdk7
+sudo: false
+
+jdk: oraclejdk8
 
 notifications:
   email:
     - sebastian.kacprzak@byoutline.com
+    - michal.piekarski@byoutline.com
 
 env:
   matrix:
     - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
 
 android:
   components:
     - tools
-    - android-23
-    - build-tools-23.0.2
+    - build-tools-25.0.2
+    - platform-tools
+    - extra-google-m2repository
     - extra-android-m2repository
+    - android-25
 
-script: ./gradlew build
+licenses:
+    - 'android-sdk-license-.+'
+
+script: ./gradlew build  #connectedCheck- espresso test  run on Circle CI

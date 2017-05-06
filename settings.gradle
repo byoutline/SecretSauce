@@ -1,0 +1,3 @@
+rootProject.name = 'SecretSauce'
+include ':sampleapplication'
+include ':SecretSauce'
