@@ -1,10 +1,13 @@
 language: android
 
-jdk: openjdk7
+sudo: false
+
+jdk: oraclejdk8
 
 notifications:
   email:
     - sebastian.kacprzak@byoutline.com
+    - michal.piekarski@byoutline.com
 
 env:
   matrix:
@@ -14,9 +17,12 @@ env:
 android:
   components:
     - tools
-    - android-23
+    - android-25
     - platform-tools
-    - build-tools-23.0.3
+    - build-tools-25.0.0
     - extra-android-m2repository
 
-script: ./gradlew build
+licenses:
+    - 'android-sdk-license-.+'
+
+script: ./gradlew build  #connectedCheck- espresso test  run on Circle CI
