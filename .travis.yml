@@ -12,18 +12,21 @@ notifications:
 env:
   matrix:
     - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
 
 android:
   components:
     - tools
-    - build-tools-25.0.2
+    - build-tools-25.0.3
     - platform-tools
     - extra-google-m2repository
     - extra-android-m2repository
-    - android-25
+    - android-26
 
 licenses:
     - 'android-sdk-license-.+'
+
+before_install:
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 
 script: ./gradlew build  #connectedCheck- espresso test  run on Circle CI
