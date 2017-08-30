@@ -1,11 +1,16 @@
 package com.byoutline.secretsauce.utils;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.events.InternetStateChangedEvent;
 import com.squareup.otto.Produce;
@@ -17,6 +22,7 @@ import com.squareup.otto.Produce;
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
 public class NetworkChangeReceiver extends BroadcastReceiver {
+    private static final String TAG = LogUtils.internalMakeLogTag(NetworkChangeReceiver.class);
 
     private final ConnectivityManager connectivityManager;
 
@@ -29,7 +35,13 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         Settings.INSTANCE.getBUS().post(produceInternetState());
     }
 
+    @SuppressLint("MissingPermission")
     public boolean connected() {
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(Settings.INSTANCE.getCONTEXT(), Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+            LogUtils.LOGW(TAG, "No permission to read connection state, returning connected=true");
+            return true;
+        }
         NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetInfo != null && activeNetInfo.isConnectedOrConnecting();
     }
