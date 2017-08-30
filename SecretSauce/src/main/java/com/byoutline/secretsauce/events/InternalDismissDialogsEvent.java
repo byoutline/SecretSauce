@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
+@Deprecated
 public class InternalDismissDialogsEvent {
     public final List<String> dialogUids;
 

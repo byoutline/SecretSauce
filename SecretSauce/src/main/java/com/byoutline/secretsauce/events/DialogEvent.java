@@ -5,6 +5,7 @@ package com.byoutline.secretsauce.events;
  *
  * @author Sebastian Kacprzak <nait at naitbit.com> on 17.06.14.
  */
+@Deprecated
 public abstract class DialogEvent {
     public final String dialogUid;
     public final boolean showDialog;

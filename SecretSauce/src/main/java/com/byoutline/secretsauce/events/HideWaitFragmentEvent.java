@@ -5,5 +5,6 @@ package com.byoutline.secretsauce.events;
  *
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
+@Deprecated
 public class HideWaitFragmentEvent {
 }

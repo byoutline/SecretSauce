@@ -62,6 +62,10 @@ public abstract class AnimationRunnable implements Runnable {
         reset(totalFrameCount, startValue, step, endValue);
     }
 
+    protected static int interpolateStep(int startValue, int endValue, int animationFrames) {
+        return (endValue - startValue) / animationFrames;
+    }
+
     /**
      * Cancels animation(if it is running) and sets new values to animate.
      * Remember to call {@link #start()} afterwards.
@@ -77,10 +81,6 @@ public abstract class AnimationRunnable implements Runnable {
         this.currentValue = newStartValue;
         this.step = newStep;
         this.endValue = newEndValue;
-    }
-
-    protected static int interpolateStep(int startValue, int endValue, int animationFrames) {
-        return (endValue - startValue) / animationFrames;
     }
 
     @Override

@@ -32,7 +32,10 @@ import com.byoutline.secretsauce.R;
  * Based on implementation of NavigationDrawerFragment from
  * https://github.com/GoogleChrome/chromium-webview-samples
  * licensed on Apache 2.0 license.
+ *
+ * @deprecated Use <a href="https://developer.android.com/reference/android/support/design/widget/NavigationView.html">NavigationView</a>
  */
+@Deprecated
 public abstract class NavigationDrawerFragment extends Fragment {
 
     /**
@@ -108,7 +111,7 @@ public abstract class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mDrawerView = inflater.inflate(getNavigationDrawerFragmentLayoutId(), container, false);
-        mDrawerListView = (ListView) mDrawerView.findViewById(getNavigationDrawerListId());
+        mDrawerListView = mDrawerView.findViewById(getNavigationDrawerListId());
 
         setUpListeners();
         setUpAdapters();

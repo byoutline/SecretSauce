@@ -21,7 +21,7 @@ public class WebViewActivityV7 extends BaseAppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-        webview = (WebView) findViewById(R.id.webview);
+        webview = findViewById(R.id.webview);
         configureWebView();
         if (webview.getUrl() == null) {
             setDataFromArgs();

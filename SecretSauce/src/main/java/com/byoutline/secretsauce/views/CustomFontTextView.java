@@ -12,7 +12,10 @@ import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.utils.FontCache;
 
-
+/**
+ * @deprecated Use Android native font support instead.
+ */
+@Deprecated
 public class CustomFontTextView extends AppCompatTextView {
     private static final int DEFAULT_ANGLE = 0;
     private int mTextAngle = DEFAULT_ANGLE;

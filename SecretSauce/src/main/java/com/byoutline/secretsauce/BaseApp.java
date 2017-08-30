@@ -2,7 +2,6 @@ package com.byoutline.secretsauce;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import com.byoutline.ottocachedfield.OttoCachedField;
 import com.byoutline.secretsauce.di.AppComponentInterface;
@@ -25,10 +24,6 @@ public abstract class BaseApp extends Application {
 
     protected abstract boolean isDebug();
 
-    protected Typeface getActionBarFont() {
-        return null;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,14 +33,12 @@ public abstract class BaseApp extends Application {
 
     /**
      * Sets default values used by libraries.
-     *
-     * @param component
      */
     public void init(AppComponentInterface component) {
         Bus bus = component.getBus();
         Settings.set(getApplicationContext(), isDebug(),
                 component.getContainerId(), bus,
-                component.getDefaultFontName(), getActionBarFont());
+                component.getDefaultFontName());
         OttoCachedField.init(component.getSessionIdProvider(), bus);
     }
 

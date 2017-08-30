@@ -7,6 +7,10 @@ import com.byoutline.secretsauce.Settings;
 
 import java.util.Hashtable;
 
+/**
+ * Use Android native font support instead.
+ */
+@Deprecated
 public class FontCache {
     private static final String TAG = LogUtils.internalMakeLogTag(FontCache.class);
     private static final Hashtable<String, Typeface> fontCache = new Hashtable<>();

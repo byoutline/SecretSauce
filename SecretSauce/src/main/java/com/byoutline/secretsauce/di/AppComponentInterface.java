@@ -17,5 +17,6 @@ public interface AppComponentInterface {
     int getContainerId();
 
     @DefaultFontName
+    @Deprecated
     String getDefaultFontName();
 }

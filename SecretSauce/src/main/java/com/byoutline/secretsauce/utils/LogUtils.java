@@ -21,12 +21,16 @@ import com.byoutline.secretsauce.Settings;
 
 
 /**
- * Helper methods that make logging more consistent throughout the app.
+ * Helper methods that make logging more consistent throughout the app. <br/>
+ * Consider using <a href="https://github.com/JakeWharton/timber">Timber</a> instead.
  */
 public class LogUtils {
     private static final String LOG_PREFIX = Settings.LOG_PREFIX;
     private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
     private static final int MAX_LOG_TAG_LENGTH = 23;
+
+    private LogUtils() {
+    }
 
     public static String makeLogTag(String str) {
         if (str.length() > MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH) {
@@ -100,8 +104,5 @@ public class LogUtils {
 
     public static void LOGE(final String tag, String message, Throwable cause) {
         Log.e(tag, message, cause);
-    }
-
-    private LogUtils() {
     }
 }

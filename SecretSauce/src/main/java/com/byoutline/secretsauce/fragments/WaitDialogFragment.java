@@ -15,7 +15,11 @@ import com.squareup.otto.Subscribe;
 
 /**
  * Simple loading fragment.
+ *
+ * @deprecated Blocking whole screen while loading is anti pattern.
+ * Use {@link com.byoutline.secretsauce.views.WaitLayout} instead.
  */
+@Deprecated
 public class WaitDialogFragment extends DialogFragment {
 
     public static final String TAG = LogUtils.internalMakeLogTag(WaitDialogFragment.class);

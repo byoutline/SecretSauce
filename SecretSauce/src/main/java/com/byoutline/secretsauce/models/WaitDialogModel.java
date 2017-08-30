@@ -10,8 +10,9 @@ import com.squareup.otto.Subscribe;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author Sebastian Kacprzak <nait at naitbit.com>
+ * @deprecated Use {@link com.byoutline.secretsauce.views.WaitLayout} instead.
  */
+@Deprecated
 public class WaitDialogModel {
     private final AtomicInteger count = new AtomicInteger(0);
 

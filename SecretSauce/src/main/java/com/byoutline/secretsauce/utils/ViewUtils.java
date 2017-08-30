@@ -268,7 +268,6 @@ public class ViewUtils {
         return titleTextView;
     }
 
-
     /**
      * This method converts dp unit to equivalent pixels, depending on device density.
      *

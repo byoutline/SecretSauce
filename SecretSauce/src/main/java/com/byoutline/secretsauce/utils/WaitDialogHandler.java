@@ -18,10 +18,26 @@ import com.squareup.otto.Subscribe;
  * {@link #onResume()} and {@link #onPause()}
  *
  * @author Sebastian Kacprzak <sebastian.kacprzak at byoutline.com>
+ * @deprecated Use {@link com.byoutline.secretsauce.views.WaitLayout} instead.
  */
+@Deprecated
 public class WaitDialogHandler {
     private final DelayedWaitDialogDisplayer delayedWaitDialogDisplayer = new DelayedWaitDialogDisplayer();
     private final BaseAppCompatActivity activity;
+    final EventSubscriber eventSubscriber = new EventSubscriber() {
+
+        @Subscribe
+        public void onChangeWaitFragmentState(ChangeWaitFragmentStateEvent event) {
+            changeWaitFragmentState(event.shouldBeVisible);
+        }
+
+        @Subscribe
+        public void onInternalDismissDialogs(InternalDismissDialogsEvent event) {
+            for (String dialogUid : event.dialogUids) {
+                activity.dismissDialogWithUid(dialogUid);
+            }
+        }
+    };
     private final FragmentManager supportFragmentManager;
 
     public WaitDialogHandler(BaseAppCompatActivity activity, FragmentManager supportFragmentManager) {
@@ -70,21 +86,6 @@ public class WaitDialogHandler {
             hideWaitFragment();
         }
     }
-
-    final EventSubscriber eventSubscriber = new EventSubscriber() {
-
-        @Subscribe
-        public void onChangeWaitFragmentState(ChangeWaitFragmentStateEvent event) {
-            changeWaitFragmentState(event.shouldBeVisible);
-        }
-
-        @Subscribe
-        public void onInternalDismissDialogs(InternalDismissDialogsEvent event) {
-            for (String dialogUid : event.dialogUids) {
-                activity.dismissDialogWithUid(dialogUid);
-            }
-        }
-    };
 
     class DelayedWaitDialogDisplayer {
 

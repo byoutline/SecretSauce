@@ -101,7 +101,7 @@ public final class SpanStyler {
         return wholeStyleText;
     }
 
-    private static boolean isNullOrEmpty( final Map< ?, ? > m ) {
+    private static boolean isNullOrEmpty(final Map<?, ?> m) {
         return m == null || m.isEmpty();
     }
 }

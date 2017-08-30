@@ -21,6 +21,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView.ScaleType;
 import com.byoutline.secretsauce.utils.LogUtils;
@@ -252,7 +253,7 @@ public class RoundedDrawable extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
 
         if (mOval) {
             if (mBorderWidth > 0) {
@@ -382,11 +383,11 @@ public class RoundedDrawable extends Drawable {
         return drawableToBitmap(this);
     }
 
-    public void setAllRoundedCorners(boolean allRoundedCorners) {
-        mAllRoundedCorners = allRoundedCorners;
-    }
-
     public boolean isAllRoundedCorners() {
         return mAllRoundedCorners;
+    }
+
+    public void setAllRoundedCorners(boolean allRoundedCorners) {
+        mAllRoundedCorners = allRoundedCorners;
     }
 }
