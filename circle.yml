@@ -10,20 +10,19 @@ machine:
     ADB_INSTALL_TIMEOUT: "10"
   post:
     # Turn off unneded services to free memory.
-    - for service in "apache2" "beanstalkd" "cassandra" "couchbase-server" "couchdb" "docker" "elasticsearch" "memcached" "mongodb" "mysql" "neo4j-service" "postgresql" "puppet" "rabbitmq-server" "redis-server" "riak" "solr" "sphinxsearch" "zookeeper"; do sudo service $service stop; done
+    - for service in "apache2" "beanstalkd" "cassandra" "elasticsearch" "memcached" "mysql" "neo4j-service" "postgresql" "rabbitmq-server" ; do sudo service $service stop; done
 
 
 dependencies:
   pre:
-    - if [ ! -e $ANDROID_HOME/platforms/android-25 ]; then for pack in "android-25" "tools" "extra-android-m2repository" "google_play_services" "extra-google-m2repository" "extra-android-support" "platform-tools"; do echo y | android update sdk -u -a -t $pack ; done ; fi
-    - if [ ! -e $ANDROID_HOME/build-tools/25.0.0 ]; then echo y | android update sdk -u -a -t "build-tools-25.0.0"; fi
-  override:
-    - ./gradlew dependencies
+    - ci/update_android_dependencies.sh
   cache_directories:
     - ~/.android
     - /usr/local/android-sdk-linux/tools
     - /usr/local/android-sdk-linux/extras
-    - /usr/local/android-sdk-linux/build-tools/25.0.0
+    - /usr/local/android-sdk-linux/build-tools/25.0.2
+  override:
+    - ./gradlew dependencies
   post:
     - mksdcard -l e 512M mysdcard.img
     - echo n | android create avd -n testing15 -f -t android-15

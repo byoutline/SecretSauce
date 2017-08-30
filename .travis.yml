@@ -12,15 +12,16 @@ notifications:
 env:
   matrix:
     - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
 
 android:
   components:
     - tools
-    - android-25
+    - build-tools-25.0.2
     - platform-tools
-    - build-tools-25.0.0
+    - extra-google-m2repository
     - extra-android-m2repository
+    - android-25
 
 licenses:
     - 'android-sdk-license-.+'
