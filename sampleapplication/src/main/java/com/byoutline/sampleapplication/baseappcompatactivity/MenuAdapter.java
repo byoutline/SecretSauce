@@ -1,11 +1,11 @@
 package com.byoutline.sampleapplication.baseappcompatactivity;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
 import com.byoutline.sampleapplication.R;
 import com.byoutline.secretsauce.fragments.MenuOption;
 import com.byoutline.secretsauce.views.CheckableCustomFontTextView;
@@ -34,8 +34,9 @@ public class MenuAdapter extends ArrayAdapter<MenuOption> {
         return 0;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.menu_list_item, parent, false);
@@ -55,7 +56,7 @@ public class MenuAdapter extends ArrayAdapter<MenuOption> {
         public View root;
 
         public ViewHolder(View root) {
-            menuItemNameTv = (CheckableCustomFontTextView) root.findViewById(R.id.menu_item_name_tv);
+            menuItemNameTv = root.findViewById(R.id.menu_item_name_tv);
             this.root = root;
         }
     }

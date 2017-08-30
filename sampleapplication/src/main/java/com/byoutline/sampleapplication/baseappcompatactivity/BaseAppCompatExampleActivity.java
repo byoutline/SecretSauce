@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
-
 import com.byoutline.sampleapplication.R;
 import com.byoutline.secretsauce.fragments.MenuOption;
 import com.byoutline.secretsauce.fragments.NavigationDrawerFragment;
@@ -22,7 +21,7 @@ public class BaseAppCompatExampleActivity extends AbstractCustomActivity
         injectViewsAndSetUpToolbar();
         setUpDrawer(true);
         setTitle(R.string.baseappcompat_title);
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.openDrawer(Gravity.LEFT);
     }
 

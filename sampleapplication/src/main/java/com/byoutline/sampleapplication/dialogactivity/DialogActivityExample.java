@@ -3,7 +3,9 @@ package com.byoutline.sampleapplication.dialogactivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.byoutline.sampleapplication.R;
 import com.byoutline.sampleapplication.SampleApp;
 import com.byoutline.secretsauce.activities.BaseAppCompatActivity;
@@ -13,10 +15,6 @@ import com.byoutline.secretsauce.utils.WaitDialogHandler;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DialogActivityExample extends BaseAppCompatActivity {
 
@@ -61,7 +59,7 @@ public class DialogActivityExample extends BaseAppCompatActivity {
 
     private void showWaitDialog() {
         bus.post(new ShowWaitFragmentEvent());
-        /**
+        /*
          * between post ShowWaitFragmentEvent and HideWaitFragmentEvent
          * wait dialog will be visible to the user
          *
