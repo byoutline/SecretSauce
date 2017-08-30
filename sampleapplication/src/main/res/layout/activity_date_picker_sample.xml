@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/indigo"
-    android:layout_height="match_parent"
-    tools:context=".datepicker.DatePickerSampleActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <com.byoutline.secretsauce.views.CustomFontTextView
-        android:id="@+id/dateTv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/dateBtn"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        style="@style/customFontStyle2"
-        android:text="date"
-        android:textSize="32sp" />
+        android:orientation="vertical"
+        android:background="@color/indigo"
+        android:layout_height="match_parent"
+        tools:context=".datepicker.DatePickerSampleActivity">
 
-    <Button
-        android:id="@+id/dateBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:background="@color/button_selector"
-        android:text="Pick date"
-        android:textColor="@color/white" />
-</LinearLayout>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/dateTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/dateBtn"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            style="@style/customFontStyle2"
+            android:text="date"
+            android:textSize="32sp"/>
+
+        <Button
+            android:id="@+id/dateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:background="@color/button_selector"
+            android:text="Pick date"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</layout>

@@ -2,9 +2,7 @@ package com.byoutline.sampleapplication;
 
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
-
 import com.byoutline.espressohelpers.SpoonTestRule;
-
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -14,9 +12,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
 
 @LargeTest
 public class ApplicationTest {
@@ -28,7 +24,7 @@ public class ApplicationTest {
         //CHECK FIRST
         onView(withId(R.id.baseAppCompatActivityButton)).check(matches(isDisplayed()));
         //CHECK LAST
-        onView((withId(R.id.dialogExample))).perform(scrollTo())
+        onView((withId(R.id.customViewsExample))).perform(scrollTo())
                 .check(matches(isDisplayed()));
     }
 

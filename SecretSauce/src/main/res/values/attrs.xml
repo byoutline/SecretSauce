@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomFontTextView">
-        <attr name="customFont" format="string" />
         <attr name="textAngle" format="integer" />
         <attr name="suffixSpace" format="boolean" />
-        <attr name="dynamicFontChange" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="RoundedImageView">

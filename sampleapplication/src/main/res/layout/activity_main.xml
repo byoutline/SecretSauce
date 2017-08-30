@@ -16,7 +16,7 @@
         <Button
             android:id="@+id/baseAppCompatActivityButton"
             android:onClick="onClick"
-            android:text="Base App Compat Activity Example"
+            android:text="Drawer Activity Example"
             style="@style/MainBtnstyle" />
 
         <Button
@@ -52,13 +52,6 @@
             android:layout_marginTop="30dp"
             android:onClick="onClick"
             android:text="Custom font views Example"
-            style="@style/MainBtnstyle" />
-
-        <Button
-            android:id="@+id/dialogExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="Dialogs Example"
             style="@style/MainBtnstyle" />
 
     </LinearLayout>

@@ -23,7 +23,7 @@ public final class ToastDisplayer {
      * @param text
      */
     public static void showDebugToast(String text) {
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             showToast("DEBUG:\n" + text);
         }
     }
@@ -33,7 +33,7 @@ public final class ToastDisplayer {
             // on ui thread.
             showToastInner(text, length, cancelPrev);
         } else {
-            Handler mainHandler = new Handler(Settings.CONTEXT.getMainLooper());
+            Handler mainHandler = new Handler(Settings.INSTANCE.getCONTEXT().getMainLooper());
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -50,7 +50,7 @@ public final class ToastDisplayer {
                 toast.cancel();
             }
         }
-        Toast toast = Toast.makeText(Settings.CONTEXT, text, length);
+        Toast toast = Toast.makeText(Settings.INSTANCE.getCONTEXT(), text, length);
         prevToastRef = new WeakReference<>(toast);
         toast.show();
     }
@@ -71,15 +71,15 @@ public final class ToastDisplayer {
 
     public static void showLongToast(int resId) {
         boolean cancelPrev = false;
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_LONG, cancelPrev);
+        showToast(Settings.INSTANCE.getCONTEXT().getString(resId), Toast.LENGTH_LONG, cancelPrev);
     }
 
     public static void showToast(int resId) {
         boolean cancelPrev = false;
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_SHORT, cancelPrev);
+        showToast(Settings.INSTANCE.getCONTEXT().getString(resId), Toast.LENGTH_SHORT, cancelPrev);
     }
 
     public static void showToast(int resId, boolean cancelPrev) {
-        showToast(Settings.CONTEXT.getString(resId), Toast.LENGTH_SHORT, cancelPrev);
+        showToast(Settings.INSTANCE.getCONTEXT().getString(resId), Toast.LENGTH_SHORT, cancelPrev);
     }
 }

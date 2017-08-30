@@ -26,7 +26,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Settings.BUS.post(produceInternetState());
+        Settings.INSTANCE.getBUS().post(produceInternetState());
     }
 
     public boolean connected() {
@@ -43,11 +43,11 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         context.registerReceiver(this,
                 new IntentFilter(
                         ConnectivityManager.CONNECTIVITY_ACTION));
-        Settings.BUS.register(this);
+        Settings.INSTANCE.getBUS().register(this);
     }
 
     public void onPause(Context context) {
-        Settings.BUS.unregister(this);
+        Settings.INSTANCE.getBUS().unregister(this);
         context.unregisterReceiver(this);
     }
 }

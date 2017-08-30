@@ -1,14 +1,15 @@
 package com.byoutline.sampleapplication.di;
 
+import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
-
-import com.byoutline.secretsauce.BaseApp;
+import com.byoutline.ottoeventcallback.PostFromAnyThreadBus;
+import com.byoutline.sampleapplication.draweractivity.ToolbarViewModel;
 import com.byoutline.secretsauce.utils.NetworkChangeReceiver;
 import com.squareup.otto.Bus;
-
 import dagger.Module;
 import dagger.Provides;
+import dagger.Reusable;
 
 /**
  * Creates instances needed by activities and fragments.
@@ -16,29 +17,33 @@ import dagger.Provides;
 @Module
 public class GlobalModule {
 
-    private final BaseApp app;
-    private final Bus bus;
+    private final Application app;
 
-    public GlobalModule(BaseApp app, Bus bus) {
+    public GlobalModule(Application app) {
         this.app = app;
-        this.bus = bus;
     }
 
     @Provides
     @GlobalScope
     Bus provideBus() {
-        return bus;
+        return new PostFromAnyThreadBus();
     }
 
     @Provides
-    @GlobalScope
+    @Reusable
     public ConnectivityManager providesConnectivityManager() {
         return (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Provides
-    @GlobalScope
+    @Reusable
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
         return new NetworkChangeReceiver(connectivityManager);
+    }
+
+    @Provides
+    @Reusable
+    ToolbarViewModel providesToolbarViewModel() {
+        return new ToolbarViewModel();
     }
 }

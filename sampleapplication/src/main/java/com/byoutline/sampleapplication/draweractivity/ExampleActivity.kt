@@ -1,0 +1,51 @@
+package com.byoutline.sampleapplication.draweractivity
+
+import android.databinding.DataBindingUtil
+import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.view.MenuItem
+import com.byoutline.sampleapplication.R
+import com.byoutline.sampleapplication.SampleApp
+import com.byoutline.sampleapplication.databinding.ActivityExampleBinding
+import com.byoutline.secretsauce.activities.clearBackStack
+import com.byoutline.secretsauce.activities.showFragment
+import javax.inject.Inject
+
+class ExampleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject
+    lateinit var toolbarViewModel: ToolbarViewModel
+    private lateinit var binding: ActivityExampleBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        SampleApp.component.inject(this)
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_example)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        navigationView.inflateMenu(R.menu.activity_example_drawer)
+        navigationView.setNavigationItemSelectedListener(this)
+        setTitle(R.string.baseappcompat_title)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.openDrawer(Gravity.LEFT)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val fragToShow: Fragment? = when (item.itemId) {
+            R.id.nav_first -> FirstFragment()
+            R.id.nav_second -> SecondFragment()
+            else -> null
+        }
+        if (fragToShow != null) {
+            item.isChecked = true
+            clearBackStack()
+            showFragment(fragToShow, addToBackStack = false)
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        return false
+    }
+}

@@ -140,7 +140,7 @@ public class ViewUtils {
      * delete all occurrences of Toasts before release :)
      */
     public static void showDebugToast(String text) {
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             showToast("DEBUG:\n" + text);
         }
     }

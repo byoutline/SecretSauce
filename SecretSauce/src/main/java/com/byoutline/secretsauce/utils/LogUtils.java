@@ -25,7 +25,7 @@ import com.byoutline.secretsauce.Settings;
  * Consider using <a href="https://github.com/JakeWharton/timber">Timber</a> instead.
  */
 public class LogUtils {
-    private static final String LOG_PREFIX = Settings.LOG_PREFIX;
+    private static final String LOG_PREFIX = Settings.INSTANCE.getLOG_PREFIX();
     private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
     private static final int MAX_LOG_TAG_LENGTH = 23;
 
@@ -48,31 +48,31 @@ public class LogUtils {
     }
 
     public static String internalMakeLogTag(Class cls) {
-        return Settings.LOG_PREFIX + makeLogTag(cls);
+        return Settings.INSTANCE.getLOG_PREFIX() + makeLogTag(cls);
     }
 
     public static void LOGD(final String tag, String message) {
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             Log.d(tag, message);
         }
     }
 
     public static void LOGD(final String tag, String message, Throwable cause) {
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             Log.d(tag, message, cause);
         }
     }
 
     public static void LOGV(final String tag, String message) {
         // noinspection PointlessBooleanExpression,ConstantConditions
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             Log.v(tag, message);
         }
     }
 
     public static void LOGV(final String tag, String message, Throwable cause) {
         // noinspection PointlessBooleanExpression,ConstantConditions
-        if (Settings.DEBUG) {
+        if (Settings.INSTANCE.getDEBUG()) {
             Log.v(tag, message, cause);
         }
     }

@@ -3,6 +3,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="first_fragment">First Fragment Item</string>
+    <string name="second_fragment">Second Fragment Item</string>
     <string name="title_activity_custom_views_examples">customViewsExamples</string>
     <string name="network_change_receiver_network_available">Network available</string>
     <string name="network_change_receiver_network_not_available">Network not available</string>

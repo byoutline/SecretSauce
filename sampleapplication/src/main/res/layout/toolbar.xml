@@ -7,7 +7,7 @@
                                    android:minHeight="?attr/actionBarSize"
                                    android:title="">
 
-    <com.byoutline.secretsauce.views.CustomFontTextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/toolbar_title_tv"
         android:textColor="@color/white"
         android:textSize="20sp"
