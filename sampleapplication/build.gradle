@@ -26,10 +26,7 @@ android {
         versionName "1.0"
 
         // CircleCi needs custom runner to turn off animations.
-        // BuddyBuild on the other hand does not find any tests with custom runner.
-        testInstrumentationRunner System.getenv('BUDDYBUILD_APP_ID') == null ?
-                'com.jakewharton.u2020.U2020TestRunner' :
-                'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'com.jakewharton.u2020.U2020TestRunner'
     }
     buildTypes {
         debug {
