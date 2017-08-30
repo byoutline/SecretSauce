@@ -1,5 +1,6 @@
 package com.byoutline.secretsauce.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -38,16 +39,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ViewUtils {
-    public static final int MSG_REQUEST_REFRESH_VIEW = 200;
-    public static final int MSG_IMMEDIATE_REFRESH = 201;
-
-    public static final int MSG_REQUEST_GALLERY_SET_MONTH = 300;
-    public static final int MSG_IMMEDIATE_GALLERY_SET_DATE = 301;
-
-    public static final int FILTER_DELAY_MILLIS = 500;         //TODO: Set experimental delay time
-    public static final int MSG_REQUEST_CHANGE_STATE = 400;
-    public static final int MSG_IMMEDIATE_CHANGE_STATE = 401;
-
     public static void setStyledMsg(TextView styledTv, String source, String stylingText, CustomTypefaceSpan customSpan, ForegroundColorSpan foregroundDarkColor) {
         SpanStyler.setStyledMsg(styledTv, source, stylingText, customSpan, foregroundDarkColor);
     }
@@ -147,8 +138,6 @@ public class ViewUtils {
     /**
      * Use this method to show Toast only in Debug apk, thanks to it you wont have to
      * delete all occurrences of Toasts before release :)
-     *
-     * @param text
      */
     public static void showDebugToast(String text) {
         if (Settings.DEBUG) {
@@ -200,6 +189,7 @@ public class ViewUtils {
         }
     }
 
+    @SuppressLint("PackageManagerGetSignatures")
     public static String getKeyHash(String pckgName, Context context) {
         // Add code to print out the key hash
         String keyHash = "";
@@ -231,7 +221,7 @@ public class ViewUtils {
 
     public static TextView setUpActionbarFont(Activity context, Typeface font) {
         int titleId = context.getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionbarTitleTv = (TextView) context.findViewById(titleId);
+        TextView actionbarTitleTv = context.findViewById(titleId);
         if (actionbarTitleTv != null) {
             actionbarTitleTv.setTypeface(font);
         }
@@ -264,7 +254,7 @@ public class ViewUtils {
 
         // Final check for non-zero invalid id
         if (titleId > 0) {
-            titleTextView = (TextView) activity.findViewById(titleId);
+            titleTextView = activity.findViewById(titleId);
             DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
             // Fetch layout parameters of titleTextView (LinearLayout.LayoutParams : Info from HierarchyViewer)
             LinearLayout.LayoutParams txvPars = (LinearLayout.LayoutParams) titleTextView.getLayoutParams();
