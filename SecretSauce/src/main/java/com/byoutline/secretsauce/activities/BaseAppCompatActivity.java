@@ -1,7 +1,6 @@
 package com.byoutline.secretsauce.activities;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
@@ -35,29 +34,15 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
     protected FragmentManager mSupportFragmentManager;
     @Nullable
     protected NavigationDrawerFragment navigationDrawerFragment;
-
-
-    TextView toolbarTitle;
     protected Toolbar toolbar;
+    TextView toolbarTitle;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (Settings.DEBUG) {
-            //calculate key hash for Facebook - display in logs
-            ViewUtils.getKeyHash("com.byoutline.secretsauce", getApplicationContext());
-        }
-    }
-
-    /**
+    /*
      * Optional drawer
      */
+
     /**
      * Before setting drawer remember to call {@link #injectViewsAndSetUpToolbar(int, int)}.
-     *
-     * @param navigationDrawerId
-     * @param drawerLayoutId
      */
     protected void setUpDrawer(@IdRes int navigationDrawerId, @IdRes int drawerLayoutId, boolean showingLearnDrawerEnabled) {
         navigationDrawerFragment = (NavigationDrawerFragment)
@@ -71,40 +56,17 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
 
     /**
      * {@link #setUpDrawer(int, int, boolean)} must be called before calling this method.
-     *
-     * @param show
      */
     public void setDrawerIndicatorEnabled(boolean show) {
         navigationDrawerFragment.setDrawerIndicatorEnabled(show);
     }
 
     /*
-     * Action bar related methods
-     */
-
-    @Deprecated
-    /**
-     * @deprecated Use toolbar instead of action bar.
-     */
-    public void setUpActionbarFont() {
-        ViewUtils.setUpActionbarFont(this, Settings.ACTIONBAR_FONT_NAME);
-    }
-
-
-    @Deprecated
-    /**
-     * @deprecated Use toolbar instead of action bar.
-     */
-    public void setDisplayHomeAsUpEnabled(boolean show) {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(show);
-    }
-
-    /*
      * Toolbar
      */
     protected void injectViewsAndSetUpToolbar(@IdRes int toolbarLayoutId, @IdRes int toolbarTitleId) {
-        toolbar = (Toolbar) findViewById(toolbarLayoutId);
-        toolbarTitle = (TextView) findViewById(toolbarTitleId);
+        toolbar = findViewById(toolbarLayoutId);
+        toolbarTitle = findViewById(toolbarTitleId);
         setSupportActionBar(toolbar);
         ViewCompat.setElevation(toolbar, ViewUtils.convertDpToPixel(4, this));
     }
@@ -130,7 +92,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
     }
 
     /*
-     * Software keyboard managment.
+     * Software keyboard management.
      */
 
     @Override
@@ -256,6 +218,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity
             dialog.dismiss();
             return true;
         }
+        ft.commitAllowingStateLoss();
         return false;
     }
 }
