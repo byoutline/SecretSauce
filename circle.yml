@@ -1,3 +1,10 @@
+general:
+  artifacts:
+    - "sampleapplication/build/outputs"
+    - "sampleapplication/build/reports"
+    - "SecretSauce/build/outputs"
+    - "SecretSauce/build/reports"
+
 machine:
   java:
     version: oraclejdk8
@@ -20,7 +27,7 @@ dependencies:
     - ~/.android
     - /usr/local/android-sdk-linux/tools
     - /usr/local/android-sdk-linux/extras
-    - /usr/local/android-sdk-linux/build-tools/25.0.2
+    - /usr/local/android-sdk-linux/build-tools/26.0.1
   override:
     - ./gradlew dependencies
   post:
@@ -56,10 +63,4 @@ test:
     - ci/run_instrumented_tests.sh || ci/run_instrumented_tests.sh:
         parallel: true
         timeout: 1800
-  post:
-    # copy the build outputs to artifacts
-    - cp -r sampleapplication/build/outputs $CIRCLE_ARTIFACTS
-    - cp -r SecretSauce/build/outputs $CIRCLE_ARTIFACTS
-    # copy the test results to the test results directory.
-    - cp -r sampleapplication/build/spoon/* $CIRCLE_TEST_REPORTS/:
-        parallel: true
+

@@ -3,7 +3,7 @@ ext {
     build_tools_ver = '26.0.1'
     target_sdk_ver = 26
 
-    support_version = '26.0.1'
+    support_version = '26.0.2'
     ottocachedfield_version = '1.6.3'
     jsr_305_version = '3.0.0'
 }
