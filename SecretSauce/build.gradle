@@ -9,6 +9,7 @@ buildscript {
 
 repositories {
     mavenCentral()
+    maven { url "https://jcenter.bintray.com/" }
 }
 
 apply from: '../gradle/byoutline/checkGenerics.gradle'
@@ -52,6 +53,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
     provided 'com.squareup.picasso:picasso:2.5.2'
+    provided 'com.android.databinding:baseLibrary:2.3.1'
+    provided files('libs/binding-library-1.1.jar')
     compile 'com.squareup:otto:1.3.8'
     compile "com.google.code.findbugs:jsr305:$jsr_305_version"
     compile "com.byoutline.ottocachedfield:ottocachedfield:$ottocachedfield_version"

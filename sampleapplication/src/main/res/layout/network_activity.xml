@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="connected"
+            type="android.databinding.ObservableBoolean" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -8,12 +15,12 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/networkTv"
+            style="@style/customFontStyle2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="38sp"
-            style="@style/customFontStyle2"
-            android:text="Network state..."/>
+            android:text="@{connected ? @string/network_change_receiver_network_available : @string/network_change_receiver_network_not_available }"
+            android:textSize="38sp" />
 
     </LinearLayout>
 </layout>

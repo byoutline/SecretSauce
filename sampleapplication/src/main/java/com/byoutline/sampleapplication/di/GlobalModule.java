@@ -2,6 +2,7 @@ package com.byoutline.sampleapplication.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.databinding.ObservableBoolean;
 import android.net.ConnectivityManager;
 import com.byoutline.ottoeventcallback.PostFromAnyThreadBus;
 import com.byoutline.sampleapplication.draweractivity.ToolbarViewModel;
@@ -31,14 +32,14 @@ public class GlobalModule {
 
     @Provides
     @Reusable
-    public ConnectivityManager providesConnectivityManager() {
+    ConnectivityManager providesConnectivityManager() {
         return (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Provides
     @Reusable
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
-        return new NetworkChangeReceiver(connectivityManager);
+        return new NetworkChangeReceiver(connectivityManager, new ObservableBoolean());
     }
 
     @Provides
