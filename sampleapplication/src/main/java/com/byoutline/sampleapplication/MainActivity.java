@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity;
-import com.byoutline.sampleapplication.datepicker.DatePickerSampleActivity;
 import com.byoutline.sampleapplication.draweractivity.ExampleActivity;
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity;
 import com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample;
@@ -41,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 return intent;
             case R.id.networkChangeReceiverExample:
                 return new Intent(this, NetworkChangeActivity.class);
-            case R.id.datePickerExample:
-                return new Intent(this, DatePickerSampleActivity.class);
             case R.id.roundedExample:
                 return new Intent(this, DrawableActivityExample.class);
             case R.id.customViewsExample:

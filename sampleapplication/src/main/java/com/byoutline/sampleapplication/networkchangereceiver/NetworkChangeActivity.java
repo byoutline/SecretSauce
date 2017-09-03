@@ -3,12 +3,11 @@ package com.byoutline.sampleapplication.networkchangereceiver;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import com.byoutline.sampleapplication.R;
 import com.byoutline.sampleapplication.SampleApp;
 import com.byoutline.sampleapplication.databinding.NetworkActivityBinding;
 import com.byoutline.secretsauce.utils.NetworkChangeReceiver;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 

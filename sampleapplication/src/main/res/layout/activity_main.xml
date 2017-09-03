@@ -34,13 +34,6 @@
             style="@style/MainBtnstyle" />
 
         <Button
-            android:id="@+id/datePickerExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="Date Picker Example"
-            style="@style/MainBtnstyle" />
-
-        <Button
             android:id="@+id/roundedExample"
             android:layout_marginTop="30dp"
             android:onClick="onClick"

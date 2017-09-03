@@ -29,7 +29,6 @@
         <activity
             android:name=".networkchangereceiver.NetworkChangeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".datepicker.DatePickerSampleActivity"/>
         <activity android:name=".roundedimageview.DrawableActivityExample"/>
         <activity
             android:name=".customfontviews.CustomFontViewsActivity"

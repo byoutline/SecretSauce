@@ -35,7 +35,7 @@ class SampleApp : Application() {
     fun setComponents(mainComponent: GlobalComponent) {
         component = mainComponent
         Settings.set(context = this, debug = BuildConfig.DEBUG,
-                containerViewId = R.id.container, bus = mainComponent.bus)
+                containerViewId = R.id.container)
     }
 
     companion object {
