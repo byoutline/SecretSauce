@@ -2,13 +2,11 @@ package com.byoutline.secretsauce.utils;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.StringRes;
 import android.text.SpannableStringBuilder;
@@ -18,16 +16,18 @@ import android.text.style.ImageSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewManager;
-import android.widget.*;
-import com.byoutline.secretsauce.R;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.byoutline.secretsauce.Settings;
-import com.byoutline.secretsauce.events.ShowValidationErrorsEvent;
 import com.byoutline.secretsauce.utils.internal.SpanStyler;
 import com.byoutline.secretsauce.utils.internal.ToastDisplayer;
 
@@ -217,55 +217,6 @@ public class ViewUtils {
             editText.setError(errorMessage);
         }
         return value;
-    }
-
-    public static TextView setUpActionbarFont(Activity context, Typeface font) {
-        int titleId = context.getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionbarTitleTv = context.findViewById(titleId);
-        if (actionbarTitleTv != null) {
-            actionbarTitleTv.setTypeface(font);
-        }
-        return actionbarTitleTv;
-    }
-
-    public static void showValidationErrors(String screenName, ShowValidationErrorsEvent event, Map<String, View> errorViews) {
-        if (event.screenName.equals(screenName)) {
-
-            for (Map.Entry<String, String[]> errorEntry : event.validationErrors.entrySet()) {
-                View viewWithError = errorViews.get(errorEntry.getKey());
-                if (viewWithError != null && viewWithError instanceof TextView) {
-                    StringBuilder errorsMultiline = new StringBuilder();
-                    for (String error : errorEntry.getValue()) {
-                        errorsMultiline.append(error);
-                        errorsMultiline.append("\n");
-                    }
-
-                    viewWithError.requestFocus();
-                    ((TextView) viewWithError).setError(errorsMultiline);
-
-                }
-            }
-        }
-    }
-
-    public static TextView centerActionBarTitleAndSetFont(Activity activity, Typeface font) {
-        TextView titleTextView = null;
-        int titleId = activity.getResources().getIdentifier("action_bar_title", "id", "android");
-
-        // Final check for non-zero invalid id
-        if (titleId > 0) {
-            titleTextView = activity.findViewById(titleId);
-            DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
-            // Fetch layout parameters of titleTextView (LinearLayout.LayoutParams : Info from HierarchyViewer)
-            LinearLayout.LayoutParams txvPars = (LinearLayout.LayoutParams) titleTextView.getLayoutParams();
-            txvPars.gravity = Gravity.CENTER;
-            txvPars.width = metrics.widthPixels - activity.getResources().getDimensionPixelSize(R.dimen.ab_height);
-            titleTextView.setLayoutParams(txvPars);
-            titleTextView.setGravity(Gravity.CENTER);
-            titleTextView.setTypeface(font);
-        }
-
-        return titleTextView;
     }
 
     /**
