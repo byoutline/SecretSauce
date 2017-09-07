@@ -59,6 +59,12 @@ dependencies {
     compile "com.google.code.findbugs:jsr305:$jsr_305_version"
     compile "com.byoutline.ottocachedfield:ottocachedfield:$ottocachedfield_version"
     compile 'joda-time:joda-time:2.9.9'
+
+    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
+    compile "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycle_ver"
+    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_ver"
+    compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle_ver"
+
 }
 
 apply from: 'maven-push.gradle'

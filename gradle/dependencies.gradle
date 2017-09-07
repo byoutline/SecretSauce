@@ -6,4 +6,5 @@ ext {
     support_version = '26.0.2'
     ottocachedfield_version = '1.6.3'
     jsr_305_version = '3.0.0'
+    rxlifecycle_ver = '2.1.0'
 }
