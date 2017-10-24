@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 import com.byoutline.secretsauce.Settings;
 import com.byoutline.secretsauce.utils.internal.SpanStyler;
-import com.byoutline.secretsauce.utils.internal.ToastDisplayer;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -116,77 +115,6 @@ public class ViewUtils {
                 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
-    }
-
-    /**
-     * Displays integer inside given pattern in TextView, or hides TextView if null given.
-     */
-    public static void setTextForViewOrHideIt(TextView textView, String value) {
-        if (TextUtils.isEmpty(value)) {
-            textView.setVisibility(View.GONE);
-        } else {
-            textView.setText(value);
-        }
-    }
-
-    public static void removeFromLayout(RelativeLayout view) {
-        if (view != null && view.getParent() != null) {
-            ((ViewManager) view.getParent()).removeView(view);
-        }
-    }
-
-    /**
-     * Use this method to show Toast only in Debug apk, thanks to it you wont have to
-     * delete all occurrences of Toasts before release :)
-     */
-    public static void showDebugToast(String text) {
-        if (Settings.INSTANCE.getDEBUG()) {
-            showToast("DEBUG:\n" + text);
-        }
-    }
-
-    public static void showToast(final String text, final int length, final boolean cancelPrev) {
-        ToastDisplayer.showToast(text, length, cancelPrev);
-    }
-
-    public static void showToast(String text) {
-        ToastDisplayer.showToast(text);
-    }
-
-    public static void showToast(String text, boolean cancelPrev) {
-        ToastDisplayer.showToast(text, cancelPrev);
-    }
-
-    public static void showLongToast(String text) {
-        ToastDisplayer.showLongToast(text);
-    }
-
-    public static void showLongToast(@StringRes int resId) {
-        ToastDisplayer.showLongToast(resId);
-    }
-
-    public static void showToast(@StringRes int resId) {
-        ToastDisplayer.showToast(resId);
-    }
-
-    public static void showToast(@StringRes int resId, boolean cancelPrev) {
-        ToastDisplayer.showToast(resId, cancelPrev);
-    }
-
-    public static void setText(TextView tv, String text) {
-        if (tv != null && text != null) {
-            tv.setText(text);
-        }
-    }
-
-    public static void setTextOrClear(TextView tv, String text) {
-        if (tv != null) {
-            if (text == null) {
-                tv.setText("");
-            } else {
-                tv.setText(text);
-            }
-        }
     }
 
     @SuppressLint("PackageManagerGetSignatures")
