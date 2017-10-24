@@ -9,6 +9,9 @@ buildscript {
     }
 }
 
+repositories {
+    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+}
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -53,12 +56,13 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':SecretSauce')
+    compile project(':waitlayout')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.android.support:design:$support_version"
-    implementation "com.byoutline.ottocachedfield:ottocachedfield:$ottocachedfield_version"
+    implementation 'com.byoutline.ottocachedfield:observablecachedfield:1.7.0-SNAPSHOT'
     implementation 'com.jakewharton.timber:timber:4.5.1'
     kapt "com.android.databinding:compiler:$build_tools_version"
 

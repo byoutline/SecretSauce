@@ -10,6 +10,7 @@ import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity;
 import com.byoutline.sampleapplication.draweractivity.ExampleActivity;
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity;
 import com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample;
+import com.byoutline.sampleapplication.waitlayout.WaitActivity;
 import com.byoutline.secretsauce.activities.WebViewActivityV7;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,20 +31,22 @@ public class MainActivity extends AppCompatActivity {
     @Nullable
     private Intent getActivityIntentForView(@IdRes int viewId) {
         switch (viewId) {
-            case R.id.baseAppCompatActivityButton:
+            case R.id.baseAppCompatActivityBtn:
                 return new Intent(this, ExampleActivity.class);
-            case R.id.webVievActivityExample:
+            case R.id.webVievActivityBtn:
                 // Remember about adding internet permission to manifest
                 // and adding WebViewActivityV7 to manifest file.
                 Intent intent = new Intent(this, WebViewActivityV7.class);
                 intent.putExtra(WebViewActivityV7.BUNDLE_URL, "https://github.com/byoutline/SecretSauce");
                 return intent;
-            case R.id.networkChangeReceiverExample:
+            case R.id.networkChangeReceiverBtn:
                 return new Intent(this, NetworkChangeActivity.class);
-            case R.id.roundedExample:
+            case R.id.roundedBtn:
                 return new Intent(this, DrawableActivityExample.class);
-            case R.id.customViewsExample:
+            case R.id.customViewsBtn:
                 return new Intent(this, CustomFontViewsActivity.class);
+            case R.id.waitLayoutBtn:
+                return new Intent(this, WaitActivity.class);
         }
         return null;
     }

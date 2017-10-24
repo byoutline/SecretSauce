@@ -6,8 +6,6 @@ import com.byoutline.espressohelpers.SpoonTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Date;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
@@ -22,16 +20,16 @@ public class ApplicationTest {
     @Test
     public void allButtonsShouldBeDisplayedTest() {
         //CHECK FIRST
-        onView(withId(R.id.baseAppCompatActivityButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.baseAppCompatActivityBtn)).check(matches(isDisplayed()));
         //CHECK LAST
-        onView((withId(R.id.customViewsExample))).perform(scrollTo())
+        onView((withId(R.id.customViewsBtn))).perform(scrollTo())
                 .check(matches(isDisplayed()));
     }
 
     @Test
     public void fragmentShouldBeShownAfterClickDrawerOptionTest() {
         //when
-        onView(withId(R.id.baseAppCompatActivityButton))
+        onView(withId(R.id.baseAppCompatActivityBtn))
                 .check(matches(isDisplayed())).perform(click());
         onView(withText("First Item")).perform(click());
 

@@ -1,52 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/indigo"
-            android:fillViewport="true"
-            tools:context="com.byoutline.sampleapplication.MainActivity">
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/indigo"
+	android:fillViewport="true"
+	tools:context="com.byoutline.sampleapplication.MainActivity"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/activity_vertical_margin"
+		android:orientation="vertical"
+		>
 
-        <Button
-            android:id="@+id/baseAppCompatActivityButton"
-            android:onClick="onClick"
-            android:text="Drawer Activity Example"
-            style="@style/MainBtnstyle" />
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="32sp"
+			android:layout_marginBottom="20dp"
+			android:text="Examples:"
+			/>
 
-        <Button
-            android:id="@+id/webVievActivityExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="WebView Activity Example"
-            style="@style/MainBtnstyle" />
+		<Button
+			android:id="@+id/baseAppCompatActivityBtn"
+			android:onClick="onClick"
+			android:text="Drawer Activity"
+			style="@style/MainBtnstyle"
+			/>
 
-        <Button
-            android:id="@+id/networkChangeReceiverExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="Network Change Example"
-            style="@style/MainBtnstyle" />
+		<Button
+			android:id="@+id/webVievActivityBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="WebView Activity"
+			style="@style/MainBtnstyle"
+			/>
 
-        <Button
-            android:id="@+id/roundedExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="Drawable Examples"
-            style="@style/MainBtnstyle" />
+		<Button
+			android:id="@+id/networkChangeReceiverBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Network Change"
+			style="@style/MainBtnstyle"
+			/>
 
-        <Button
-            android:id="@+id/customViewsExample"
-            android:layout_marginTop="30dp"
-            android:onClick="onClick"
-            android:text="Custom font views Example"
-            style="@style/MainBtnstyle" />
+		<Button
+			android:id="@+id/roundedBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Drawable"
+			style="@style/MainBtnstyle"
+			/>
 
-    </LinearLayout>
+		<Button
+			android:id="@+id/customViewsBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Custom font views"
+			style="@style/MainBtnstyle"
+			/>
+
+		<Button
+			android:id="@+id/waitLayoutBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="WaitLayout"
+			style="@style/MainBtnstyle"
+			/>
+
+	</LinearLayout>
 
 </ScrollView>

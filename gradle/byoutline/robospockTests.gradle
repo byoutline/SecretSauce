@@ -1,6 +1,8 @@
-apply plugin: SpockTests
+apply plugin: RoboSpockTests
 
-final class SpockTests implements Plugin<Project>{
+// Add classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
+// to buildscript dependencies
+final class RoboSpockTests implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
@@ -11,6 +13,8 @@ final class SpockTests implements Plugin<Project>{
     private static void addDependencies(Project project) {
         project.afterEvaluate {
             def pd = project.dependencies
+            pd.add('testImplementation', 'org.robospock:robospock:1.0.0')
+            pd.add('testImplementation', 'org.robolectric:robolectric:3.0')
             pd.add('testImplementation', 'org.codehaus.groovy:groovy-all:2.4.9')
             pd.add('testImplementation', 'junit:junit:4.12')
             pd.add('testImplementation', 'org.spockframework:spock-core:1.0-groovy-2.4')
@@ -22,8 +26,8 @@ final class SpockTests implements Plugin<Project>{
     }
 
     private void applyPlugins(Project project) {
-        project.configure(project){
-            apply plugin: 'groovy'
+        project.configure(project) {
+            apply plugin: 'groovyx.grooid.groovy-android'
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.byoutline.secretsauce.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.support.annotation.IdRes
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
@@ -16,12 +17,14 @@ import com.byoutline.secretsauce.Settings
  */
 fun FragmentActivity.hideKeyboard() {
     currentFocus?.let { focused ->
-        Settings.INPUT_MANAGER?.hideSoftInputFromWindow(focused.windowToken, 0)
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
+                ?.hideSoftInputFromWindow(focused.windowToken, 0)
     }
 }
 
 fun FragmentActivity.showKeyboard() {
-    Settings.INPUT_MANAGER?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
+            ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }
 
 fun FragmentActivity.finishFragment() {
@@ -37,8 +40,8 @@ fun FragmentActivity.finishFragment() {
  */
 @SuppressLint("ResourceType")
 fun FragmentActivity.showFragment(fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
-                                   animations: Array<Int>? = null,
-                                   @IdRes containerViewId: Int = Settings.CONTAINER_VIEW_ID) {
+                                  animations: Array<Int>? = null,
+                                  @IdRes containerViewId: Int = Settings.CONTAINER_VIEW_ID) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

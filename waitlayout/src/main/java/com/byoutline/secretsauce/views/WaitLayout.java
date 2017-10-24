@@ -1,7 +1,9 @@
 package com.byoutline.secretsauce.views;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
@@ -9,16 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import com.byoutline.cachedfield.CachedField;
 import com.byoutline.cachedfield.CachedFieldWithArg;
-import com.byoutline.cachedfield.FieldState;
-import com.byoutline.cachedfield.FieldStateListener;
 import com.byoutline.cachedfield.cachedendpoint.CachedEndpointWithArg;
-import com.byoutline.cachedfield.cachedendpoint.EndpointState;
-import com.byoutline.cachedfield.cachedendpoint.EndpointStateListener;
-import com.byoutline.cachedfield.cachedendpoint.StateAndValue;
-import com.byoutline.secretsauce.R;
-import com.byoutline.secretsauce.utils.ViewUtils;
+import com.byoutline.cachedfield.utils.CachedFieldsIdleListener;
+import com.byoutline.cachedfield.utils.CachedFieldsListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -33,11 +29,9 @@ import java.util.List;
  *
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
-public class WaitLayout extends FrameLayout implements FieldStateListener, EndpointStateListener {
+public class WaitLayout extends FrameLayout implements CachedFieldsIdleListener {
     private static final int BASE_PROGRESSBAR_SIZE = 76;
-    private final List<CachedField> fieldsNoArgs = new ArrayList<>(2);
-    private final List<CachedFieldWithArg> fields = new ArrayList<>(2);
-    private final List<CachedEndpointWithArg> endpoints = new ArrayList<>(2);
+    private CachedFieldsListener listener;
 
     View loadingBar;
 
@@ -78,7 +72,7 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
                 } else {
                     loadingBar.setLayoutParams(getProgressBarLayoutParams());
                 }
-                ViewUtils.showView(loadingBar, visible);
+                showView(loadingBar, visible);
                 for (int i = 0; i < getChildCount(); i++) {
                     getChildAt(i).setEnabled(!visible);
                 }
@@ -93,7 +87,7 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
     }
 
     private LayoutParams getProgressBarLayoutParams() {
-        int max = Math.round(ViewUtils.convertDpToPixel(BASE_PROGRESSBAR_SIZE, getContext()));
+        int max = Math.round(convertDpToPixel(BASE_PROGRESSBAR_SIZE, getContext()));
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
         int smallerDimension = width < height ? width : height;
@@ -106,20 +100,13 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
         return lp;
     }
 
+
     @SuppressWarnings("unchecked")
     public void stopTrackingProgress() {
-        for (CachedField field : fieldsNoArgs) {
-            field.removeStateListener(this);
+        CachedFieldsListener oldL = listener;
+        if (oldL != null) {
+            oldL.unregisterFromFields();
         }
-        for (CachedFieldWithArg field : fields) {
-            field.removeStateListener(this);
-        }
-        for (CachedEndpointWithArg endpoint : endpoints) {
-            endpoint.removeEndpointListener(this);
-        }
-        fieldsNoArgs.clear();
-        fields.clear();
-        endpoints.clear();
     }
 
     public void showProgressOf(CachedField... newFields) {
@@ -139,57 +126,28 @@ public class WaitLayout extends FrameLayout implements FieldStateListener, Endpo
                                             List<CachedFieldWithArg> newFields,
                                             List<CachedEndpointWithArg> newEndpoints) {
         stopTrackingProgress();
-        for (CachedField field : newFieldsWithoutArgs) {
-            field.addStateListener(this);
-        }
-        for (CachedFieldWithArg field : newFields) {
-            field.addStateListener(this);
-        }
-        for (CachedEndpointWithArg endpoint : newEndpoints) {
-            endpoint.addEndpointListener(this);
-        }
-        fieldsNoArgs.addAll(newFieldsWithoutArgs);
-        fields.addAll(newFields);
-        endpoints.addAll(newEndpoints);
-    }
-
-    private void checkState() {
-        boolean loading = false;
-        List<CachedField> currentFieldsNoArgs = new ArrayList<>(fieldsNoArgs);
-        List<CachedFieldWithArg> currentFields = new ArrayList<>(fields);
-        List<CachedEndpointWithArg> currentEndpoints = new ArrayList<>(endpoints);
-        for (CachedField field : currentFieldsNoArgs) {
-            if (field.getState() == FieldState.CURRENTLY_LOADING) {
-                loading = true;
-                break;
-            }
-        }
-        if (!loading) {
-            for (CachedFieldWithArg field : currentFields) {
-                if (field.getState() == FieldState.CURRENTLY_LOADING) {
-                    loading = true;
-                    break;
-                }
-            }
-        }
-        if (!loading) {
-            for (CachedEndpointWithArg endpoint : currentEndpoints) {
-                if (endpoint.getStateAndValue().getState() == EndpointState.DURING_CALL) {
-                    loading = true;
-                    break;
-                }
-            }
-        }
-        setLoadingBarVisibleAsync(loading);
+        CachedFieldsListener newL = new CachedFieldsListener(newFieldsWithoutArgs, newFields, newEndpoints);
+        listener = newL;
+        newL.setListener(this);
+        newL.startTrackingFields();
     }
 
     @Override
-    public void fieldStateChanged(FieldState fieldState) {
-        checkState();
+    public void onFieldsStateChange(boolean currentlyLoading) {
+        setLoadingBarVisibleAsync(listener.getCurrentState());
     }
 
-    @Override
-    public void endpointStateChanged(StateAndValue endpointState) {
-        checkState();
+    // Methods copied over to avoid dependency on main Secret Sauce
+    private static void showView(View view, boolean visible) {
+        if (view != null) {
+            view.setVisibility(visible ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    private static float convertDpToPixel(float dp, Context context) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return px;
     }
 }

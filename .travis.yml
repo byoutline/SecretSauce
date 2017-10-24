@@ -16,7 +16,7 @@ env:
 android:
   components:
     - tools
-    - build-tools-26.0.1
+    - build-tools-26.0.2
     - platform-tools
     - extra-google-m2repository
     - extra-android-m2repository

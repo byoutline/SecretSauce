@@ -34,8 +34,7 @@ class SampleApp : Application() {
     @Synchronized
     fun setComponents(mainComponent: GlobalComponent) {
         component = mainComponent
-        Settings.set(context = this, debug = BuildConfig.DEBUG,
-                containerViewId = R.id.container)
+        Settings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)
     }
 
     companion object {

@@ -1,18 +1,5 @@
 <resources>
 
-    <style name="WaitProgressBar" parent="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">120dp</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-
-    <style name="WaitLayoutProgressBar" parent="@android:style/Widget.Holo.ProgressBar.Large">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:background">#1A022000</item>
-    </style>
-
     <style name="dialog_full_screen" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@color/generic_dialog_fragment_background</item>
         <item name="android:windowNoTitle">true</item>

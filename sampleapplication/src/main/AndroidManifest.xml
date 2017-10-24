@@ -34,6 +34,7 @@
             android:name=".customfontviews.CustomFontViewsActivity"
             android:label="@string/title_activity_custom_views_examples"
             android:theme="@style/AppTheme.NoActionBar"/>
+	    <activity android:name=".waitlayout.WaitActivity" />
     </application>
 
 </manifest>
