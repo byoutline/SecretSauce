@@ -1,14 +1,13 @@
 buildscript {
     ext.kotlin_version = '1.1.51'
-    ext.build_tools_version = '3.0.0-beta3'
+    ext.build_tools_version = '3.0.0'
     repositories {
-        mavenCentral()
+        maven { url "https://jcenter.bintray.com/" }
         maven { url "https://maven.google.com" }
-        maven { url 'http://repo.spring.io/plugins-release' }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-rc2'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }

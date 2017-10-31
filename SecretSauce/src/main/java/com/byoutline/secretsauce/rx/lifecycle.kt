@@ -1,4 +1,4 @@
-package com.byoutline.rx
+package com.byoutline.secretsauce.rx
 
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent

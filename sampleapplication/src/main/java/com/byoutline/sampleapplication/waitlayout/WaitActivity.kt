@@ -6,10 +6,8 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.byoutline.cachedfield.internal.DefaultExecutors
-import com.byoutline.cachedfield.utils.SameSessionIdProvider
+import com.byoutline.observablecachedfield.ObservableCachedFieldBuilder
 import com.byoutline.observablecachedfield.ObservableCachedFieldWithArg
-import com.byoutline.ottocachedfield.CachedFieldBuilder
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.ActivityWaitLayoutBinding
 import com.byoutline.secretsauce.views.WaitLayout
@@ -61,16 +59,11 @@ internal class SleepField(workerName: String) {
 }
 
 private fun sleepCachedField(workerName: String): ObservableCachedFieldWithArg<String, Int>
-        = CachedFieldBuilder()
+        = ObservableCachedFieldBuilder()
         .withValueProviderWithArg { arg: Int ->
             Thread.sleep(arg.toLong())
             return@withValueProviderWithArg "Worker: $workerName has slept $arg ms."
         }
-        .asObservable()
-        // Alternative defaults
-        .withCustomSessionIdProvider(SameSessionIdProvider())
-        .withCustomValueGetterExecutor(DefaultExecutors.createDefaultValueGetterExecutor())
-        .withCustomStateListenerExecutor(DefaultExecutors.createDefaultStateListenerExecutor())
         .build()
 
 
