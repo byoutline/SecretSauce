@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew :sampleapplication:spoon -x lint --no-daemon -PdisablePreDex --stacktrace
+./gradlew :sampleapplication:connectedAndroidTest -x lint --no-daemon -PdisablePreDex --stacktrace
