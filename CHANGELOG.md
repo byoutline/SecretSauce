@@ -10,7 +10,7 @@
      * `BaseApp` removed - initialization is now needed only for showFragment, Toast and logs, and can
      be done via `Settings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)`
      * toast helpers are now `Context` extension functions
-     * due to vast changes atrifact name changed from `secretsauce` to `secretsaucekt`
+     * due to vast changes artifact name changed from `secretsauce` to `secretsaucekt`
   * 0.5.3 _06.05.2017_ Make listener interface in `CustomClickableSpan` public.
     `CustomFontTextView` now checks `suffixSpace` attribute that can be used to workaround
     wrong measurement on `wrap_content` when font is italic.
