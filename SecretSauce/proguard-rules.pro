@@ -10,4 +10,3 @@
 -keep class org.joda.time.** { *; }
 -keep interface org.joda.time.** { *; }
 
-#-keep class com.byoutline.secretsauce.events.** {*;}

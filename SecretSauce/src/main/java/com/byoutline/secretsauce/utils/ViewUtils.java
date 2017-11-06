@@ -2,13 +2,11 @@ package com.byoutline.secretsauce.utils;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.StringRes;
 import android.text.SpannableStringBuilder;
@@ -18,18 +16,19 @@ import android.text.style.ImageSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewManager;
-import android.widget.*;
-import com.byoutline.secretsauce.R;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.byoutline.secretsauce.Settings;
-import com.byoutline.secretsauce.events.ShowValidationErrorsEvent;
 import com.byoutline.secretsauce.utils.internal.SpanStyler;
-import com.byoutline.secretsauce.utils.internal.ToastDisplayer;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -118,77 +117,6 @@ public class ViewUtils {
         listView.requestLayout();
     }
 
-    /**
-     * Displays integer inside given pattern in TextView, or hides TextView if null given.
-     */
-    public static void setTextForViewOrHideIt(TextView textView, String value) {
-        if (TextUtils.isEmpty(value)) {
-            textView.setVisibility(View.GONE);
-        } else {
-            textView.setText(value);
-        }
-    }
-
-    public static void removeFromLayout(RelativeLayout view) {
-        if (view != null && view.getParent() != null) {
-            ((ViewManager) view.getParent()).removeView(view);
-        }
-    }
-
-    /**
-     * Use this method to show Toast only in Debug apk, thanks to it you wont have to
-     * delete all occurrences of Toasts before release :)
-     */
-    public static void showDebugToast(String text) {
-        if (Settings.DEBUG) {
-            showToast("DEBUG:\n" + text);
-        }
-    }
-
-    public static void showToast(final String text, final int length, final boolean cancelPrev) {
-        ToastDisplayer.showToast(text, length, cancelPrev);
-    }
-
-    public static void showToast(String text) {
-        ToastDisplayer.showToast(text);
-    }
-
-    public static void showToast(String text, boolean cancelPrev) {
-        ToastDisplayer.showToast(text, cancelPrev);
-    }
-
-    public static void showLongToast(String text) {
-        ToastDisplayer.showLongToast(text);
-    }
-
-    public static void showLongToast(@StringRes int resId) {
-        ToastDisplayer.showLongToast(resId);
-    }
-
-    public static void showToast(@StringRes int resId) {
-        ToastDisplayer.showToast(resId);
-    }
-
-    public static void showToast(@StringRes int resId, boolean cancelPrev) {
-        ToastDisplayer.showToast(resId, cancelPrev);
-    }
-
-    public static void setText(TextView tv, String text) {
-        if (tv != null && text != null) {
-            tv.setText(text);
-        }
-    }
-
-    public static void setTextOrClear(TextView tv, String text) {
-        if (tv != null) {
-            if (text == null) {
-                tv.setText("");
-            } else {
-                tv.setText(text);
-            }
-        }
-    }
-
     @SuppressLint("PackageManagerGetSignatures")
     public static String getKeyHash(String pckgName, Context context) {
         // Add code to print out the key hash
@@ -217,55 +145,6 @@ public class ViewUtils {
             editText.setError(errorMessage);
         }
         return value;
-    }
-
-    public static TextView setUpActionbarFont(Activity context, Typeface font) {
-        int titleId = context.getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView actionbarTitleTv = context.findViewById(titleId);
-        if (actionbarTitleTv != null) {
-            actionbarTitleTv.setTypeface(font);
-        }
-        return actionbarTitleTv;
-    }
-
-    public static void showValidationErrors(String screenName, ShowValidationErrorsEvent event, Map<String, View> errorViews) {
-        if (event.screenName.equals(screenName)) {
-
-            for (Map.Entry<String, String[]> errorEntry : event.validationErrors.entrySet()) {
-                View viewWithError = errorViews.get(errorEntry.getKey());
-                if (viewWithError != null && viewWithError instanceof TextView) {
-                    StringBuilder errorsMultiline = new StringBuilder();
-                    for (String error : errorEntry.getValue()) {
-                        errorsMultiline.append(error);
-                        errorsMultiline.append("\n");
-                    }
-
-                    viewWithError.requestFocus();
-                    ((TextView) viewWithError).setError(errorsMultiline);
-
-                }
-            }
-        }
-    }
-
-    public static TextView centerActionBarTitleAndSetFont(Activity activity, Typeface font) {
-        TextView titleTextView = null;
-        int titleId = activity.getResources().getIdentifier("action_bar_title", "id", "android");
-
-        // Final check for non-zero invalid id
-        if (titleId > 0) {
-            titleTextView = activity.findViewById(titleId);
-            DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
-            // Fetch layout parameters of titleTextView (LinearLayout.LayoutParams : Info from HierarchyViewer)
-            LinearLayout.LayoutParams txvPars = (LinearLayout.LayoutParams) titleTextView.getLayoutParams();
-            txvPars.gravity = Gravity.CENTER;
-            txvPars.width = metrics.widthPixels - activity.getResources().getDimensionPixelSize(R.dimen.ab_height);
-            titleTextView.setLayoutParams(txvPars);
-            titleTextView.setGravity(Gravity.CENTER);
-            titleTextView.setTypeface(font);
-        }
-
-        return titleTextView;
     }
 
     /**

@@ -2,6 +2,7 @@ package com.byoutline.secretsauce.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -10,7 +11,7 @@ import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.utils.LogUtils;
 import com.byoutline.shadow.org.apache.http.util.EncodingUtils;
 
-public class WebViewActivityV7 extends BaseAppCompatActivity {
+public class WebViewActivityV7 extends AppCompatActivity {
 
     public static final String BUNDLE_URL = "bundle_url";
     public static final String BUNDLE_POST_DATA = "bundle_post_data";

@@ -1,9 +1,10 @@
 ext {
     compile_sdk_ver = 26
-    build_tools_ver = '26.0.1'
+    build_tools_ver = '26.0.2'
     target_sdk_ver = 26
 
-    support_version = '26.0.1'
-    ottocachedfield_version = '1.6.3'
+    support_version = '26.1.0'
+    cachedfield_ver = '1.7.0-RC2'
     jsr_305_version = '3.0.0'
+    rxlifecycle_ver = '2.1.0'
 }

@@ -4,13 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
 import com.byoutline.secretsauce.R;
-import com.byoutline.secretsauce.Settings;
-import com.byoutline.secretsauce.utils.FontCache;
 
 
 public class CheckableCustomFontTextView extends CompoundButton {
@@ -19,37 +15,24 @@ public class CheckableCustomFontTextView extends CompoundButton {
 
     public CheckableCustomFontTextView(Context context) {
         super(context);
-        setCustomFont(context, Settings.DEFAULT_FONT_NAME);
     }
 
     public CheckableCustomFontTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setCustomFont(context, attrs);
+        setFontAngle(context, attrs);
     }
 
     public CheckableCustomFontTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setCustomFont(context, attrs);
+        setFontAngle(context, attrs);
     }
 
-    private void setCustomFont(Context ctx, AttributeSet attrs) {
+    private void setFontAngle(Context ctx, AttributeSet attrs) {
         setPaintFlags(getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG | Paint.DEV_KERN_TEXT_FLAG |
                 Paint.ANTI_ALIAS_FLAG);
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.CustomFontTextView);
-        String customFont = a.getString(R.styleable.CustomFontTextView_customFont);
         mTextAngle = a.getInt(R.styleable.CustomFontTextView_textAngle, DEFAULT_ANGLE);
-        setCustomFont(ctx, customFont);
         a.recycle();
-    }
-
-    public void setCustomFont(Context ctx, String font) {
-        if (font == null || TextUtils.isEmpty(font)) {
-            return;
-        }
-        Typeface tf = FontCache.get(font, ctx);
-        if (tf != null) {
-            setTypeface(tf);
-        }
     }
 
     @Override
@@ -75,5 +58,4 @@ public class CheckableCustomFontTextView extends CompoundButton {
             canvas.restore();
         }
     }
-
 }

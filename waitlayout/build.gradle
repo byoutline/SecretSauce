@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+repositories {
+    mavenCentral()
+}
+apply from: '../gradle/dependencies.gradle'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
+    }
+}
+apply from: '../gradle/byoutline/robospockTests.gradle'
+apply from: '../gradle/byoutline/checkGenerics.gradle'
+
+dependencies {
+    compile "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"
+}
+
+android {
+    compileSdkVersion compile_sdk_ver
+    buildToolsVersion build_tools_ver
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion target_sdk_ver
+        versionCode Integer.valueOf(VERSION_CODE)
+        versionName VERSION_NAME
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+apply from: 'maven-push.gradle'
