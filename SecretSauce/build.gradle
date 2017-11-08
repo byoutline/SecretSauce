@@ -46,9 +46,16 @@ configurations {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     api "com.android.support:appcompat-v7:$support_version"
     api "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
+
+    implementation 'com.google.dagger:dagger-android-support:2.12'
+    implementation 'android.arch.lifecycle:extensions:1.0.0'
+    // resolve conflict caused by support-compat
+    api 'android.arch.lifecycle:runtime:1.0.3'
+
     provided 'com.squareup.picasso:picasso:2.5.2'
     provided 'com.android.databinding:baseLibrary:3.0.0'
     provided files('libs/binding-library-1.1.jar')
