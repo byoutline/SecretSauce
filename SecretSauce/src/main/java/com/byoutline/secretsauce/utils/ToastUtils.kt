@@ -2,7 +2,7 @@ package com.byoutline.secretsauce.utils
 
 import android.content.Context
 import android.support.annotation.StringRes
-import com.byoutline.secretsauce.Settings
+import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.utils.internal.ToastDisplayer
 
 
@@ -11,7 +11,7 @@ import com.byoutline.secretsauce.utils.internal.ToastDisplayer
  * delete all occurrences of Toasts before release :)
  */
 fun Context.showDebugToast(text: String) {
-    if (Settings.DEBUG) {
+    if (SecretSauceSettings.DEBUG) {
         showToast("DEBUG:\n" + text)
     }
 }

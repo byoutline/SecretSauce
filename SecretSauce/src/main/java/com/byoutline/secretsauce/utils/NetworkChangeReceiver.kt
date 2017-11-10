@@ -11,7 +11,6 @@ import android.databinding.ObservableBoolean
 import android.net.ConnectivityManager
 import android.os.Build
 import android.support.v4.content.ContextCompat
-import com.byoutline.secretsauce.Settings
 
 /**
  * Transforms Android broadcasts into [android.databinding.ObservableBoolean].

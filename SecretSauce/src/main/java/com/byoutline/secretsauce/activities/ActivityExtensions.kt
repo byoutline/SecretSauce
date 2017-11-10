@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentTransaction
 import android.view.inputmethod.InputMethodManager
 import com.byoutline.secretsauce.R
-import com.byoutline.secretsauce.Settings
+import com.byoutline.secretsauce.SecretSauceSettings
 
 /**
  * Alternative to [BaseAppCompatActivity]
@@ -41,7 +41,7 @@ fun FragmentActivity.finishFragment() {
 @SuppressLint("ResourceType")
 fun FragmentActivity.showFragment(fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
                                   animations: Array<Int>? = null,
-                                  @IdRes containerViewId: Int = Settings.CONTAINER_VIEW_ID) {
+                                  @IdRes containerViewId: Int = SecretSauceSettings.containerViewId) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

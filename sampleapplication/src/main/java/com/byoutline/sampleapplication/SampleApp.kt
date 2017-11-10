@@ -6,7 +6,7 @@ import com.byoutline.sampleapplication.di.DaggerGlobalComponent
 
 import com.byoutline.sampleapplication.di.GlobalComponent
 import com.byoutline.sampleapplication.di.GlobalModule
-import com.byoutline.secretsauce.Settings
+import com.byoutline.secretsauce.SecretSauceSettings
 
 /**
  * Application entry point that configures Dagger and SecretSauce.
@@ -34,7 +34,7 @@ class SampleApp : Application() {
     @Synchronized
     fun setComponents(mainComponent: GlobalComponent) {
         component = mainComponent
-        Settings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)
+        SecretSauceSettings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)
     }
 
     companion object {

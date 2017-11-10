@@ -4,7 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
-import com.byoutline.secretsauce.Settings;
+
+import com.byoutline.secretsauce.SecretSauceSettings;
 
 import java.lang.ref.WeakReference;
 
@@ -25,7 +26,7 @@ public final class ToastDisplayer {
      * @param text
      */
     public static void showDebugToast(Context ctx, String text) {
-        if (Settings.INSTANCE.getDEBUG()) {
+        if (SecretSauceSettings.INSTANCE.getDEBUG()) {
             showToast(ctx, "DEBUG:\n" + text);
         }
     }

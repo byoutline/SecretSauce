@@ -17,7 +17,8 @@
 package com.byoutline.secretsauce.utils;
 
 import android.util.Log;
-import com.byoutline.secretsauce.Settings;
+
+import com.byoutline.secretsauce.SecretSauceSettings;
 
 
 /**
@@ -25,7 +26,7 @@ import com.byoutline.secretsauce.Settings;
  * Consider using <a href="https://github.com/JakeWharton/timber">Timber</a> instead.
  */
 public class LogUtils {
-    private static final String LOG_PREFIX = Settings.INSTANCE.getLOG_PREFIX();
+    private static final String LOG_PREFIX = SecretSauceSettings.INSTANCE.getLogPrefix();
     private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
     private static final int MAX_LOG_TAG_LENGTH = 23;
 
@@ -48,31 +49,31 @@ public class LogUtils {
     }
 
     public static String internalMakeLogTag(Class cls) {
-        return Settings.INSTANCE.getLOG_PREFIX() + makeLogTag(cls);
+        return SecretSauceSettings.INSTANCE.getLogPrefix() + makeLogTag(cls);
     }
 
     public static void LOGD(final String tag, String message) {
-        if (Settings.INSTANCE.getDEBUG()) {
+        if (SecretSauceSettings.INSTANCE.getDEBUG()) {
             Log.d(tag, message);
         }
     }
 
     public static void LOGD(final String tag, String message, Throwable cause) {
-        if (Settings.INSTANCE.getDEBUG()) {
+        if (SecretSauceSettings.INSTANCE.getDEBUG()) {
             Log.d(tag, message, cause);
         }
     }
 
     public static void LOGV(final String tag, String message) {
         // noinspection PointlessBooleanExpression,ConstantConditions
-        if (Settings.INSTANCE.getDEBUG()) {
+        if (SecretSauceSettings.INSTANCE.getDEBUG()) {
             Log.v(tag, message);
         }
     }
 
     public static void LOGV(final String tag, String message, Throwable cause) {
         // noinspection PointlessBooleanExpression,ConstantConditions
-        if (Settings.INSTANCE.getDEBUG()) {
+        if (SecretSauceSettings.INSTANCE.getDEBUG()) {
             Log.v(tag, message, cause);
         }
     }
