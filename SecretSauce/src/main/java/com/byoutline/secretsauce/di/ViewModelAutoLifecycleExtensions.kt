@@ -12,19 +12,31 @@ import android.view.ViewGroup
 import com.byoutline.secretsauce.SecretSauceSettings
 import kotlin.reflect.KClass
 
-fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
-        view: VIEW,
-        modelClass: KClass<VIEWMODEL>): VIEWMODEL {
-    val viewModel = getViewModel(modelClass)
+/**
+ * Creates [AttachableViewModel] and registers it in [FragmentActivity] lifecycle.
+ * ViewModel will be unregistered when activity is destroyed.
+ * Remember to call it before `onActivityStarted`!
+ */
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
+        view: VIEW): VIEWMODEL {
+    val viewModel = getViewModel<VIEWMODEL>()
     application.registerActivityLifecycleCallbacks(ViewModelAutoLifecycleA(application, view, viewModel))
     return viewModel
 }
 
-fun <VIEWMODEL : ViewModel> FragmentActivity.getViewModel(modelClass: KClass<VIEWMODEL>): VIEWMODEL {
+/**
+ * Convenience method to get [VIEWMODEL] using Activity context and ViewModelProvider
+ */
+inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(this)
-    return ViewModelProviders.of(this, factory).get(modelClass.java)
+    return ViewModelProviders.of(this, factory).get(VIEWMODEL::class.java)
 }
 
+/**
+ * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.
+ * ViewModel will be unregistered when activity is destroyed.
+ * Remember to call it before `onFragmentStarted`!
+ */
 fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
         view: VIEW,
         modelClass: KClass<VIEWMODEL>): VIEWMODEL {
@@ -34,16 +46,12 @@ fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoL
     return viewModel
 }
 
+/**
+ * Convenience method to get [VIEWMODEL] using Fragment context and ViewModelProvider
+ */
 fun <VIEWMODEL : ViewModel> Fragment.getViewModel(modelClass: KClass<VIEWMODEL>): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(context!!)
     return ViewModelProviders.of(activity!!, factory).get(modelClass.java)
-}
-
-fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
-        view: VIEW,
-        modelClass: KClass<VIEWMODEL>,
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE) = lazy(mode) {
-    getViewModelWithAutoLifecycle(view, modelClass)
 }
 
 /**
@@ -55,12 +63,37 @@ fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAuto
  * ```
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
+ *
+ * ## Important
+ * For viewModel to get attached it must be referenced before `onFragmentStarted`.
+ * Usually this is done in `onCreateView`.
+ * If you do not need viewModel in `onCreateView` then use `getViewModelWithAutoLifecycle` directly instead.
  */
-fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModelWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
         view: VIEW,
-        modelClass: KClass<VIEWMODEL>,
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE) = lazy(mode) {
-    getViewModelWithAutoLifecycle(view, modelClass)
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModelWithAutoLifecycle(view, VIEWMODEL::class)
+}
+
+/**
+ * Creates [Lazy] [VIEWMODEL] that calls attach and detach automatically.
+ * This method is using [SecretSauceSettings.viewModelFactoryProvider].
+ * Example:
+ * ```
+ * private val viewModel by lazyViewModelWithAutoLifecycle(this, ProjectListViewModel::class)
+ * ```
+ * By default [LazyThreadSafetyMode.NONE] is used.
+ * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
+ *
+ * ## Important
+ * For viewModel to get attached it must be referenced before `onActivityStarted`.
+ * Usually this is done in `onCreate`.
+ * If you do not need viewModel in `onCreate` then use `getViewModelWithAutoLifecycle` directly instead.
+ */
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModelWithAutoLifecycle(
+        view: VIEW,
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModelWithAutoLifecycle<VIEWMODEL, VIEW>(view)
 }
 
 /**
@@ -72,10 +105,9 @@ fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModel
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
  */
-fun <VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
-        modelClass: KClass<VIEWMODEL>,
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE) = lazy(mode) {
-    getViewModel(modelClass)
+inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModel<VIEWMODEL>()
 }
 
 /**
@@ -108,3 +140,9 @@ fun <VIEWMODEL : AttachableViewModel<VIEW>, BINDING : ViewDataBinding, VIEW> inf
     binding.setVariable(brVariableId, viewModel)
     return binding
 }
+
+/**
+ * Alias for [DataBindingUtil.setContentView]
+ */
+fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
+        DataBindingUtil.setContentView(this, layoutId)
