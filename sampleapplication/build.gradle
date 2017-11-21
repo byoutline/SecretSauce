@@ -43,7 +43,6 @@ android {
 
 
 ext {
-    dagger_version = '2.10'
     espresso_version = '2.2.2'
 }
 
@@ -54,8 +53,12 @@ dependencies {
     compile project(':SecretSauce')
     compile project(':waitlayout')
 
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_ver"
+    kapt "com.google.dagger:dagger-compiler:$dagger_ver"
+    implementation "com.google.dagger:dagger-android-support:$dagger_ver"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_ver"
+    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.android.support:design:$support_version"
     implementation "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"

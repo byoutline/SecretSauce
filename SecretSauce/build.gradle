@@ -51,21 +51,25 @@ dependencies {
     api "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
 
-    implementation 'com.google.dagger:dagger-android-support:2.12'
-    implementation 'android.arch.lifecycle:extensions:1.0.0'
+    implementation "com.google.dagger:dagger-android-support:$dagger_ver"
+    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
     // resolve conflict caused by support-compat
     api 'android.arch.lifecycle:runtime:1.0.3'
 
     provided 'com.squareup.picasso:picasso:2.5.2'
-    provided 'com.android.databinding:baseLibrary:3.0.0'
+    provided 'com.android.databinding:baseLibrary:3.0.1'
     provided files('libs/binding-library-1.1.jar')
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     implementation 'joda-time:joda-time:2.9.9'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.3'
+    api 'io.reactivex.rxjava2:rxjava:2.1.6'
     api "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycle_ver"
     api "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_ver"
     api "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle_ver"
+}
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-v4:$support_version"
 }
 
 apply from: 'maven-push.gradle'
