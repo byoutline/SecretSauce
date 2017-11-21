@@ -11,10 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import com.byoutline.secretsauce.R
 import com.byoutline.secretsauce.SecretSauceSettings
 
-/**
- * Alternative to [BaseAppCompatActivity]
- * @author Sebastian Kacprzak <sebastian.kacprzak at byoutline.com>
- */
 fun FragmentActivity.hideKeyboard() {
     currentFocus?.let { focused ->
         (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
@@ -66,6 +62,9 @@ fun FragmentActivity.showFragment(fragment: Fragment, addToBackStack: Boolean, r
     fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
 }
 
+/**
+ * Shows or replaces [DialogFragment] with given [tagUid]
+ */
 fun FragmentActivity.showDialogFragment(dialog: DialogFragment, tagUid: String) {
     val ft = supportFragmentManager.beginTransaction()
     val prev = supportFragmentManager.findFragmentByTag(tagUid)

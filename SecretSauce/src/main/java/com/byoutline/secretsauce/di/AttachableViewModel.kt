@@ -2,6 +2,9 @@ package com.byoutline.secretsauce.di
 
 import android.arch.lifecycle.ViewModel
 
+/**
+ * [ViewModel] that should be attached and detached to the view.
+ */
 abstract class AttachableViewModel<T> : ViewModel() {
 
     var view: T? = null

@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 
-
+/**
+ * Attaches and detaches [AttachableViewModel] to Fragment.
+ */
 class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
         val view: VIEW,
         val viewModel: VIEWMODEL
@@ -25,6 +27,9 @@ class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
     }
 }
 
+/**
+ * Attaches and detaches [AttachableViewModel] to activity.
+ */
 class ViewModelAutoLifecycleA<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
         private val application: Application,
         private val view: VIEW,
