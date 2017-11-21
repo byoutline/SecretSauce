@@ -6,6 +6,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
+import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 import com.byoutline.secretsauce.utils.CustomClickableSpan;
 import com.byoutline.secretsauce.utils.CustomTypefaceSpan;
@@ -65,7 +66,8 @@ public final class SpanStyler {
                                                        Map<String, CustomTypefaceSpan> typeFaceSpan,
                                                        Map<String, ForegroundColorSpan> textSpanColor,
                                                        Map<String, CustomClickableSpan> clickableSpans,
-                                                       Map<String, ImageSpan> iconsSpans) {
+                                                       Map<String, ImageSpan> iconsSpans,
+                                                       Map<String, UnderlineSpan> underlineSpans) {
         SpannableStringBuilder wholeStyleText = new SpannableStringBuilder(source);
 
 
@@ -73,6 +75,7 @@ public final class SpanStyler {
         boolean foregroundColorSpansEmpty = isNullOrEmpty(textSpanColor);
         boolean clickableSpansEmpty = isNullOrEmpty(clickableSpans);
         boolean iconSpanEmpty = isNullOrEmpty(iconsSpans);
+        boolean underlineSpanEmpty = isNullOrEmpty(underlineSpans);
 
 
         for (String stylingText : stylingTexts) {
@@ -95,6 +98,10 @@ public final class SpanStyler {
 
                 if (!iconSpanEmpty && iconsSpans.containsKey(stylingText)) {
                     delegate.setSpan(iconsSpans.get(stylingText));
+                }
+
+                if (!underlineSpanEmpty && underlineSpans.containsKey(stylingText)) {
+                    delegate.setSpan(underlineSpans.get(stylingText));
                 }
             }
         }

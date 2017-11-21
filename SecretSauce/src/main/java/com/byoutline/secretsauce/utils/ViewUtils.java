@@ -12,6 +12,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -46,8 +47,9 @@ public class ViewUtils {
                                                        Map<String, CustomTypefaceSpan> typeFaceSpan,
                                                        Map<String, ForegroundColorSpan> textSpanColor,
                                                        Map<String, CustomClickableSpan> clickableSpans,
-                                                       Map<String, ImageSpan> iconsSpans) {
-        return SpanStyler.getStyledText(source, stylingTexts, typeFaceSpan, textSpanColor, clickableSpans, iconsSpans);
+                                                       Map<String, ImageSpan> iconsSpans,
+                                                       Map<String, UnderlineSpan> underlineSpans) {
+        return SpanStyler.getStyledText(source, stylingTexts, typeFaceSpan, textSpanColor, clickableSpans, iconsSpans, underlineSpans);
     }
 
     public static void showView(View view, boolean visibility) {
