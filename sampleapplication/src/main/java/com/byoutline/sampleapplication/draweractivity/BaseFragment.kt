@@ -1,5 +1,6 @@
 package com.byoutline.sampleapplication.draweractivity
 
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,15 +17,13 @@ abstract class BaseFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         toolbarViewModel.setTitle(getToolbarTitle())
-        activity.hideKeyboard()
+        activity?.hideKeyboard()
     }
 
-    private fun getBaseActivity(): ExampleActivity {
-        return activity as ExampleActivity
-    }
+    private fun getBaseActivity() = activity as ExampleActivity
 }
 
-class ToolbarViewModel {
+class ToolbarViewModel: ViewModel() {
     val title = ObservableField<String>()
 
     fun setTitle(title: String) {

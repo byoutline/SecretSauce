@@ -1,6 +1,5 @@
 package com.byoutline.sampleapplication.draweractivity
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -10,22 +9,29 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MenuItem
 import com.byoutline.sampleapplication.R
-import com.byoutline.sampleapplication.SampleApp
 import com.byoutline.sampleapplication.databinding.ActivityExampleBinding
 import com.byoutline.secretsauce.activities.clearBackStack
 import com.byoutline.secretsauce.activities.showFragment
+import com.byoutline.secretsauce.di.bindContentView
+import com.byoutline.secretsauce.di.lazyViewModel
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class ExampleActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
+class ExampleActivity : AppCompatActivity(),
+        HasSupportFragmentInjector,
+        NavigationView.OnNavigationItemSelectedListener {
     @Inject
-    lateinit var toolbarViewModel: ToolbarViewModel
+    lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentInjector
+
+    val toolbarViewModel by lazyViewModel<ToolbarViewModel>()
     private lateinit var binding: ActivityExampleBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SampleApp.component.inject(this)
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_example)
+        binding = bindContentView(R.layout.activity_example)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
         navigationView.inflateMenu(R.menu.activity_example_drawer)
         navigationView.setNavigationItemSelectedListener(this)

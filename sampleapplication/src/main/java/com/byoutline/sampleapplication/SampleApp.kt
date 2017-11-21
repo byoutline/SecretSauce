@@ -1,40 +1,42 @@
 package com.byoutline.sampleapplication
 
-import android.app.Application
 import android.support.annotation.VisibleForTesting
-import com.byoutline.sampleapplication.di.DaggerGlobalComponent
-
-import com.byoutline.sampleapplication.di.GlobalComponent
-import com.byoutline.sampleapplication.di.GlobalModule
+import com.byoutline.sampleapplication.di.AppComponent
+import com.byoutline.sampleapplication.di.DaggerAppComponent
+import com.byoutline.sampleapplication.di.NetworkActivityModule
 import com.byoutline.secretsauce.SecretSauceSettings
+import com.byoutline.secretsauce.di.ActivityInjectorApp
+
 
 /**
  * Application entry point that configures Dagger and SecretSauce.
  */
-class SampleApp : Application() {
+open class SampleApp : ActivityInjectorApp() {
 
     override fun onCreate() {
         super.onCreate()
-        resetComponents()
+        initDagger()
     }
 
-    @VisibleForTesting
-    fun resetComponents() {
-        val mainComponent = createGlobalComponent()
-        setComponents(mainComponent)
+    @VisibleForTesting open fun initDagger() {
+        setComponents(createGlobalComponent())
     }
 
-    private fun createGlobalComponent(): GlobalComponent {
-        return DaggerGlobalComponent.builder()
-                .globalModule(GlobalModule(this))
+    private fun createGlobalComponent(): AppComponent {
+        return DaggerAppComponent.builder()
+                .networkActivityModule(NetworkActivityModule(this))
                 .build()
     }
 
     @VisibleForTesting
     @Synchronized
-    fun setComponents(mainComponent: GlobalComponent) {
+    open fun setComponents(mainComponent: AppComponent) {
         component = mainComponent
-        SecretSauceSettings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)
+        component.inject(this)
+        SecretSauceSettings.set(debug = BuildConfig.DEBUG,
+                containerViewId = R.id.container,
+                bindingViewModelId = BR.viewModel,
+                viewModelFactoryProvider = { viewModelFactory })
     }
 
     companion object {
@@ -46,6 +48,7 @@ class SampleApp : Application() {
          * than alternative:
          * `SampleApp.getInstance(context).getComponent().inject(this)`
          */
-        lateinit var component: GlobalComponent
+        lateinit var component: AppComponent
+            private set
     }
 }

@@ -4,39 +4,31 @@ import android.app.Application;
 import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.net.ConnectivityManager;
-import com.byoutline.sampleapplication.draweractivity.ToolbarViewModel;
+
 import com.byoutline.secretsauce.utils.NetworkChangeReceiver;
+
 import dagger.Module;
 import dagger.Provides;
-import dagger.Reusable;
 
 /**
  * Creates instances needed by activities and fragments.
  */
 @Module
-public class GlobalModule {
+public class NetworkActivityModule {
 
     private final Application app;
 
-    public GlobalModule(Application app) {
+    public NetworkActivityModule(Application app) {
         this.app = app;
     }
 
     @Provides
-    @Reusable
     ConnectivityManager providesConnectivityManager() {
         return (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Provides
-    @Reusable
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
         return new NetworkChangeReceiver(connectivityManager, new ObservableBoolean());
-    }
-
-    @Provides
-    @Reusable
-    ToolbarViewModel providesToolbarViewModel() {
-        return new ToolbarViewModel();
     }
 }
