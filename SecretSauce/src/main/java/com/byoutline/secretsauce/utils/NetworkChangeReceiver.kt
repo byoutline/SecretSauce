@@ -11,6 +11,7 @@ import android.databinding.ObservableBoolean
 import android.net.ConnectivityManager
 import android.os.Build
 import android.support.v4.content.ContextCompat
+import com.byoutline.secretsauce.di.AttachableViewModel
 
 /**
  * Transforms Android broadcasts into [android.databinding.ObservableBoolean].
@@ -50,5 +51,16 @@ class NetworkChangeReceiver
 
     companion object {
         private val TAG = LogUtils.internalMakeLogTag(NetworkChangeReceiver::class.java)
+    }
+}
+
+class NetworkChangeViewModel(private val receiver: NetworkChangeReceiver) : AttachableViewModel<Context>() {
+    val connectedOrConnecting = receiver.connectedOrConnecting
+
+    override fun onAttach(view: Context) {
+        receiver.register(view)
+        super.onAttach(view, onDetachAction = {
+            receiver.unregister(view)
+        })
     }
 }
