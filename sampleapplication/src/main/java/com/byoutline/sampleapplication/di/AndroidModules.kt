@@ -6,6 +6,8 @@ import com.byoutline.sampleapplication.MainActivity
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity
 import com.byoutline.sampleapplication.draweractivity.*
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity
+import com.byoutline.sampleapplication.rx.RxLifecycleActivity
+import com.byoutline.sampleapplication.rx.RxLifecycleViewModel
 import com.byoutline.sampleapplication.waitlayout.WaitActivity
 import com.byoutline.secretsauce.di.ViewModelFactory
 import com.byoutline.secretsauce.di.ViewModelKey
@@ -28,6 +30,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector abstract fun customFontViewsActivity(): CustomFontViewsActivity
     @ContributesAndroidInjector abstract fun waitActivity(): WaitActivity
+    @ContributesAndroidInjector abstract fun rxLifecycleActivity(): RxLifecycleActivity
 }
 
 @Module
@@ -56,4 +59,8 @@ class ViewModelProvidersModule {
     @Provides @IntoMap
     @ViewModelKey(CountingViewModel::class)
     fun countingViewModel(): ViewModel = CountingViewModel()
+
+    @Provides @IntoMap
+    @ViewModelKey(RxLifecycleViewModel::class)
+    fun rxLifecycleViewModel(): ViewModel = RxLifecycleViewModel()
 }

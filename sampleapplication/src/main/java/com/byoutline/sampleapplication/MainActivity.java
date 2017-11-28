@@ -6,10 +6,12 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity;
 import com.byoutline.sampleapplication.draweractivity.ExampleActivity;
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity;
 import com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample;
+import com.byoutline.sampleapplication.rx.RxLifecycleActivity;
 import com.byoutline.sampleapplication.waitlayout.WaitActivity;
 import com.byoutline.secretsauce.activities.WebViewActivityV7;
 
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 return new Intent(this, CustomFontViewsActivity.class);
             case R.id.waitLayoutBtn:
                 return new Intent(this, WaitActivity.class);
+            case R.id.rxBtn:
+                return new Intent(this, RxLifecycleActivity.class);
         }
         return null;
     }

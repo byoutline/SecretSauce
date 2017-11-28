@@ -63,9 +63,6 @@ dependencies {
     implementation 'joda-time:joda-time:2.9.9'
 
     api 'io.reactivex.rxjava2:rxjava:2.1.6'
-    api "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycle_ver"
-    api "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_ver"
-    api "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle_ver"
 }
 
 configurations.all {

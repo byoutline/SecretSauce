@@ -71,6 +71,14 @@
 			style="@style/MainBtnstyle"
 			/>
 
+		<Button
+			android:id="@+id/rxBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Rx Databinding lifecycle"
+			style="@style/MainBtnstyle"
+			/>
+
 	</LinearLayout>
 
 </ScrollView>
