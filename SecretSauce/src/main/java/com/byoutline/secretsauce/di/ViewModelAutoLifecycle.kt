@@ -23,7 +23,7 @@ class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
     }
 
     override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment?) {
-        fm.unregisterFragmentLifecycleCallbacks(this)
+        if (f === view) fm.unregisterFragmentLifecycleCallbacks(this)
     }
 }
 
@@ -36,7 +36,6 @@ class ViewModelAutoLifecycleA<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
         private val viewModel: VIEWMODEL
 ) : Application.ActivityLifecycleCallbacks {
 
-    // activity
     override fun onActivityCreated(a: Activity?, savedInstanceState: Bundle?) {}
 
     override fun onActivityStarted(a: Activity?) {
