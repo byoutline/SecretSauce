@@ -15,7 +15,8 @@ import kotlin.reflect.KClass
 /**
  * Creates [AttachableViewModel] and registers it in [FragmentActivity] lifecycle.
  * ViewModel will be unregistered when activity is destroyed.
- * Remember to call it before `onActivityStarted`!
+ *
+ * *Remember to call it before `onActivityStarted`!*
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
         view: VIEW): VIEWMODEL {
@@ -35,23 +36,37 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
 /**
  * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.
  * ViewModel will be unregistered when activity is destroyed.
- * Remember to call it before `onFragmentStarted`!
+ *
+ * *Remember to call it before `onFragmentStarted`!*
+ *
+ * By default activity scoped provider will be used. If you want to use fragment scope instead
+ * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
  */
 fun <VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
         view: VIEW,
-        modelClass: KClass<VIEWMODEL>): VIEWMODEL {
-    val viewModel = getViewModel(modelClass)
+        modelClass: KClass<VIEWMODEL>,
+        useFragmentViewModelProvider: Boolean = false
+): VIEWMODEL {
+    val viewModel = getViewModel(modelClass, useFragmentViewModelProvider)
     val auto = ViewModelAutoLifecycleF(view, viewModel)
     activity!!.supportFragmentManager!!.registerFragmentLifecycleCallbacks(auto, false)
     return viewModel
 }
 
 /**
- * Convenience method to get [VIEWMODEL] using Fragment context and ViewModelProvider
+ * Convenience method to get [VIEWMODEL] using Fragment context and ViewModelProvider.
+ *
+ * By default activity scoped provider will be used. If you want to use fragment scope instead
+ * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
  */
-fun <VIEWMODEL : ViewModel> Fragment.getViewModel(modelClass: KClass<VIEWMODEL>): VIEWMODEL {
+fun <VIEWMODEL : ViewModel> Fragment.getViewModel(modelClass: KClass<VIEWMODEL>, useFragmentViewModelProvider: Boolean=false): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(context!!)
-    return ViewModelProviders.of(activity!!, factory).get(modelClass.java)
+    val provider = if(useFragmentViewModelProvider) {
+        ViewModelProviders.of(this, factory)
+    } else {
+        ViewModelProviders.of(activity!!, factory)
+    }
+    return provider.get(modelClass.java)
 }
 
 /**
