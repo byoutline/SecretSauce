@@ -25,7 +25,7 @@ import javax.inject.Singleton
 abstract class ActivitiesModule {
     @ContributesAndroidInjector abstract fun mainActivity(): MainActivity
     @ContributesAndroidInjector abstract fun networkChangeActivity(): NetworkChangeActivity
-    @ContributesAndroidInjector(modules = arrayOf(ExampleActivityMoudle::class))
+    @ContributesAndroidInjector(modules = [ExampleActivityModule::class])
     abstract fun exampleActivity(): ExampleActivity
 
     @ContributesAndroidInjector abstract fun customFontViewsActivity(): CustomFontViewsActivity
@@ -40,11 +40,15 @@ abstract class ViewModelMapModule {
 }
 
 @Module
-abstract class ExampleActivityMoudle {
+abstract class ExampleActivityModule {
     @ContributesAndroidInjector abstract fun firstFragment(): FirstFragment
     @ContributesAndroidInjector abstract fun secondFragment(): SecondFragment
 }
 
+/**
+ * Informs [ViewModelProvider] what [ViewModel] to produce for given class.
+ * In bigger projects this can be slitted into multiple modules.
+ */
 @Module
 class ViewModelProvidersModule {
     @Provides @IntoMap
