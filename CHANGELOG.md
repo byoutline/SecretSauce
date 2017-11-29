@@ -14,6 +14,7 @@
      * `Settings` renamed to `SecretSauceSettings` to make it more obvious in application what is being set.
      * `ViewModelAutoLifecycle` and extensions functions added
      * `ss_drawer_shadow` drawables removed
+     * Rx Java `invokeOnStopped` extension functions for Fragment and Activity
   * 0.5.3 _06.05.2017_ Make listener interface in `CustomClickableSpan` public.
     `CustomFontTextView` now checks `suffixSpace` attribute that can be used to workaround
     wrong measurement on `wrap_content` when font is italic.

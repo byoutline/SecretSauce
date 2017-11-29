@@ -1,4 +1,4 @@
-package com.byoutline.sampleapplication.di;
+package com.byoutline.sampleapplication.networkchangereceiver;
 
 import android.app.Application;
 import android.content.Context;

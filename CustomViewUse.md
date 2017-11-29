@@ -1,50 +1,6 @@
-#   Custom Font Views
+#   Checkable/Link Views
 
-We find here TextView,EditTextView  with possibility of 
-setting font in simple way, checkable views and LinkTextView where URLs are clickable.
  
-### Firstly
-
-- add fonts (for instance RobotoCondensed-BoldItalic.ttf or other) 
-  to "assets/fonts" directory in your module
-
-- add style in style.xml for example like that:
-
-```
-<style name="customFontStyle">
-    <item name="customFont">RobotoCondensed-BoldItalic.ttf</item>
-</style>
-<style name="customFontStyle2">
-    <item name="customFont">AngelineVintage_Demo.ttf</item>
-</style>
-```
- 
-### How to use CustomFontTextView?
- 
-- add CustomFontTextView to your layout file and set style
-
-```
-       <com.byoutline.secretsauce.views.CustomFontTextView
-            style="@style/customFontStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Some samples"
-            android:textSize="26sp" />
-```
-
-### How to use CustomFontEditText?
- 
--  add CustomFontEditText to your layout file and set style
-
-```
-       <com.byoutline.secretsauce.views.CustomFontEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/customFontStyle2"
-            android:hint="write sth"/>
-```
-
 ### How to use CheckableCustomFontTextView?
 
 - add CheckableCustomFontTextView to your layout file, set style,

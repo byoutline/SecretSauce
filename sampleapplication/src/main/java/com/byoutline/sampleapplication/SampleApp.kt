@@ -3,7 +3,7 @@ package com.byoutline.sampleapplication
 import android.support.annotation.VisibleForTesting
 import com.byoutline.sampleapplication.di.AppComponent
 import com.byoutline.sampleapplication.di.DaggerAppComponent
-import com.byoutline.sampleapplication.di.NetworkActivityModule
+import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
 import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.di.ActivityInjectorApp
 
