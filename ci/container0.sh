@@ -11,6 +11,6 @@ date +"%T"
 
 echo " *** Run Lint *** "
 date +"%T"
-./gradlew lint
+./gradlew :SecretSauce:lintRelease
 
 echo " *** BUILD FINISHED *** "

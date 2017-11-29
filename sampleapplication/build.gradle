@@ -39,6 +39,11 @@ android {
     dataBinding {
         enabled = true
     }
+
+
+    dexOptions {
+        javaMaxHeapSize System.getenv('CI') ? "2g" : "4g"
+    }
 }
 
 
