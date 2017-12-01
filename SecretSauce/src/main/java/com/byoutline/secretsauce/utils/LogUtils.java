@@ -26,19 +26,20 @@ import com.byoutline.secretsauce.SecretSauceSettings;
  * Consider using <a href="https://github.com/JakeWharton/timber">Timber</a> instead.
  */
 public class LogUtils {
-    private static final String LOG_PREFIX = SecretSauceSettings.INSTANCE.getLogPrefix();
-    private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
+
     private static final int MAX_LOG_TAG_LENGTH = 23;
 
     private LogUtils() {
     }
 
     public static String makeLogTag(String str) {
-        if (str.length() > MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH) {
-            return LOG_PREFIX + str.substring(0, MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH - 1);
+        String prefix = SecretSauceSettings.INSTANCE.getLogPrefix();
+        int logPrefixLength = prefix.length();
+        if (str.length() > MAX_LOG_TAG_LENGTH - logPrefixLength) {
+            return prefix + str.substring(0, MAX_LOG_TAG_LENGTH - logPrefixLength - 1);
         }
 
-        return LOG_PREFIX + str;
+        return prefix + str;
     }
 
     /**

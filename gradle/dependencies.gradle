@@ -4,7 +4,7 @@ ext {
     target_sdk_ver = 27
 
     support_version = '27.0.2'
-    cachedfield_ver = '1.7.0-RC2'
+    cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
     rxlifecycle_ver = '2.1.0'
 
