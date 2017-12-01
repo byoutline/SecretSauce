@@ -13,8 +13,8 @@ import android.support.annotation.IdRes
  */
 object SecretSauceSettings {
     var DEBUG: Boolean = false
-    var containerViewId: Int = 0
-    var brViewModelId: Int = 0
+    internal var containerViewId: Int = 0
+    internal var brViewModelId: Int = 0
     var logPrefix = "SecretS"
     var viewModelFactoryProvider: (ctx: Context) -> ViewModelProvider.Factory = {
         throw IllegalStateException("You must init viewModelFactoryProvider")
