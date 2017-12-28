@@ -36,8 +36,17 @@ Contains:
 [Checkable views]: <CustomViewUse.md>
 
 *** initialization ***
-To use showFragment extension functions initialize container id via:
+Some feature are more convenient to use if you declare some parameters up front.
 ```kotlin
-Settings.set(debug = BuildConfig.DEBUG, containerViewId = R.id.container)
+SecretSauceSettings.set(debug = BuildConfig.DEBUG,
+                containerViewId = R.id.container,
+                bindingViewModelId = BR.viewModel,
+                viewModelFactoryProvider = { viewModelFactory })
 ```
-(Debug flag is used for logs and Toasts)
+Settings any of those values is optional. If you don't use given feature you can skip given
+parameter. However if you attempt to use given feature later you will either have to pass optional
+param to function or the exception will be thrown.
+`debug` is used by logs and Toasts
+`containerViewId` used by showFragment methods
+`bindingViewModelId` and `viewModelFactoryProvider` use by `viewModel` extension functions.
+
