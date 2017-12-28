@@ -35,7 +35,7 @@ Contains:
 [WaitLayout]: <WaitLayoutUsing.md>
 [Checkable views]: <CustomViewUse.md>
 
-*** initialization ***
+#### initialization
 Some feature are more convenient to use if you declare some parameters up front.
 ```kotlin
 SecretSauceSettings.set(debug = BuildConfig.DEBUG,
