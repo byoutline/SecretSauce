@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".baseappcompatactivity.BaseAppCompatExampleActivity"
+            android:name=".draweractivity.ExampleActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name="com.byoutline.secretsauce.activities.WebViewActivityV7"
@@ -29,13 +29,13 @@
         <activity
             android:name=".networkchangereceiver.NetworkChangeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".datepicker.DatePickerSampleActivity"/>
         <activity android:name=".roundedimageview.DrawableActivityExample"/>
         <activity
             android:name=".customfontviews.CustomFontViewsActivity"
             android:label="@string/title_activity_custom_views_examples"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".dialogactivity.DialogActivityExample"/>
+	    <activity android:name=".waitlayout.WaitActivity" />
+        <activity android:name=".rx.RxLifecycleActivity" />
     </application>
 
 </manifest>

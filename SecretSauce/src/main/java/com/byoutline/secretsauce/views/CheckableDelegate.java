@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import android.widget.Checkable;
 
 public class CheckableDelegate {
-    private final ViewGroup parent;
-    private boolean checked;
-    private OnCheckedChangeListener onCheckedChangeListener;
     static final int[] CHECKED_STATE_SET = {
             android.R.attr.state_checked
     };
+    private final ViewGroup parent;
+    private boolean checked;
+    private OnCheckedChangeListener onCheckedChangeListener;
 
     public CheckableDelegate(ViewGroup parent) {
         this.parent = parent;
     }
 
-    /**************************/
-    /**      Checkable       **/
-    /**************************/
+    /* ************************/
+    /*       Checkable       **/
+    /* ************************/
 
     public void toggle() {
         setChecked(!checked);
@@ -66,19 +66,28 @@ public class CheckableDelegate {
     public interface OnCheckedChangeListener {
         /**
          * Called when the checked state of a compound button has changed.
-         *  @param layout    The compound button view whose state has changed.
+         *
+         * @param layout    The compound button view whose state has changed.
          * @param isChecked The new checked state of buttonView.
          */
         void onCheckedChanged(ViewGroup layout, boolean isChecked);
     }
 
-    /**************************/
-    /**   State persistency  **/
-    /**
-     * **********************
-     */
+    /* ************************/
+    /*    State persistency  **/
+    /* ************************/
 
     static class SavedState extends View.BaseSavedState {
+        public static final Creator<SavedState> CREATOR
+                = new Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
         boolean checked;
 
         SavedState(Parcelable superState) {
@@ -102,16 +111,5 @@ public class CheckableDelegate {
                     + Integer.toHexString(System.identityHashCode(this))
                     + " checked=" + checked + "}";
         }
-
-        public static final Creator<SavedState> CREATOR
-                = new Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
     }
 }

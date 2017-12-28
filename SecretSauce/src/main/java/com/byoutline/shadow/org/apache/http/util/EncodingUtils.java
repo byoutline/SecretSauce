@@ -47,6 +47,12 @@ public final class EncodingUtils {
 
 
     /**
+     * This class should not be instantiated.
+     */
+    private EncodingUtils() {
+    }
+
+    /**
      * Converts the specified string to a byte array.  If the charset is not supported the
      * default system charset is used.
      *
@@ -69,11 +75,5 @@ public final class EncodingUtils {
         } catch (UnsupportedEncodingException e) {
             return data.getBytes();
         }
-    }
-
-    /**
-     * This class should not be instantiated.
-     */
-    private EncodingUtils() {
     }
 }

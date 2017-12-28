@@ -26,7 +26,6 @@ import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-
 import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.utils.LogUtils;
 
@@ -36,10 +35,7 @@ public class RoundedImageView extends AppCompatImageView {
 
     public static final String TAG = LogUtils.internalMakeLogTag(RoundedImageView.class);
     public static final int DEFAULT_RADIUS = 0;
-    private boolean mAllCornersRounded;
-    private int mCornerRadius = DEFAULT_RADIUS;
     public static final int DEFAULT_BORDER_WIDTH = 0;
-    private int mBorderWidth = DEFAULT_BORDER_WIDTH;
     private static final AppCompatImageView.ScaleType[] SCALE_TYPES = {
             ScaleType.MATRIX,
             ScaleType.FIT_XY,
@@ -50,6 +46,9 @@ public class RoundedImageView extends AppCompatImageView {
             ScaleType.CENTER_CROP,
             ScaleType.CENTER_INSIDE
     };
+    private boolean mAllCornersRounded;
+    private int mCornerRadius = DEFAULT_RADIUS;
+    private int mBorderWidth = DEFAULT_BORDER_WIDTH;
     private ColorStateList mBorderColor =
             ColorStateList.valueOf(RoundedDrawable.DEFAULT_BORDER_COLOR);
     private boolean mOval = false;

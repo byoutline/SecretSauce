@@ -1,5 +1,13 @@
 ext {
-    support_version = '25.2.0'
-    ottocachedfield_version = '1.6.3'
+    compile_sdk_ver = 27
+    build_tools_ver = '27.0.1'
+    target_sdk_ver = 27
+
+    support_version = '27.0.2'
+    cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
+    rxlifecycle_ver = '2.1.0'
+
+    android_arch_lifecycle_ver = '1.0.0'
+    dagger_ver = '2.13'
 }

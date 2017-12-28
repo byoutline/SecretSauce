@@ -10,7 +10,9 @@ bin/
 gen/
 
 # Android Studio
-.idea/
+/.idea/*
+!/.idea/codeStyleSettings.xml
+!/.idea/vcs.xml
 .gradle
 local.properties
 /*/local.properties

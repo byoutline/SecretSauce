@@ -11,8 +11,8 @@ import com.squareup.picasso.Picasso;
  * @author Sebastian Kacprzak <sebastian.kacprzak at byoutline.com>
  */
 public class PicassoScrollListener extends RecyclerView.OnScrollListener {
-    private final Context context;
     private static final int SPEED_THRESHOLD = 24;
+    private final Context context;
 
     /**
      * @param context must by equal to tag that was set in picasso(usually activity context).

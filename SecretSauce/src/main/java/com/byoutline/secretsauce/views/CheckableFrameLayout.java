@@ -31,9 +31,9 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
 //        setClickable(true);
     }
 
-    /**********************/
-    /**   Handle clicks  **/
-    /**********************/
+    /* ********************/
+    /*    Handle clicks  **/
+    /* ********************/
 
     @Override
     public boolean performClick() {
@@ -46,16 +46,16 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
         return onTouchEvent(ev);
     }
 
-    /**************************/
-    /**      Checkable       **/
-    /**************************/
+    /* ************************/
+    /*       Checkable       **/
+    /* ************************/
 
     public void toggle() {
         delegate.toggle();
     }
 
     public boolean isChecked() {
-        if(delegate == null) {
+        if (delegate == null) {
             // view not yet initialized
             return false;
         }
@@ -66,11 +66,9 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
         delegate.setChecked(checked);
     }
 
-    /**************************/
-    /**   Drawable States    **/
-    /**
-     * **********************
-     */
+    /* ************************/
+    /*    Drawable States    **/
+    /* ************************/
 
     @Override
     protected int[] onCreateDrawableState(int extraSpace) {
@@ -98,11 +96,9 @@ public class CheckableFrameLayout extends FrameLayout implements Checkable {
     }
 
 
-    /**************************/
-    /**   State persistency  **/
-    /**
-     * **********************
-     */
+    /* ************************/
+    /*    State persistency  **/
+    /* ********************** */
 
 
     @Override

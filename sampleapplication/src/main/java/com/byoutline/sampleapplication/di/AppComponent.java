@@ -1,15 +1,23 @@
 package com.byoutline.sampleapplication.di;
 
-import com.byoutline.secretsauce.di.AppComponentInterface;
+import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule;
+import com.byoutline.secretsauce.di.ActivityInjectorApp;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 
-/**
- * Component that defines all instances required by application.
- * <p>Since it extends {@link AppComponentInterface} components required by
- * {@code SecretSauce} init will also be provided</p>
- */
-@AppScope
-@Component(modules = AppModule.class)
-public interface AppComponent extends AppComponentInterface {
+
+@Singleton
+@Component(modules = {
+        NetworkActivityModule.class,
+        ActivitiesModule.class,
+        ViewModelMapModule.class,
+        ViewModelProvidersModule.class,
+        AndroidInjectionModule.class
+})
+public interface AppComponent {
+
+    void inject(ActivityInjectorApp o);
 }

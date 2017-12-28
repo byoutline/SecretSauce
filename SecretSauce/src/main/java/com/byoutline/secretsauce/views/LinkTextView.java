@@ -1,6 +1,7 @@
 package com.byoutline.secretsauce.views;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -14,7 +15,7 @@ import android.view.View;
 /**
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
-public class LinkTextView extends CustomFontTextView {
+public class LinkTextView extends AppCompatTextView {
 
     private LinkClickListener linkListener = new StubLinkListener();
 

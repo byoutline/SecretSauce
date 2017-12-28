@@ -1,25 +1,20 @@
 apply plugin: 'com.android.library'
-
-buildscript {
-    repositories {
-        maven { url 'http://repo.spring.io/plugins-release' }
-    }
-}
+apply plugin: 'kotlin-android'
 
 repositories {
-    mavenCentral()
+    maven { url "https://jcenter.bintray.com/" }
 }
 
 apply from: '../gradle/byoutline/checkGenerics.gradle'
 apply from: '../gradle/dependencies.gradle'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion compile_sdk_ver
+    buildToolsVersion build_tools_ver
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion target_sdk_ver
         consumerProguardFiles 'proguard-rules.pro'
         versionCode Integer.valueOf(VERSION_CODE)
         versionName VERSION_NAME
@@ -39,6 +34,10 @@ android {
         textOutput "stdout"
         textReport true
     }
+
+    dataBinding {
+        enabled true
+    }
 }
 
 configurations {
@@ -46,14 +45,28 @@ configurations {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:$support_version"
-    compile "com.android.support:recyclerview-v7:$support_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api "com.android.support:appcompat-v7:$support_version"
+    api "com.android.support:recyclerview-v7:$support_version"
     javadocDeps "com.android.support:support-annotations:$support_version"
+
+    implementation "com.google.dagger:dagger-android-support:$dagger_ver"
+    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    // resolve conflict caused by support-compat
+    api 'android.arch.lifecycle:runtime:1.0.3'
+
     provided 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup:otto:1.3.7'
-    compile "com.google.code.findbugs:jsr305:$jsr_305_version"
-    compile "com.byoutline.ottocachedfield:ottocachedfield:$ottocachedfield_version"
-    compile 'joda-time:joda-time:2.9.9'
+    provided 'com.android.databinding:baseLibrary:3.0.1'
+    provided files('libs/binding-library-1.1.jar')
+    implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
+    implementation 'joda-time:joda-time:2.9.9'
+
+    api 'io.reactivex.rxjava2:rxjava:2.1.6'
+}
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-v4:$support_version"
 }
 
 apply from: 'maven-push.gradle'

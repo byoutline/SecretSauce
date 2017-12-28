@@ -1,0 +1,8 @@
+<resources>
+    <style name="WaitLayoutProgressBar" parent="@android:style/Widget.Holo.ProgressBar.Large">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">#1A022000</item>
+    </style>
+</resources>
