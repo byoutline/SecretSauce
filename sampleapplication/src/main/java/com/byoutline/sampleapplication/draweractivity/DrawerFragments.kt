@@ -20,7 +20,7 @@ class SecondFragment : CountingFragment() {
 }
 
 abstract class CountingFragment : BaseFragment() {
-    val viewModel: CountingViewModel by lazyViewModelWithAutoLifecycle(this as BaseFragment)
+    val viewModel by lazyViewModelWithAutoLifecycle(CountingViewModel::class)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentShowDialogBinding.inflate(inflater, container, false)
