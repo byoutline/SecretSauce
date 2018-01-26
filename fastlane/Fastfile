@@ -1,0 +1,40 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "check")
+  end
+
+  desc "TMP"
+    lane :tmp do
+      changelog = read_changelog
+      version_name = get_version_name
+      stamp_changelog(section_identifier: "Build #{version_name}")
+
+      puts(version_name)
+    end
+
+
+  desc "Submit a new Build to mavenCentral"
+  lane :upAr do
+    gradle(task: "clean build check")
+    # gradle(task: "build")
+    # gradle(task: "check")
+    # gradle(task: "upAr")
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+end
