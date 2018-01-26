@@ -74,7 +74,7 @@ fun <VIEWMODEL : ViewModel> Fragment.getViewModel(modelClass: KClass<VIEWMODEL>,
  * This method is using [SecretSauceSettings.viewModelFactoryProvider].
  * Example:
  * ```
- * private val viewModel by lazyViewModelWithAutoLifecycle(this, ProjectListViewModel::class)
+ * private val viewModel by lazyViewModelWithAutoLifecycle(ProjectListViewModel::class)
  * ```
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
@@ -85,17 +85,17 @@ fun <VIEWMODEL : ViewModel> Fragment.getViewModel(modelClass: KClass<VIEWMODEL>,
  * If you do not need viewModel in `onCreateView` then use `getViewModelWithAutoLifecycle` directly instead.
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
-        view: VIEW,
+        clazz: KClass<VIEWMODEL>,
+        view: VIEW = this as? VIEW ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
         mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModelWithAutoLifecycle(view, VIEWMODEL::class)
 }
-
 /**
  * Creates [Lazy] [VIEWMODEL] that calls attach and detach automatically.
  * This method is using [SecretSauceSettings.viewModelFactoryProvider].
  * Example:
  * ```
- * private val viewModel by lazyViewModelWithAutoLifecycle(this, ProjectListViewModel::class)
+ * private val viewModel by lazyViewModelWithAutoLifecycle(ProjectListViewModel::class)
  * ```
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
@@ -106,7 +106,8 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyVi
  * If you do not need viewModel in `onCreate` then use `getViewModelWithAutoLifecycle` directly instead.
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModelWithAutoLifecycle(
-        view: VIEW,
+        clazz: KClass<VIEWMODEL>,
+        view: VIEW = this as? VIEW ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
         mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModelWithAutoLifecycle<VIEWMODEL, VIEW>(view)
 }
@@ -123,6 +124,20 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
 inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
         mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModel<VIEWMODEL>()
+}
+
+/**
+ * Creates [Lazy] [VIEWMODEL] using [SecretSauceSettings.viewModelFactoryProvider].
+ * Example:
+ * ```
+ * val viewModel by lazyViewModel<YourViewModel>()
+ * ```
+ * By default [LazyThreadSafetyMode.NONE] is used.
+ * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
+ */
+inline fun <reified VIEWMODEL : ViewModel> Fragment.lazyViewModel(
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModel(VIEWMODEL::class)
 }
 
 /**

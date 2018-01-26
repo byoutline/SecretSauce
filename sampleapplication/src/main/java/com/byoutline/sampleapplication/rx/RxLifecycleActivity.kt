@@ -17,7 +17,7 @@ import io.reactivex.Observable as RxObservable
  */
 class RxLifecycleActivity : AppCompatActivity() {
 
-    private val viewModel: RxLifecycleViewModel by lazyViewModelWithAutoLifecycle(this as Any)
+    private val viewModel by lazyViewModelWithAutoLifecycle(RxLifecycleViewModel::class)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
