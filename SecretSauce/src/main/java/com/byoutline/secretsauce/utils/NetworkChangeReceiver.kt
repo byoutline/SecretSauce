@@ -11,7 +11,7 @@ import android.databinding.ObservableBoolean
 import android.net.ConnectivityManager
 import android.os.Build
 import android.support.v4.content.ContextCompat
-import com.byoutline.secretsauce.di.AttachableViewModel
+import com.byoutline.secretsauce.lifecycle.AttachableViewModel
 
 /**
  * Transforms Android broadcasts into [android.databinding.ObservableBoolean].
@@ -59,8 +59,7 @@ class NetworkChangeViewModel(private val receiver: NetworkChangeReceiver) : Atta
 
     override fun onAttach(view: Context) {
         receiver.register(view)
-        super.onAttach(view, onDetachAction = {
-            receiver.unregister(view)
-        })
+        super.onAttach(view)
+        registerDetachAction { receiver.unregister(view) }
     }
 }

@@ -1,4 +1,4 @@
-package com.byoutline.secretsauce.di
+package com.byoutline.secretsauce.lifecycle
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders

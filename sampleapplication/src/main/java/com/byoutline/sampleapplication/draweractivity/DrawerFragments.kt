@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.FragmentShowDialogBinding
-import com.byoutline.secretsauce.di.AttachableViewModel
-import com.byoutline.secretsauce.di.lazyViewModelWithAutoLifecycle
+import com.byoutline.secretsauce.lifecycle.AttachableViewModel
+import com.byoutline.secretsauce.lifecycle.lazyViewModelWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
 
 class FirstFragment : CountingFragment() {
