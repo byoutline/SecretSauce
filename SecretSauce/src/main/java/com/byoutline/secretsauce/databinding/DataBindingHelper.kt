@@ -49,7 +49,7 @@ interface DataBindingObservable : Observable {
  * }
  * ```
  */
-abstract class DataBindingObservableImpl : DataBindingObservable {
+open class DataBindingObservableImpl : DataBindingObservable {
     private val propertyChangeRegistry = PropertyChangeRegistry()
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) =
@@ -95,6 +95,20 @@ object DataBindingHelper {
                 @Suppress("UNCHECKED_CAST")
                 val obs: ObservableField<T> = sender as ObservableField<T>
                 val state = obs.get()
+                callback(state)
+            }
+        }
+    }
+
+    /**
+     * Shorter syntax to create [Observable.OnPropertyChangedCallback] for [Observable].
+     * Result can be set as listener only to [Observable] of matching type [T],
+     * otherwise it will ignore any *propertyChanged* notifications.
+     */
+    inline fun <reified T : Observable> observableCallback(crossinline callback: (T) -> Unit): Observable.OnPropertyChangedCallback {
+        return object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                val state = sender as? T ?: return
                 callback(state)
             }
         }

@@ -36,6 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 	    <activity android:name=".waitlayout.WaitActivity" />
         <activity android:name=".rx.RxLifecycleActivity" />
+        <activity android:name=".databinding.DataBindingActivity" />
     </application>
 
 </manifest>
