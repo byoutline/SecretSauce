@@ -12,7 +12,7 @@ import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.ActivityExampleBinding
 import com.byoutline.secretsauce.activities.clearBackStack
 import com.byoutline.secretsauce.activities.showFragment
-import com.byoutline.secretsauce.lifecycle.bindContentView
+import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.lazyViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

@@ -2,13 +2,8 @@ package com.byoutline.secretsauce.lifecycle
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.byoutline.secretsauce.SecretSauceSettings
 import kotlin.reflect.KClass
 
@@ -146,39 +141,3 @@ inline fun <reified VIEWMODEL : ViewModel> Fragment.lazyViewModel(
     getViewModel<VIEWMODEL>()
 }
 
-/**
- * Inflates view via [BINDING] class and sets [viewModel] into given [brVariableId].
- * This method uses [SecretSauceSettings.brViewModelId] as default argument for variable.
- * It is advice to set it globally in [SecretSauceSettings] (although you can provide this value
- * as argument, it makes method call long enough that it may not be worth using)
- *
- * Example:
- * ```
- * private lateinit var binding: FragmentProjectsBinding
- *
- * binding = inflateAndSetViewModel(inflater, container, R.layout.fragment_projects, viewModel)
- * ```
- * or
- * ```
- * val binding: FragmentProjectsBinding = inflateAndSetViewModel(inflater, container, R.layout.fragment_projects, viewModel)
- * ```
- * Note: defining bidding type next to definition is encouraged. Otherwise you may need to specify this
- * type in generic parameters instead.
- */
-fun <VIEWMODEL : AttachableViewModel<VIEW>, BINDING : ViewDataBinding, VIEW> inflateAndSetViewModel(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        @LayoutRes layoutId: Int,
-        viewModel: VIEWMODEL,
-        brVariableId: Int = SecretSauceSettings.brViewModelId,
-        attachToParent: Boolean = false): BINDING {
-    val binding = DataBindingUtil.inflate<BINDING>(inflater, layoutId, container, attachToParent)
-    binding.setVariable(brVariableId, viewModel)
-    return binding
-}
-
-/**
- * Alias for [DataBindingUtil.setContentView]
- */
-fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
-        DataBindingUtil.setContentView(this, layoutId)
