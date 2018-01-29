@@ -3,7 +3,7 @@ package com.byoutline.secretsauce.lifecycle
 import android.databinding.BaseObservable
 import android.databinding.Observable
 import android.databinding.ObservableField
-import com.byoutline.secretsauce.databinding.DatabindigHelper
+import com.byoutline.secretsauce.databinding.DataBindingHelper
 import io.reactivex.disposables.Disposable
 
 /**
@@ -28,6 +28,6 @@ abstract class AttachableViewModelRx<T> : AttachableViewModel<T>() {
     /** Given [callback] will be attached to [BaseObservable] until *ViewModel is detached */
     @Synchronized
     inline fun ObservableField<T>.subscribeTillDetach(crossinline callback: (T) -> Unit) {
-        subscribeTillDetach(DatabindigHelper.observableFieldCallback(callback))
+        subscribeTillDetach(DataBindingHelper.observableFieldCallback(callback))
     }
 }
