@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.RxlifecycleActivityBinding
-import com.byoutline.secretsauce.lifecycle.AttachableViewModel
+import com.byoutline.secretsauce.lifecycle.AttachableViewModelRx
 import com.byoutline.secretsauce.lifecycle.bindContentView
 import com.byoutline.secretsauce.lifecycle.lazyViewModelWithAutoLifecycle
 import java.util.concurrent.TimeUnit
@@ -27,12 +27,12 @@ class RxLifecycleActivity : AppCompatActivity() {
 }
 
 
-class RxLifecycleViewModel : AttachableViewModel<Any>() {
+class RxLifecycleViewModel : AttachableViewModelRx<Any>() {
     val value = ObservableLong()
     override fun onAttach(view: Any) {
-        val disposable = RxObservable.interval(1, TimeUnit.SECONDS)
+        RxObservable.interval(1, TimeUnit.SECONDS)
                 .subscribe { value.set(value.get() + 1) }
+                .disposeOnDetach()
         super.onAttach(view)
-        registerDetachAction { disposable.dispose() }
     }
 }
