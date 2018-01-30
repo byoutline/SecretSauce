@@ -18,9 +18,9 @@ platform :android do
   end
 
   desc "bump changelog and upload release to maven central"
-    lane :createMCRelease do
+    lane :createSSMCRelease do
       version_name = sh("grep VERSION_NAME ../SecretSauce/gradle.properties | awk -F '=' '{print $2}'")
       stamp_changelog(section_identifier: "Build #{version_name}")
-      gradle(task: "clean build check")
+      gradle(task: ":SecretSauce:clean :SecretSauce:build :SecretSauce:check :SecretSauce:upAr")
     end
 end

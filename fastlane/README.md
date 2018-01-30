@@ -21,16 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane android test
 ```
 Runs all the tests
-### android tmp
+### android createSSMCRelease
 ```
-fastlane android tmp
+fastlane android createSSMCRelease
 ```
-TMP
-### android upAr
-```
-fastlane android upAr
-```
-Submit a new Build to mavenCentral
+bump changelog and upload release to maven central
 
 ----
 
