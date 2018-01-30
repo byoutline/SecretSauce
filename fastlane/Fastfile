@@ -20,7 +20,8 @@ platform :android do
   desc "TMP"
     lane :tmp do
       changelog = read_changelog
-      version_name = get_version_name
+      #version_name = get_version_name(app_folder_name: "SecretSauce")
+      version_name = sh("grep VERSION_NAME ../SecretSauce/gradle.properties | awk -F '=' '{print $2}'")
       stamp_changelog(section_identifier: "Build #{version_name}")
 
       puts(version_name)
