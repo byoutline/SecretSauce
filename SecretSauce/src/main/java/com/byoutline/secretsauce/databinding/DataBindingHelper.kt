@@ -126,22 +126,24 @@ object DataBindingHelper {
  * ```
  * private lateinit var binding: FragmentProjectsBinding
  *
- * binding = inflateAndSetViewModel(inflater, container, R.layout.fragment_projects, viewModel)
+ * binding = inflateAndSetVM(inflater, container, R.layout.fragment_projects, viewModel)
  * ```
  * or
  * ```
- * val binding: FragmentProjectsBinding = inflateAndSetViewModel(inflater, container, R.layout.fragment_projects, viewModel)
+ * val binding: FragmentProjectsBinding = inflateAndSetVM(inflater, container, R.layout.fragment_projects, viewModel)
  * ```
  * Note: defining bidding type next to definition is encouraged. Otherwise you may need to specify this
  * type in generic parameters instead.
+ * [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  */
-fun <VIEWMODEL : ViewModel, BINDING : ViewDataBinding> inflateAndSetViewModel(
+fun <BINDING : ViewDataBinding> inflateAndSetVM(
         inflater: LayoutInflater,
         container: ViewGroup?,
         @LayoutRes layoutId: Int,
-        viewModel: VIEWMODEL,
-        brVariableId: Int = SecretSauceSettings.brViewModelId,
-        attachToParent: Boolean = false): BINDING {
+        viewModel: Any,
+        brVariableId: Int = SecretSauceSettings.getBrViewModelId(),
+        attachToParent: Boolean = false
+): BINDING {
     val binding = DataBindingUtil.inflate<BINDING>(inflater, layoutId, container, attachToParent)
     binding.setVariable(brVariableId, viewModel)
     return binding

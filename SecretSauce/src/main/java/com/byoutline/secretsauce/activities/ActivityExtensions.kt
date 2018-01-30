@@ -30,14 +30,17 @@ fun FragmentActivity.finishFragment() {
 
 /**
  * Adds fragment to the container.
+ * [containerViewId] is required unless it was set globally via [SecretSauceSettings.set].
  * @param animations array which stores animation in order, enter, exit (2 elements) or
  *                   enter, exit, popEnter, popExit (4 elements) if argument in null default
  *                   animation is applied
  */
 @SuppressLint("ResourceType")
-fun FragmentActivity.showFragment(fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
-                                  animations: Array<Int>? = null,
-                                  @IdRes containerViewId: Int = SecretSauceSettings.containerViewId) {
+fun FragmentActivity.showFragment(
+        fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
+        animations: Array<Int>? = null,
+        @IdRes containerViewId: Int = SecretSauceSettings.getContainerViewId()
+) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
