@@ -1,6 +1,5 @@
 package com.byoutline.secretsauce.databinding
 
-import android.arch.lifecycle.ViewModel
 import android.databinding.*
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentActivity
@@ -154,3 +153,18 @@ fun <BINDING : ViewDataBinding> inflateAndSetVM(
  */
 fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
         DataBindingUtil.setContentView(this, layoutId)
+
+/**
+ * Sets content view via DataBinding ands sets given [viewModel] as binding variable.
+ * * [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
+ * @see [DataBindingUtil.setContentView]
+ */
+fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(
+        @LayoutRes layoutId: Int,
+        viewModel: Any,
+        brVariableId: Int = SecretSauceSettings.getBrViewModelId()
+): BINDING{
+    val binding: BINDING = bindContentView(layoutId)
+    binding.setVariable(brVariableId, viewModel)
+    return binding
+}

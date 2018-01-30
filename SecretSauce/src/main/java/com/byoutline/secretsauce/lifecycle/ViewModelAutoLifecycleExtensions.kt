@@ -14,7 +14,11 @@ import kotlin.reflect.KClass
  * *Remember to call it before `onActivityStarted`!*
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
-        view: VIEW): VIEWMODEL {
+        clazz: KClass<VIEWMODEL>,
+        @Suppress("UNCHECKED_CAST")
+        view: VIEW = this as? VIEW
+                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
+): VIEWMODEL {
     val viewModel = getViewModel<VIEWMODEL>()
     application.registerActivityLifecycleCallbacks(ViewModelAutoLifecycleA(application, view, viewModel))
     return viewModel
@@ -38,8 +42,10 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
  * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
-        view: VIEW,
         modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
+        @Suppress("UNCHECKED_CAST")
+        view: VIEW = this as? VIEW
+                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
         useFragmentViewModelProvider: Boolean = false
 ): VIEWMODEL {
     val viewModel = getViewModel(modelClass, useFragmentViewModelProvider)
@@ -84,10 +90,12 @@ inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
         clazz: KClass<VIEWMODEL>,
-        @Suppress("UNCHECKED_CAST") view: VIEW = this as? VIEW
+        @Suppress("UNCHECKED_CAST")
+        view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
-    getViewModelWithAutoLifecycle(view, VIEWMODEL::class)
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModelWithAutoLifecycle(VIEWMODEL::class, view)
 }
 
 /**
@@ -109,8 +117,9 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
         clazz: KClass<VIEWMODEL>,
         @Suppress("UNCHECKED_CAST") view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
-    getViewModelWithAutoLifecycle<VIEWMODEL, VIEW>(view)
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<VIEWMODEL> = lazy(mode) {
+    getViewModelWithAutoLifecycle(clazz, view)
 }
 
 /**

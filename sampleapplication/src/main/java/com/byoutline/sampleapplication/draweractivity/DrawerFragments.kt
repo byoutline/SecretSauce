@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.FragmentShowDialogBinding
+import com.byoutline.secretsauce.databinding.inflateAndSetVM
 import com.byoutline.secretsauce.lifecycle.AttachableViewModel
-import com.byoutline.secretsauce.lifecycle.lazyViewModelWithAutoLifecycle
+import com.byoutline.secretsauce.lifecycle.getViewModelWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
 
 class FirstFragment : CountingFragment() {
@@ -20,13 +21,11 @@ class SecondFragment : CountingFragment() {
 }
 
 abstract class CountingFragment : BaseFragment() {
-    val viewModel by lazyViewModelWithAutoLifecycle(CountingViewModel::class)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentShowDialogBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        return binding.root
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflateAndSetVM<FragmentShowDialogBinding>(inflater, container,
+                    layoutId = R.layout.fragment_show_dialog,
+                    viewModel = getViewModelWithAutoLifecycle(CountingViewModel::class)
+            ).root
 }
 
 class CountingViewModel : AttachableViewModel<BaseFragment>() {
