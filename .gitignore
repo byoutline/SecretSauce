@@ -42,4 +42,6 @@ build/
 # OS X
 *.DS_Store
 
+# Fastlane
 Gemfile.lock
+fastlane/report.xml
