@@ -9,7 +9,7 @@ import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.FragmentShowDialogBinding
 import com.byoutline.secretsauce.databinding.inflateAndSetVM
 import com.byoutline.secretsauce.lifecycle.AttachableViewModel
-import com.byoutline.secretsauce.lifecycle.getViewModelWithAutoLifecycle
+import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
 
 class FirstFragment : CountingFragment() {
@@ -22,9 +22,8 @@ class SecondFragment : CountingFragment() {
 
 abstract class CountingFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflateAndSetVM<FragmentShowDialogBinding>(inflater, container,
-                    layoutId = R.layout.fragment_show_dialog,
-                    viewModel = getViewModelWithAutoLifecycle(CountingViewModel::class)
+            inflateAndSetVM<FragmentShowDialogBinding>(inflater, container, R.layout.fragment_show_dialog,
+                    viewModel = getVMWithAutoLifecycle(CountingViewModel::class)
             ).root
 }
 

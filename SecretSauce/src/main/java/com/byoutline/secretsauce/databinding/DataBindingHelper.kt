@@ -163,7 +163,7 @@ fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(
         @LayoutRes layoutId: Int,
         viewModel: Any,
         brVariableId: Int = SecretSauceSettings.getBrViewModelId()
-): BINDING{
+): BINDING {
     val binding: BINDING = bindContentView(layoutId)
     binding.setVariable(brVariableId, viewModel)
     return binding

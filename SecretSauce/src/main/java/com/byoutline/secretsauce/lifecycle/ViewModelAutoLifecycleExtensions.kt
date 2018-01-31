@@ -12,6 +12,21 @@ import kotlin.reflect.KClass
  * ViewModel will be unregistered when activity is destroyed.
  *
  * *Remember to call it before `onActivityStarted`!*
+ *
+ * This method is an alias for [getViewModelWithAutoLifecycle]
+ */
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getVMWithAutoLifecycle(
+        clazz: KClass<VIEWMODEL>,
+        @Suppress("UNCHECKED_CAST")
+        view: VIEW = this as? VIEW
+                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
+): VIEWMODEL = getViewModelWithAutoLifecycle(clazz, view)
+
+/**
+ * Creates [AttachableViewModel] and registers it in [FragmentActivity] lifecycle.
+ * ViewModel will be unregistered when activity is destroyed.
+ *
+ * *Remember to call it before `onActivityStarted`!*
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
         clazz: KClass<VIEWMODEL>,
@@ -31,6 +46,23 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
     val factory = SecretSauceSettings.viewModelFactoryProvider(this)
     return ViewModelProviders.of(this, factory).get(VIEWMODEL::class.java)
 }
+
+/**
+ * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.
+ * ViewModel will be unregistered when activity is destroyed.
+ *
+ * *Remember to call it before `onFragmentStarted`!*
+ *
+ * By default activity scoped provider will be used. If you want to use fragment scope instead
+ * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
+ */
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMWithAutoLifecycle(
+        modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
+        @Suppress("UNCHECKED_CAST")
+        view: VIEW = this as? VIEW
+                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
+        useFragmentViewModelProvider: Boolean = false
+): VIEWMODEL  = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider)
 
 /**
  * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.

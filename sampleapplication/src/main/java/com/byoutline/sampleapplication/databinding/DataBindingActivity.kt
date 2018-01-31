@@ -9,9 +9,9 @@ import com.byoutline.sampleapplication.BR
 import com.byoutline.sampleapplication.R
 import com.byoutline.secretsauce.databinding.DataBindingObservable
 import com.byoutline.secretsauce.databinding.DataBindingObservableImpl
-import com.byoutline.secretsauce.databinding.bindContentViewAndSetVM
+import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.AttachableViewModelRx
-import com.byoutline.secretsauce.lifecycle.getViewModelWithAutoLifecycle
+import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.TimeUnit
 import io.reactivex.Observable as RxObservable
 
@@ -23,10 +23,9 @@ class DataBindingActivity : AppCompatActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindContentViewAndSetVM<DatabindingActivityBinding>(
-                layoutId = R.layout.databinding_activity,
-                viewModel = getViewModelWithAutoLifecycle(DataBindingViewModel::class)
-        )
+        bindContentView<DatabindingActivityBinding>(R.layout.databinding_activity).apply {
+            viewModel = getVMWithAutoLifecycle(DataBindingViewModel::class)
+        }
     }
 }
 
