@@ -25,12 +25,15 @@ abstract class AttachableViewModel<T> : ViewModel() {
      * @see [registerDetachActions]
      * @see [onDetach]
      */
-    protected inline fun registerDetachAction(crossinline onDetachAction: () -> Any) {
-        registerDetachActions(AttachableViewModelDetachAction { onDetachAction() })
+    @Synchronized
+    protected fun registerDetachAction(onDetachAction: AttachableViewModelDetachAction) {
+        registerDetachActions(onDetachAction)
     }
 
     /**
      * [onDetachAction] will be invoked when this [ViewModel] is detached.
+     * You can call this method multiple times, each time registering additional actions
+     * to be triggered.
      * @see [registerDetachAction]
      * @see [onDetach]
      */
@@ -46,8 +49,10 @@ abstract class AttachableViewModel<T> : ViewModel() {
      */
     @Synchronized
     open fun onDetach() {
-        onDetachActions.forEach { it.onDetach() }
+        onDetachActions.forEach { it() }
         onDetachActions.clear()
         view = null
     }
 }
+
+typealias AttachableViewModelDetachAction = () -> Any
