@@ -6,6 +6,7 @@ import android.databinding.ObservableBoolean;
 import android.net.ConnectivityManager;
 
 import com.byoutline.secretsauce.utils.NetworkChangeReceiver;
+import com.byoutline.secretsauce.utils.NetworkChangeViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,5 +31,10 @@ public class NetworkActivityModule {
     @Provides
     NetworkChangeReceiver providesNetworkChangeReceiver(ConnectivityManager connectivityManager) {
         return new NetworkChangeReceiver(connectivityManager, new ObservableBoolean());
+    }
+
+    @Provides
+    NetworkChangeViewModel providesNetworkChangeViewModel(NetworkChangeReceiver networkChangeReceiver) {
+        return new NetworkChangeViewModel(networkChangeReceiver);
     }
 }

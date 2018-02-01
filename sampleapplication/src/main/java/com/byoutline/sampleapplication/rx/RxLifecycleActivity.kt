@@ -9,6 +9,7 @@ import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.AttachableViewModelRx
 import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import io.reactivex.Observable as RxObservable
 
 /**
@@ -26,7 +27,7 @@ class RxLifecycleActivity : AppCompatActivity() {
 }
 
 
-class RxLifecycleViewModel : AttachableViewModelRx<Any>() {
+class RxLifecycleViewModel @Inject constructor() : AttachableViewModelRx<Any>() {
     val value = ObservableLong()
     override fun onAttach(view: Any) {
         RxObservable.interval(1, TimeUnit.SECONDS)

@@ -13,6 +13,7 @@ import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.AttachableViewModelRx
 import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import io.reactivex.Observable as RxObservable
 
 /**
@@ -29,7 +30,8 @@ class DataBindingActivity : AppCompatActivity() {
     }
 }
 
-class DataBindingViewModel : AttachableViewModelRx<Any>(),
+class DataBindingViewModel @Inject constructor(
+) : AttachableViewModelRx<Any>(),
         DataBindingObservable by DataBindingObservableImpl() {
     // Assume that this value is changed externally
     private val externalObs = ExternalObs()
@@ -52,7 +54,7 @@ class DataBindingViewModel : AttachableViewModelRx<Any>(),
         // (otherwise there would be no point of duplicating observables)
         externalObs.subscribeTillDetach { extObs -> field1 = extObs.field1 }
         externalObs.bool.subscribeBoolTillDetach { bool = it }
-        externalObs.field2.subscribeFieldTillDetach{ field2 = it }
+        externalObs.field2.subscribeFieldTillDetach { field2 = it }
         super.onAttach(view)
     }
 

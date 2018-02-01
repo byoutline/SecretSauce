@@ -11,6 +11,7 @@ import com.byoutline.secretsauce.databinding.inflateAndSetVM
 import com.byoutline.secretsauce.lifecycle.AttachableViewModel
 import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
 
 class FirstFragment : CountingFragment() {
     override fun getToolbarTitle(): String = getString(R.string.first_fragment)
@@ -27,7 +28,7 @@ abstract class CountingFragment : BaseFragment() {
             ).root
 }
 
-class CountingViewModel : AttachableViewModel<BaseFragment>() {
+class CountingViewModel @Inject constructor() : AttachableViewModel<BaseFragment>() {
     private val activityScoped = AtomicInteger(0)
     private val viewScoped = AtomicInteger(0)
 

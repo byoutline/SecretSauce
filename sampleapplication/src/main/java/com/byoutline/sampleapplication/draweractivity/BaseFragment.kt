@@ -5,6 +5,7 @@ import android.databinding.ObservableField
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.byoutline.secretsauce.activities.hideKeyboard
+import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
     lateinit var toolbarViewModel: ToolbarViewModel
@@ -23,7 +24,7 @@ abstract class BaseFragment : Fragment() {
     private fun getBaseActivity() = activity as ExampleActivity
 }
 
-class ToolbarViewModel: ViewModel() {
+class ToolbarViewModel @Inject constructor(): ViewModel() {
     val title = ObservableField<String>()
 
     fun setTitle(title: String) {
