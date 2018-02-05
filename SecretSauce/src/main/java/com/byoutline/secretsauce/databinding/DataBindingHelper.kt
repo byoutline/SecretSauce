@@ -133,7 +133,7 @@ object DataBindingHelper {
  * ```
  * Note: defining bidding type next to definition is encouraged. Otherwise you may need to specify this
  * type in generic parameters instead.
- * [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
+ * @param [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  */
 fun <BINDING : ViewDataBinding> inflateAndSetVM(
         inflater: LayoutInflater,
@@ -156,7 +156,8 @@ fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layo
 
 /**
  * Sets content view via DataBinding ands sets given [viewModel] as binding variable.
- * * [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
+ *
+ * @param [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  * @see [DataBindingUtil.setContentView]
  */
 fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(

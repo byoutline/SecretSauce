@@ -3,7 +3,7 @@ package com.byoutline.secretsauce.lifecycle
 import android.arch.lifecycle.ViewModel
 
 /**
- * [ViewModel] that should be needs to communicate with the view [T].
+ * [ViewModel] that needs to communicate with the view [T].
  * [ViewModel] will be informed about attach and detach.
  */
 abstract class AttachableViewModel<T> : ViewModel() {
