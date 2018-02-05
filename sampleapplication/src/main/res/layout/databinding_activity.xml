@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.byoutline.sampleapplication.databinding.DataBindingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/customFontStyle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/databinding_bool_text(viewModel.bool)}"
+            android:layout_margin="10dp"
+            android:textSize="24sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/customFontStyle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/databinding_obs1_text(viewModel.field1)}"
+            android:layout_margin="10dp"
+            android:textSize="24sp" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/customFontStyle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/databinding_field_text(viewModel.field2)}"
+            android:layout_margin="10dp"
+            android:textSize="24sp" />
+    </LinearLayout>
+</layout>

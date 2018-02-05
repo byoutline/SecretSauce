@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.byoutline.sampleapplication.MainActivity
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity
+import com.byoutline.sampleapplication.databinding.DataBindingActivity
+import com.byoutline.sampleapplication.databinding.DataBindingViewModel
 import com.byoutline.sampleapplication.draweractivity.*
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity
 import com.byoutline.sampleapplication.rx.RxLifecycleActivity
@@ -31,6 +33,7 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector abstract fun customFontViewsActivity(): CustomFontViewsActivity
     @ContributesAndroidInjector abstract fun waitActivity(): WaitActivity
     @ContributesAndroidInjector abstract fun rxLifecycleActivity(): RxLifecycleActivity
+    @ContributesAndroidInjector abstract fun dataBindingActivity(): DataBindingActivity
 }
 
 @Module
@@ -67,4 +70,8 @@ class ViewModelProvidersModule {
     @Provides @IntoMap
     @ViewModelKey(RxLifecycleViewModel::class)
     fun rxLifecycleViewModel(): ViewModel = RxLifecycleViewModel()
+
+    @Provides @IntoMap
+    @ViewModelKey(DataBindingViewModel::class)
+    fun dataBindingViewModel(): ViewModel = DataBindingViewModel()
 }

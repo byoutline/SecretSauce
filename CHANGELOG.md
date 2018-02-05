@@ -5,8 +5,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
  - Binding Adapter - `srcId` calls `setImageResource`
+ - `ActivityLifecycleCallbacksAdapter` - adapter for `Application.ActivityLifecycleCallbacks` were methods does nothing. 
+ Allows to override just one method instead of implementing whole interface
+ -`Activity.registerLifecycleCallbacksForThisActivityOnly` - Wraps given [Application.ActivityLifecycleCallbacks], so only 
+ lifecycle of [this] [Activity]  are forwarded. Allows to avoid `if (a === view)` boilerplate
+ - `AttachableViewModelRx` - AttachableViewModel with convenience  extension functions that will dispose RX Disposable on detach.
+ This ViewModel also allows similar register/unregister action for Android DataBinding.
+ - `DataBindingHelper` - aliases for easier creation of callback of new values in `ObservableBoolean` and `ObservableField`
+ - `DataBindingObservable`/`DataBindingObservableImpl` - allows for easier creation of Observable classes.
+   
 ### Changed
- - `lazyViewModelWithAutoLifecycle` will now autocast `this` to `view` to lower boilerplate on `Fragment` 
+ - lifecycle extensions functions moved from `com.byoutline.secretsauce.di` to `com.byoutline.secretsauce.lifecycle` package
+ - `lazyViewModelWithAutoLifecycle`/`getViewModel` now has default value for `view` parameter. 
+ If not specified differently this will try to cast `this` to `view`, which is commonly the case for fragment and activities.
+ - `AttachableViewModel` now allows registering multiple detach actions via `registerDetachAction`(s) method instead 
+  of allowing only one. Passing detach action as `super.onAttach` param is no longer supported.
+ - Calling function that requires  `containerViewId` or `brViewModelId` without passing it as an argument, or 
+ registering it globally in [SecretSauceSettings] will now throw an exception.
  
 ## [0.6.0]  - 14.12.2017
 ### Added

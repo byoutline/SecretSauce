@@ -11,4 +11,7 @@
     <string name="custom_font_views_toast">Click on URL in textView</string>
     <string name="baseappcompat_title">Sample Title</string>
     <string name="rxdatabinding_text">Current Rx provided value: %d</string>
+    <string name="databinding_bool_text">ObservableBoolean value: %s</string>
+    <string name="databinding_obs1_text">ViewModel.field1 value: %d</string>
+    <string name="databinding_field_text">ObservableField value: %s</string>
 </resources>

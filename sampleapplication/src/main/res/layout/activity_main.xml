@@ -79,6 +79,14 @@
 			style="@style/MainBtnstyle"
 			/>
 
+		<Button
+			android:id="@+id/databindingBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Multiple Databinding Observables"
+			style="@style/MainBtnstyle"
+			/>
+
 	</LinearLayout>
 
 </ScrollView>
