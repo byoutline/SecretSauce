@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.FragmentShowDialogBinding
-import com.byoutline.secretsauce.di.AttachableViewModel
-import com.byoutline.secretsauce.di.lazyViewModelWithAutoLifecycle
+import com.byoutline.secretsauce.databinding.inflateAndSetVM
+import com.byoutline.secretsauce.lifecycle.AttachableViewModel
+import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
 
 class FirstFragment : CountingFragment() {
     override fun getToolbarTitle(): String = getString(R.string.first_fragment)
@@ -20,16 +22,13 @@ class SecondFragment : CountingFragment() {
 }
 
 abstract class CountingFragment : BaseFragment() {
-    val viewModel: CountingViewModel by lazyViewModelWithAutoLifecycle(this as BaseFragment)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentShowDialogBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        return binding.root
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflateAndSetVM<FragmentShowDialogBinding>(inflater, container, R.layout.fragment_show_dialog,
+                    viewModel = getVMWithAutoLifecycle(CountingViewModel::class)
+            ).root
 }
 
-class CountingViewModel : AttachableViewModel<BaseFragment>() {
+class CountingViewModel @Inject constructor() : AttachableViewModel<BaseFragment>() {
     private val activityScoped = AtomicInteger(0)
     private val viewScoped = AtomicInteger(0)
 

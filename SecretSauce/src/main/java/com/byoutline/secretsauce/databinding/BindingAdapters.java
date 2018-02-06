@@ -4,6 +4,7 @@ package com.byoutline.secretsauce.databinding;
 import android.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class BindingAdapters {
     @BindingAdapter("showView")
@@ -33,5 +34,10 @@ public class BindingAdapters {
     @BindingAdapter("error")
     public static void onEditTextError(EditText editText, String text) {
         editText.setError(text);
+    }
+
+    @BindingAdapter("srcId")
+    public static void setImageViewResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
     }
 }

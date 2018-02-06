@@ -1,4 +1,4 @@
-package com.byoutline.secretsauce.rx
+package com.byoutline.secretsauce.lifecycle
 
 import android.app.Activity
 import android.app.Application

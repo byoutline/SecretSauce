@@ -6,8 +6,7 @@ ext {
     support_version = '27.0.2'
     cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
-    rxlifecycle_ver = '2.1.0'
 
     android_arch_lifecycle_ver = '1.0.0'
-    dagger_ver = '2.13'
+    dagger_ver = '2.14.1'
 }

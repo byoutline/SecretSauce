@@ -32,9 +32,11 @@ open class SampleApp : ActivityInjectorApp() {
     @Synchronized
     open fun setComponents(mainComponent: AppComponent) {
         mainComponent.inject(this)
-        SecretSauceSettings.set(debug = BuildConfig.DEBUG,
+        SecretSauceSettings.set(
+                debug = BuildConfig.DEBUG,
                 containerViewId = R.id.container,
                 bindingViewModelId = BR.viewModel,
-                viewModelFactoryProvider = { viewModelFactory })
+                viewModelFactoryProvider = { viewModelFactory }
+        )
     }
 }
