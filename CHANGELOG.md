@@ -4,6 +4,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
  - `android.arch.lifecycle:extensions` bumped to `1.1.0`
+ - `getViewModelWithAutoLifecycle` - now has `recursive` flag. Setting recursive to `true` is needed to get lifecycle 
+    callback when we attach to DialogFragment
  
 ## [Build 0.7.0] - 2018-02-05
 ### Added

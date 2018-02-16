@@ -78,11 +78,12 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVie
         @Suppress("UNCHECKED_CAST")
         view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = false
+        useFragmentViewModelProvider: Boolean = false,
+        recursive: Boolean = false
 ): VIEWMODEL {
     val viewModel = getViewModel(modelClass, useFragmentViewModelProvider)
     val auto = ViewModelAutoLifecycleF(view, viewModel)
-    activity!!.supportFragmentManager!!.registerFragmentLifecycleCallbacks(auto, false)
+    activity!!.supportFragmentManager!!.registerFragmentLifecycleCallbacks(auto, recursive)
     return viewModel
 }
 
