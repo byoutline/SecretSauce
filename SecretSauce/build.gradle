@@ -54,7 +54,6 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_ver"
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
     // resolve conflict caused by support-compat
-    api 'android.arch.lifecycle:runtime:1.0.3'
 
     provided 'com.squareup.picasso:picasso:2.5.2'
     provided 'com.android.databinding:baseLibrary:3.0.1'
@@ -62,7 +61,7 @@ dependencies {
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     implementation 'joda-time:joda-time:2.9.9'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.6'
+    api 'io.reactivex.rxjava2:rxjava:2.1.7'
 }
 
 configurations.all {
