@@ -68,6 +68,7 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"
     implementation 'com.jakewharton.timber:timber:4.6.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     kapt "com.android.databinding:compiler:$build_tools_version"
 
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"

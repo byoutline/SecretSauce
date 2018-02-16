@@ -61,7 +61,7 @@ dependencies {
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     implementation 'joda-time:joda-time:2.9.9'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
 }
 
 configurations.all {

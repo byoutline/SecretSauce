@@ -8,6 +8,7 @@ import com.byoutline.sampleapplication.databinding.RxlifecycleActivityBinding
 import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.AttachableViewModelRx
 import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
+import dagger.android.AndroidInjection
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import io.reactivex.Observable as RxObservable
@@ -18,16 +19,25 @@ import io.reactivex.Observable as RxObservable
  */
 class RxLifecycleActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var tmp: Tmp
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindContentView<RxlifecycleActivityBinding>(R.layout.rxlifecycle_activity).apply {
             viewModel = getVMWithAutoLifecycle(RxLifecycleViewModel::class)
         }
+        AndroidInjection.inject(this)
+    }
+}
+class Tmp @Inject  constructor(context: RxLifecycleActivity) {
+    init {
+        print(context.resources.getString(R.string.abc_capital_off))
     }
 }
 
-
 class RxLifecycleViewModel @Inject constructor() : AttachableViewModelRx<Any>() {
+
     val value = ObservableLong()
     override fun onAttach(view: Any) {
         RxObservable.interval(1, TimeUnit.SECONDS)
