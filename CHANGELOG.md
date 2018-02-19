@@ -3,6 +3,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [Build 0.8.0-alpha1] - 2018-02-16
  - `android.arch.lifecycle:extensions` bumped to `1.1.0`
  - `getViewModelWithAutoLifecycle` - now has `recursive` flag. Setting recursive to `true` is needed to get lifecycle
   callback when we attach to DialogFragment
