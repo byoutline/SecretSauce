@@ -87,6 +87,14 @@
 			style="@style/MainBtnstyle"
 			/>
 
+		<Button
+			android:id="@+id/contextDependenciesBtn"
+			android:layout_marginTop="30dp"
+			android:onClick="onClick"
+			android:text="Android Dagger context dependencies"
+			style="@style/MainBtnstyle"
+			/>
+
 	</LinearLayout>
 
 </ScrollView>

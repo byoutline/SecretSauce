@@ -2,10 +2,17 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ContextDependencyTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/contextDependencyYellow</item>
+    </style>
+
+    <style name="ContextDependencyTheme2" parent="AppTheme">
+        <item name="colorPrimary">@color/contextDependencyBlue</item>
     </style>
 
     <style name="customFontStyle">

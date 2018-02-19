@@ -37,6 +37,12 @@
 	    <activity android:name=".waitlayout.WaitActivity" />
         <activity android:name=".rx.RxLifecycleActivity" />
         <activity android:name=".databinding.DataBindingActivity" />
+        <activity android:name=".contextdependencies.ContextDependenciesActivity"
+            android:theme="@style/ContextDependencyTheme"
+            />
+        <activity android:name=".contextdependencies.ContextDependenciesActivity2"
+            android:theme="@style/ContextDependencyTheme2"
+            />
     </application>
 
 </manifest>

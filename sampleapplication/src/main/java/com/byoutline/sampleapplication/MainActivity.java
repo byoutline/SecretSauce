@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity;
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity;
 import com.byoutline.sampleapplication.databinding.DataBindingActivity;
 import com.byoutline.sampleapplication.draweractivity.ExampleActivity;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         put(R.id.waitLayoutBtn , WaitActivity.class);
         put(R.id.rxBtn , RxLifecycleActivity.class);
         put(R.id.databindingBtn , DataBindingActivity.class);
+        put(R.id.contextDependenciesBtn , ContextDependenciesActivity.class);
     }};
 
     @Override

@@ -14,4 +14,8 @@
     <string name="databinding_bool_text">ObservableBoolean value: %s</string>
     <string name="databinding_obs1_text">ViewModel.field1 value: %d</string>
     <string name="databinding_field_text">ObservableField value: %s</string>
+
+    <string name="context_dependencies_str">First localized string</string>
+    <string name="context_dependencies_str2">Second activity has different theme so Dagger dependency has loaded different color.</string>
+    <string name="context_dependencies_btn">Tap to open activity with different theme</string>
 </resources>

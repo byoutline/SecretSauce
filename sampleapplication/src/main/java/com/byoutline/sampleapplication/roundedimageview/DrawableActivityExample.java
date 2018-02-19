@@ -2,6 +2,7 @@ package com.byoutline.sampleapplication.roundedimageview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import com.byoutline.sampleapplication.R;
 
 public class DrawableActivityExample extends AppCompatActivity {

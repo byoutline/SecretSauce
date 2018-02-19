@@ -3,6 +3,10 @@ package com.byoutline.sampleapplication.di
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.byoutline.sampleapplication.MainActivity
+import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
+import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity2
+import com.byoutline.sampleapplication.contextdependencies.ContextModuleDependenciesActivity
+import com.byoutline.sampleapplication.contextdependencies.ContextModuleDependenciesActivity2
 import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity
 import com.byoutline.sampleapplication.databinding.DataBindingActivity
 import com.byoutline.sampleapplication.databinding.DataBindingViewModel
@@ -34,6 +38,12 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector abstract fun waitActivity(): WaitActivity
     @ContributesAndroidInjector abstract fun rxLifecycleActivity(): RxLifecycleActivity
     @ContributesAndroidInjector abstract fun dataBindingActivity(): DataBindingActivity
+
+    @ContributesAndroidInjector(modules = [ContextModuleDependenciesActivity::class])
+    abstract fun contextDependenciesActivity(): ContextDependenciesActivity
+
+    @ContributesAndroidInjector(modules = [ContextModuleDependenciesActivity2::class])
+    abstract fun contextDependenciesActivity2(): ContextDependenciesActivity2
 }
 
 @Module
