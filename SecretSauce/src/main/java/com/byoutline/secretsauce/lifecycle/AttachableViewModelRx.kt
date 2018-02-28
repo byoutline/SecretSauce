@@ -15,8 +15,9 @@ abstract class AttachableViewModelRx<T> : AttachableViewModel<T>() {
 
     /** [Disposable] will be cleared when this *ViewModel* is detached.*/
     @Synchronized
-    fun Disposable.disposeOnDetach() {
+    fun Disposable.disposeOnDetach(): Disposable {
         registerDetachAction { this.dispose() }
+        return this
     }
 
     /** Given [callback] will be attached to [BaseObservable] until *ViewModel is detached */
