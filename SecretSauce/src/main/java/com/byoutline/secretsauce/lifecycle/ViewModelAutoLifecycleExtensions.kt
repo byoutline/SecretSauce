@@ -53,15 +53,15 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
  *
  * *Remember to call it before `onFragmentStarted`!*
  *
- * By default activity scoped provider will be used. If you want to use fragment scope instead
- * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
+ * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
+ * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMWithAutoLifecycle(
         modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
         @Suppress("UNCHECKED_CAST")
         view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = false
+        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
 ): VIEWMODEL  = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider)
 
 /**
@@ -70,15 +70,15 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMW
  *
  * *Remember to call it before `onFragmentStarted`!*
  *
- * By default activity scoped provider will be used. If you want to use fragment scope instead
- * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
+ * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
+ * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
         modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
         @Suppress("UNCHECKED_CAST")
         view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = false,
+        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
         recursive: Boolean = false
 ): VIEWMODEL {
     val viewModel = getViewModel(modelClass, useFragmentViewModelProvider)
@@ -90,12 +90,12 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVie
 /**
  * Convenience method to get [VIEWMODEL] using Fragment context and ViewModelProvider.
  *
- * By default activity scoped provider will be used. If you want to use fragment scope instead
- * (fragment passed to [ViewModelProviders.of]), set [useFragmentViewModelProvider] to true.
+ * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
+ * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
         modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
-        useFragmentViewModelProvider: Boolean = false
+        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
 ): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(context!!)
     val provider = if (useFragmentViewModelProvider) {

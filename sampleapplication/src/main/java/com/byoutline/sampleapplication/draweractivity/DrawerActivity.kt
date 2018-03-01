@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MenuItem
@@ -24,6 +23,7 @@ class ExampleActivity : AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener {
     @Inject
     lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentInjector
 
     val toolbarViewModel by lazyViewModel<ToolbarViewModel>()
@@ -32,12 +32,12 @@ class ExampleActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = bindContentView(R.layout.activity_example)
-        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
-        navigationView.inflateMenu(R.menu.activity_example_drawer)
-        navigationView.setNavigationItemSelectedListener(this)
+        binding.navigationView.apply {
+            inflateMenu(R.menu.activity_example_drawer)
+            setNavigationItemSelectedListener(this@ExampleActivity)
+        }
         setTitle(R.string.baseappcompat_title)
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawerLayout.openDrawer(Gravity.LEFT)
+        binding.drawerLayout.openDrawer(Gravity.LEFT)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

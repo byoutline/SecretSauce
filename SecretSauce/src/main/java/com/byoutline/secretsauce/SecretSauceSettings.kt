@@ -25,23 +25,35 @@ object SecretSauceSettings {
     var viewModelFactoryProvider: (ctx: Context) -> ViewModelProvider.Factory = {
         throw IllegalStateException("You must init viewModelFactoryProvider")
     }
+    var useFragmentViewModelProvider: Boolean = true
 
 
+    /**
+     * @param debug - If true enables debug toasts, and low priority logs in [com.byoutline.secretsauce.utils.LogUtils]
+     * @param containerViewId - Default value for [com.byoutline.secretsauce.activities.showFragment]
+     * @param bindingViewModelId - Default value for DataBinding methods that set ViewModel
+     * @param viewModelFactoryProvider - Required for using getViewModel and related extension function
+     * @param setFastJodaTimeZoneProvider - If true System property will be set so Joda time uses [com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider]
+     * which is faster on Android. If you are not using Joda time this will do nothing relevant.
+     * @param useFragmentViewModelProvider - Default lifecycle for ViewModels [com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle]
+     */
     fun set(
             debug: Boolean = DEBUG,
-            @IdRes containerViewId: Int = this.containerViewId ?: ID_NOT_SET ,
+            @IdRes containerViewId: Int = this.containerViewId ?: ID_NOT_SET,
             bindingViewModelId: Int = brViewModelId ?: ID_NOT_SET,
             viewModelFactoryProvider: (ctx: Context) -> ViewModelProvider.Factory = this.viewModelFactoryProvider,
-            setFastJodaTimeZoneProvider: Boolean = true
+            setFastJodaTimeZoneProvider: Boolean = true,
+            useFragmentViewModelProvider: Boolean = this.useFragmentViewModelProvider
     ) {
-        require(containerViewId > 0 || containerViewId == ID_NOT_SET) {"containerViewId cannot be negative, given: $containerViewId"}
-        require(bindingViewModelId > 0 || bindingViewModelId == ID_NOT_SET) {"containerViewId cannot be negative, given: $containerViewId"}
-        if(containerViewId != ID_NOT_SET) this.containerViewId = containerViewId
-        if(bindingViewModelId != ID_NOT_SET) brViewModelId = bindingViewModelId
+        require(containerViewId > 0 || containerViewId == ID_NOT_SET) { "containerViewId cannot be negative, given: $containerViewId" }
+        require(bindingViewModelId > 0 || bindingViewModelId == ID_NOT_SET) { "containerViewId cannot be negative, given: $containerViewId" }
+        if (containerViewId != ID_NOT_SET) this.containerViewId = containerViewId
+        if (bindingViewModelId != ID_NOT_SET) brViewModelId = bindingViewModelId
 
         DEBUG = debug
         this.viewModelFactoryProvider = viewModelFactoryProvider
-        if(setFastJodaTimeZoneProvider) {
+        this.useFragmentViewModelProvider = useFragmentViewModelProvider
+        if (setFastJodaTimeZoneProvider) {
             System.setProperty("org.joda.time.DateTimeZone.Provider", "com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider")
         }
     }

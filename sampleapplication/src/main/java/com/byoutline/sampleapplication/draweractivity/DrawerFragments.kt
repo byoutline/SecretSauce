@@ -24,7 +24,7 @@ class SecondFragment : CountingFragment() {
 abstract class CountingFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflateAndSetVM<FragmentShowDialogBinding>(inflater, container, R.layout.fragment_show_dialog,
-                    viewModel = getVMWithAutoLifecycle(CountingViewModel::class)
+                    viewModel = getVMWithAutoLifecycle(CountingViewModel::class, useFragmentViewModelProvider = false)
             ).root
 }
 
