@@ -3,6 +3,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [Build 0.8.0-alpha4] - 2018-03-02
  - Bump dependencies
  
 ## [Build 0.8.0-alpha3] - 2018-03-01
