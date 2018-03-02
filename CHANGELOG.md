@@ -3,6 +3,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [Build 0.8.0-alpha3] - 2018-03-01
  - `useFragmentViewModelProvider` default value changed - ViewModels requested by Fragments will now use Fragment lifecycle by default. If you
  want to change to previous behaviour you can set flag globally in [SecretSauceSettings].
 
