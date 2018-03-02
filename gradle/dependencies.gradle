@@ -1,9 +1,9 @@
 ext {
     compile_sdk_ver = 27
-    build_tools_ver = '27.0.1'
+    build_tools_ver = '27.0.2'
     target_sdk_ver = 27
 
-    support_version = '27.0.2'
+    support_version = '27.1.0'
     cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
 
