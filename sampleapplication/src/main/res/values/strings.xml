@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">SampleApplication</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="first_fragment">First Fragment Item</string>
     <string name="second_fragment">Second Fragment Item</string>
     <string name="title_activity_custom_views_examples">customViewsExamples</string>
@@ -15,7 +14,12 @@
     <string name="databinding_obs1_text">ViewModel.field1 value: %d</string>
     <string name="databinding_field_text">ObservableField value: %s</string>
 
-    <string name="context_dependencies_str">First localized string</string>
+    <string name="context_dependencies_str">This localized string comes from "ResourceDependency" class that was created by Dagger.\n
+        Its background color is also set to value from different dependency. Since this background color is Theme dependent you can
+        verify that this is indeed activity context by navigating to next activity that uses same dependency class, but has
+        different color.
+    </string>
     <string name="context_dependencies_str2">Second activity has different theme so Dagger dependency has loaded different color.</string>
     <string name="context_dependencies_btn">Tap to open activity with different theme</string>
+    <string name="context_dependencies_submodule_btn">Tap to open activity from different Gradle module</string>
 </resources>

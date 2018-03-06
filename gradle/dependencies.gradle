@@ -9,4 +9,12 @@ ext {
 
     android_arch_lifecycle_ver = '1.1.0'
     dagger_ver = '2.14.1'
+    espresso_version = '3.0.1'
+
+    deps = [
+            dagger_android    : ['javax.inject:javax.inject:1', "com.google.dagger:dagger:$dagger_ver", "com.google.dagger:dagger-android-support:$dagger_ver"],
+            dagger_android_apt: ["com.google.dagger:dagger-compiler:$dagger_ver", "com.google.dagger:dagger-android-processor:$dagger_ver"],
+            kotlin_stdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            rx_java :  'io.reactivex.rxjava2:rxjava:2.1.10'
+    ]
 }

@@ -6,6 +6,7 @@ import com.byoutline.sampleapplication.di.DaggerAppComponent
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
 import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.di.ActivityInjectorApp
+import com.byoutline.secretsauce.di.AppInjector
 
 
 /**
@@ -32,6 +33,7 @@ open class SampleApp : ActivityInjectorApp() {
     @Synchronized
     open fun setComponents(mainComponent: AppComponent) {
         mainComponent.inject(this)
+        AppInjector.init(this)
         SecretSauceSettings.set(
                 debug = BuildConfig.DEBUG,
                 containerViewId = R.id.container,

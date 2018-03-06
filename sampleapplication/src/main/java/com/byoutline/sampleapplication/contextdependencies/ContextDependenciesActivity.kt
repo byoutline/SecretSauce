@@ -9,35 +9,44 @@ import android.support.annotation.ColorInt
 import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
 import com.byoutline.sampleapplication.R
+import com.byoutline.sampleapplication.daggerexample.AndroidLibSubmoduleDaggerActivity
+import com.byoutline.sampleapplication.daggerexample.ContextModule
 import com.byoutline.sampleapplication.databinding.ActivityContextDependencies2Binding
 import com.byoutline.sampleapplication.databinding.ActivityContextDependenciesBinding
-import com.byoutline.sampleapplication.di.ContextModule
 import com.byoutline.secretsauce.databinding.bindContentView
+import com.byoutline.secretsauce.di.Injectable
 import dagger.Module
 import dagger.Provides
-import dagger.android.AndroidInjection
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import javax.inject.Inject
 import io.reactivex.Observable as RxObservable
 
 /**
  * This activity has dependencies that require some [Context] scoped data.
  */
-class ContextDependenciesActivity : AppCompatActivity() {
+class ContextDependenciesActivity : AppCompatActivity(), HasActivityInjector, Injectable {
 
     @Inject
     lateinit var contextDependency: ContextDependency
     @Inject
     lateinit var resourceDependency: ResourceDependency
+    @Inject
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector() = activityInjector
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityContextDependenciesBinding = bindContentView(R.layout.activity_context_dependencies)
-        AndroidInjection.inject(this)
 
         binding.contextDependenciesTv.setBackgroundColor(contextDependency.color)
         binding.contextDependenciesTv.text = resourceDependency.string
         binding.contextDependenciesBtn.setOnClickListener {
             startActivity(Intent(this, ContextDependenciesActivity2::class.java))
+        }
+        binding.submoduleBtn.setOnClickListener {
+            startActivity(Intent(this, AndroidLibSubmoduleDaggerActivity::class.java))
         }
     }
 }
@@ -46,7 +55,7 @@ class ContextDependenciesActivity : AppCompatActivity() {
  * Example of same activity with different theme. By checking that different color was loaded you can verify that
  * correct context was provided.
  */
-class ContextDependenciesActivity2 : AppCompatActivity() {
+class ContextDependenciesActivity2 : AppCompatActivity(), Injectable {
 
     @Inject
     lateinit var contextDependency: ContextDependency
@@ -54,10 +63,10 @@ class ContextDependenciesActivity2 : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityContextDependencies2Binding = bindContentView(R.layout.activity_context_dependencies2)
-        AndroidInjection.inject(this)
         binding.contextDependenciesTv.setBackgroundColor(contextDependency.color)
     }
 }
+
 
 class ContextDependency @Inject constructor(context: Context) {
     @ColorInt val color: Int
@@ -70,7 +79,7 @@ class ContextDependency @Inject constructor(context: Context) {
 }
 
 class ResourceDependency @Inject constructor(resources: Resources) {
-    val string = resources.getString(R.string.context_dependencies_str)
+    val string: String = resources.getString(R.string.context_dependencies_str)
 }
 
 
@@ -80,11 +89,11 @@ class ResourceDependency @Inject constructor(resources: Resources) {
  * This module is not abstract, because [ContextModule] cannot be abstract.
  */
 @Module
-class ContextModuleDependenciesActivity : ContextModule() {
-    @Provides fun act(activity: ContextDependenciesActivity): Activity = activity
+class ContextModuleDependenciesActivityModule : ContextModule() {
+    @Provides fun act(a: ContextDependenciesActivity): Activity = a
 }
 
 @Module
-class ContextModuleDependenciesActivity2 : ContextModule() {
-    @Provides fun act(activity: ContextDependenciesActivity2): Activity = activity
+class ContextModuleDependenciesActivity2Module : ContextModule() {
+    @Provides fun act(a: ContextDependenciesActivity2): Activity = a
 }

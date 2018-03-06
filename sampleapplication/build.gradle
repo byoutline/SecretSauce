@@ -36,19 +36,11 @@ android {
               proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = true
-    }
-
+    dataBinding.enabled = true
 
     dexOptions {
         javaMaxHeapSize System.getenv('CI') ? "2g" : "4g"
     }
-}
-
-
-ext {
-    espresso_version = '3.0.1'
 }
 
 apply plugin: 'kotlin-kapt'
@@ -57,18 +49,17 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':SecretSauce')
     compile project(':waitlayout')
+    compile project(':sampleapplication:daggerexamplelib')
 
-    implementation "com.google.dagger:dagger:$dagger_ver"
-    kapt "com.google.dagger:dagger-compiler:$dagger_ver"
-    implementation "com.google.dagger:dagger-android-support:$dagger_ver"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_ver"
+    implementation deps.dagger_android
+    kapt deps.dagger_android_apt
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
 
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.android.support:design:$support_version"
     implementation "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"
     implementation 'com.jakewharton.timber:timber:4.6.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation deps.rx_java
     kapt "com.android.databinding:compiler:$build_tools_version"
 
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"

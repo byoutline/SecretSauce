@@ -50,3 +50,81 @@ param to function or the exception will be thrown.
 `containerViewId` used by showFragment methods
 `bindingViewModelId` and `viewModelFactoryProvider` use by `viewModel` extension functions.
 
+#### Do you create new instances of objects inside your fragments/activities by hand, because they require scoped context? Dagger Android support can help you!
+  
+> [Dagger works best if it can create all the injected objects](https://google.github.io/dagger/android.html)
+  
+Lets say that we have successfully configured Dagger and we inject our non-Android dependencies.  
+Our activity may look something like that:
+
+```kotlin
+class MyActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var dependencyA: DependencyA
+    @Inject
+    lateinit var dependencyB: DependencyB
+    val colorMixer by lazy { ColorMixer(this, dependencyA, dependencyB) }
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding: ActivityContextDependencies2Binding = bindContentView(R.layout.myactivity)
+        DaggerUtil.inject(this)
+        binding.textView.setBackgroundColor(colorMixer.color)
+    }
+}
+```  
+
+It is not that bad, but there are several problems:
+- We create ColorMixer inside the activity. This tight coupling makes it easy to pass local context, but unfortunately 
+ we lose some of advantages of using [Inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control).
+ For example it becomes harder to switch ColorMixer implementation.
+
+- We do inject DependencyA and DependencyB that we do not need just so we can create ColorMixer instance. 
+That introduces boilerplate and namespace pollution.
+ 
+- If ColorMixer had two arguments of the same type we risk of passing them in wrong order causing (sometimes) subtle bugs.
+
+You may ask - what if I use application context everywhere instead? In some cases that may work but I would discourage it. 
+You will get exception if you try to get layout inflater, and you may get wrong answer if you ask for color (if you use themed activities).
+ 
+ So what can we do? We can use `dagger.android`
+#### Do you create new instances of objects inside your fragments/activities by hand, because they require scoped context? Dagger Android support can help you!
+  
+> [Dagger works best if it can create all the injected objects](https://google.github.io/dagger/android.html)
+  
+Lets say that we have successfully configured Dagger and we inject our non-Android dependencies.  
+Our activity may look something like that:
+
+```kotlin
+class MyActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var dependencyA: DependencyA
+    @Inject
+    lateinit var dependencyB: DependencyB
+    val colorMixer by lazy { ColorMixer(this, dependencyA, dependencyB) }
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding: ActivityContextDependencies2Binding = bindContentView(R.layout.myactivity)
+        DaggerUtil.inject(this)
+        binding.textView.setBackgroundColor(colorMixer.color)
+    }
+}
+```  
+
+It is not that bad, but there are several problems:
+- We create ColorMixer inside the activity. This tight coupling makes it easy to pass local context, but unfortunately 
+ we lose some of advantages of using [Inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control).
+ For example it becomes harder to switch ColorMixer implementation.
+
+- We do inject DependencyA and DependencyB that we do not need just so we can create ColorMixer instance. 
+That introduces boilerplate and namespace pollution.
+ 
+- If ColorMixer had two arguments of the same type we risk of passing them in wrong order causing (sometimes) subtle bugs.
+
+You may ask - what if I use application context everywhere instead? In some cases that may work but I would discourage it. 
+You will get exception if you try to get layout inflater, and you may get wrong answer if you ask for color (if you use themed activities).
+ 
+ So what can we do? We can use `dagger.android`

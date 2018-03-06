@@ -1,0 +1,40 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.byoutline.sampleapplication.daggerexample.DaggerExampleFragmentVM" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        tools:context="com.byoutline.sampleapplication.daggerexample.AndroidLibSubmoduleDaggerFragment">
+
+        <TextView
+            android:id="@+id/fragment_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            tools:text="label" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{@string/fragment_attach_count(viewModel.counter)}"
+            tools:text="Fragment was attached 13 times" />
+
+        <TextView
+            android:id="@+id/fragment_pure_java_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            tools:text="This fragment also has dependency that was declared in Dagger Module that comes from pure Java module: " />
+
+    </LinearLayout>
+</layout>

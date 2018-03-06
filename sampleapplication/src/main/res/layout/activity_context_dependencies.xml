@@ -10,16 +10,25 @@
         <TextView
             android:id="@+id/context_dependencies_tv"
             android:layout_width="match_parent"
-            android:textSize="18sp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="14sp"
             tools:text="@string/context_dependencies_str" />
 
-        <TextView
-            android:layout_margin="10dp"
-            android:textSize="18sp"
+        <Button
             android:id="@+id/context_dependencies_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/context_dependencies_btn" />
+            android:layout_margin="10dp"
+            android:text="@string/context_dependencies_btn"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/submodule_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/context_dependencies_submodule_btn"
+            android:textSize="18sp" />
     </LinearLayout>
 </layout>

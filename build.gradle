@@ -1,6 +1,9 @@
 buildscript {
     ext.kotlin_version = '1.2.30'
-    ext.build_tools_version = '3.0.1'
+    ext {
+        kotlin_version = '1.2.30'
+        build_tools_version = '3.0.1'
+    }
     repositories {
         maven { url "https://jcenter.bintray.com/" }
         maven { url "https://maven.google.com" }
@@ -18,4 +21,5 @@ allprojects {
         maven { url "https://maven.google.com" }
     }
 }
+
 

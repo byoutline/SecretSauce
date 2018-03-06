@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context="com.byoutline.sampleapplication.daggerexample.AndroidLibSubmoduleDaggerActivity">
+
+
+        <TextView
+            android:id="@+id/dagger_example_activity_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_label" />
+
+        <Button
+            android:id="@+id/dagger_example_show_fragment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to open/replace Fragment" />
+
+
+    </LinearLayout>
+</layout>
