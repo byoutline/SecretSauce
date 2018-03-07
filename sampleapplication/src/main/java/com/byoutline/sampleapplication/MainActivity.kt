@@ -3,21 +3,14 @@ package com.byoutline.sampleapplication
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
-import com.byoutline.sampleapplication.customfontviews.CustomFontViewsActivity
 import com.byoutline.sampleapplication.databinding.ActivityMainBinding
-import com.byoutline.sampleapplication.databinding.DataBindingActivity
-import com.byoutline.sampleapplication.draweractivity.DrawerActivity
-import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity
-import com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample
-import com.byoutline.sampleapplication.rx.RxLifecycleActivity
-import com.byoutline.sampleapplication.waitlayout.WaitActivity
 import com.byoutline.secretsauce.activities.WebViewActivityV7
 import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.AttachableViewModel
 import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import javax.inject.Inject
+import javax.inject.Qualifier
 
 
 class MainActivity : ClassNameAsToolbarTitleActivity(), MainActivityItemClickListener {
@@ -37,17 +30,9 @@ class MainActivity : ClassNameAsToolbarTitleActivity(), MainActivityItemClickLis
 }
 
 
-class MainActivityVM @Inject constructor() : AttachableViewModel<MainActivityItemClickListener>() {
-    val items: List<MainActivityItem> = listOf(
-            I(DrawerActivity::class.java, "Drawer with fragments"),
-            I(NetworkChangeActivity::class.java, "Network change observer"),
-            I(DrawableActivityExample::class.java, "Rounded drawables"),
-            I(CustomFontViewsActivity::class.java, "Custom text fonts"),
-            I(WaitActivity::class.java, "Work in progress indicators"),
-            I(RxLifecycleActivity::class.java, "AttachableViewModelRx: RxJava+ViewModel+Android lifecycle"),
-            I(DataBindingActivity::class.java, "Android Databinding+ViewModel+Android lifecycle"),
-            I(ContextDependenciesActivity::class.java, "Dagger Android: Injecting dependencies that require activity context into activities and fragments")
-    )
+class MainActivityVM @Inject constructor(
+        @MainActivityItems val items: List<MainActivityItem>
+) : AttachableViewModel<MainActivityItemClickListener>() {
     private val listener: MainActivityItemClickListener = object : MainActivityItemClickListener {
         override fun onItemClick(item: MainActivityItem) {
             view?.onItemClick(item)
@@ -57,11 +42,13 @@ class MainActivityVM @Inject constructor() : AttachableViewModel<MainActivityIte
             .bindExtra(BR.listener, listener)
 }
 
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+internal annotation class MainActivityItems
+
 interface MainActivityItemClickListener {
     fun onItemClick(item: MainActivityItem)
 }
-
-private typealias I = MainActivityItem
 
 data class MainActivityItem(val clazz: Class<out AppCompatActivity>, private val name: String) {
     fun displayName() = "$name (${clazz.simpleName})"
