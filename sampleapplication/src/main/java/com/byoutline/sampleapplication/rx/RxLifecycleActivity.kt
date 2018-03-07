@@ -2,7 +2,7 @@ package com.byoutline.sampleapplication.rx
 
 import android.databinding.ObservableLong
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.RxlifecycleActivityBinding
 import com.byoutline.secretsauce.databinding.bindContentView
@@ -16,7 +16,7 @@ import io.reactivex.Observable as RxObservable
  * Auto incrementing counter produced by Rx, that survives rotation and does not leak.
  * Locking the screen/moving to other app will pause the counter.
  */
-class RxLifecycleActivity : AppCompatActivity() {
+class RxLifecycleActivity : ClassNameAsToolbarTitleActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

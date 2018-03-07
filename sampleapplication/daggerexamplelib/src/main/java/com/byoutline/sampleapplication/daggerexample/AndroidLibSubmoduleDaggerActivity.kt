@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.daggerexample.databinding.ActivityDaggerExampleMainBinding
 import com.byoutline.secretsauce.activities.showFragment
 import com.byoutline.secretsauce.databinding.bindContentView
@@ -21,7 +21,7 @@ import javax.inject.Inject
  * This class demonstrates that Dagger Android can inject Context dependency even if Activity/Module is declared in
  * different Gradle module.
  */
-class AndroidLibSubmoduleDaggerActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class AndroidLibSubmoduleDaggerActivity : ClassNameAsToolbarTitleActivity(), HasSupportFragmentInjector {
     override fun supportFragmentInjector() = fragmentInjector
 
     @Inject
@@ -49,7 +49,7 @@ class ColorMixer @Inject constructor(context: Context, dependencyA: DependencyA,
 
 
 @Module(includes = [DaggerExampleMainActivityFragmentsModule::class])
-class DaggerExampleMainActivityModule : ContextModule() {
+class DaggerExampleMainActivityModule : com.byoutline.sampleapplication.daggerexample.ContextModule() {
     @Provides fun act(a: AndroidLibSubmoduleDaggerActivity): Activity = a
 }
 

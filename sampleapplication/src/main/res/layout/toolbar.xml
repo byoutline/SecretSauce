@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                                   android:id="@+id/toolbar"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:background="@color/colorPrimaryDark"
-                                   android:minHeight="?attr/actionBarSize"
-                                   android:title="">
+<layout>
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/toolbar_title_tv"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="model"
+            type="com.byoutline.sampleapplication.draweractivity.ToolbarViewModel" />
+    </data>
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:minHeight="?attr/actionBarSize"
+        android:title="">
 
-        android:layout_gravity="center_vertical"
-        android:maxLines="2"/>
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/toolbar_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:maxLines="2"
 
-</android.support.v7.widget.Toolbar>
+            android:text="@{model.title}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:text="fragment name" />
+
+    </android.support.v7.widget.Toolbar>
+</layout>

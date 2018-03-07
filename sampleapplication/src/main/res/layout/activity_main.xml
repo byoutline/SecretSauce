@@ -1,100 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/indigo"
-	android:fillViewport="true"
-	tools:context="com.byoutline.sampleapplication.MainActivity"
-	>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:padding="@dimen/activity_vertical_margin"
-		android:orientation="vertical"
-		>
+    <data>
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textSize="32sp"
-			android:layout_marginBottom="20dp"
-			android:text="Examples:"
-			/>
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 
-		<Button
-			android:id="@+id/baseAppCompatActivityBtn"
-			android:onClick="onClick"
-			android:text="Drawer Activity"
-			style="@style/MainBtnstyle"
-			/>
+        <variable
+            name="viewModel"
+            type="com.byoutline.sampleapplication.MainActivityVM" />
+    </data>
 
-		<Button
-			android:id="@+id/webVievActivityBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="WebView Activity"
-			style="@style/MainBtnstyle"
-			/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/indigo"
+        app:itemBinding="@{viewModel.itemBinding}"
+        app:items="@{viewModel.items}"
+        app:layoutManager="@{LayoutManagers.linear()}"
+        tools:context="com.byoutline.sampleapplication.MainActivity" />
 
-		<Button
-			android:id="@+id/networkChangeReceiverBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Network Change"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/roundedBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Drawable"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/customViewsBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Custom font views"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/waitLayoutBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="WaitLayout"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/rxBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Rx Databinding lifecycle"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/databindingBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Multiple Databinding Observables"
-			style="@style/MainBtnstyle"
-			/>
-
-		<Button
-			android:id="@+id/contextDependenciesBtn"
-			android:layout_marginTop="30dp"
-			android:onClick="onClick"
-			android:text="Android Dagger context dependencies"
-			style="@style/MainBtnstyle"
-			/>
-
-	</LinearLayout>
-
-</ScrollView>
+</layout>

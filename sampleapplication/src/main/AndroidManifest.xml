@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.byoutline.sampleapplication"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.byoutline.sampleapplication">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".SampleApp"
@@ -15,34 +14,32 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".draweractivity.ExampleActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:name=".draweractivity.DrawerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.byoutline.secretsauce.activities.WebViewActivityV7"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity
-            android:name=".networkchangereceiver.NetworkChangeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".roundedimageview.DrawableActivityExample"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".networkchangereceiver.NetworkChangeActivity" />
+        <activity android:name=".roundedimageview.DrawableActivityExample" />
         <activity
             android:name=".customfontviews.CustomFontViewsActivity"
             android:label="@string/title_activity_custom_views_examples"
-            android:theme="@style/AppTheme.NoActionBar"/>
-	    <activity android:name=".waitlayout.WaitActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".waitlayout.WaitActivity" />
         <activity android:name=".rx.RxLifecycleActivity" />
         <activity android:name=".databinding.DataBindingActivity" />
-        <activity android:name=".contextdependencies.ContextDependenciesActivity"
-            android:theme="@style/ContextDependencyTheme"
-            />
-        <activity android:name=".contextdependencies.ContextDependenciesActivity2"
-            android:theme="@style/ContextDependencyTheme2"
-            />
+        <activity
+            android:name=".contextdependencies.ContextDependenciesActivity"
+            android:theme="@style/ContextDependencyTheme" />
+        <activity
+            android:name=".contextdependencies.ContextDependenciesActivity2"
+            android:theme="@style/ContextDependencyTheme2" />
     </application>
 
 </manifest>

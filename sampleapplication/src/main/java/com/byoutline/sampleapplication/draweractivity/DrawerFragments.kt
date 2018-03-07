@@ -13,6 +13,11 @@ import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
+/**
+ * Example that displays:
+ * * Setting Toolbar name
+ * * attaching activity scoped ViewModel to Android DataBinding
+ */
 class FirstFragment : CountingFragment() {
     override fun getToolbarTitle(): String = getString(R.string.first_fragment)
 }

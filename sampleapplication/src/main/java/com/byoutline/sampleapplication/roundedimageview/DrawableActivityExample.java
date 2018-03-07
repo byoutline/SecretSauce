@@ -1,11 +1,11 @@
 package com.byoutline.sampleapplication.roundedimageview;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity;
 import com.byoutline.sampleapplication.R;
 
-public class DrawableActivityExample extends AppCompatActivity {
+public class DrawableActivityExample extends ClassNameAsToolbarTitleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

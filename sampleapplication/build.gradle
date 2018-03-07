@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.6.0'
     implementation deps.rx_java
     kapt "com.android.databinding:compiler:$build_tools_version"
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
 
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation 'com.android.support.test:rules:1.0.1'

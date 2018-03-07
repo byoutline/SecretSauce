@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.support.annotation.ColorInt
-import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.daggerexample.AndroidLibSubmoduleDaggerActivity
 import com.byoutline.sampleapplication.daggerexample.ContextModule
@@ -25,7 +25,7 @@ import io.reactivex.Observable as RxObservable
 /**
  * This activity has dependencies that require some [Context] scoped data.
  */
-class ContextDependenciesActivity : AppCompatActivity(), HasActivityInjector, Injectable {
+class ContextDependenciesActivity : ClassNameAsToolbarTitleActivity(), HasActivityInjector, Injectable {
 
     @Inject
     lateinit var contextDependency: ContextDependency
@@ -55,7 +55,7 @@ class ContextDependenciesActivity : AppCompatActivity(), HasActivityInjector, In
  * Example of same activity with different theme. By checking that different color was loaded you can verify that
  * correct context was provided.
  */
-class ContextDependenciesActivity2 : AppCompatActivity(), Injectable {
+class ContextDependenciesActivity2 : ClassNameAsToolbarTitleActivity(), Injectable {
 
     @Inject
     lateinit var contextDependency: ContextDependency

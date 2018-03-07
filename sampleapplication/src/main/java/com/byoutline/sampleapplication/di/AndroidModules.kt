@@ -3,6 +3,7 @@ package com.byoutline.sampleapplication.di
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.byoutline.sampleapplication.MainActivity
+import com.byoutline.sampleapplication.MainActivityVM
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity2
 import com.byoutline.sampleapplication.contextdependencies.ContextModuleDependenciesActivity2Module
@@ -43,7 +44,7 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector abstract fun networkChangeActivity(): NetworkChangeActivity
     // This Activity has 2 fragments, we declare them for Dagger by passing them to @ContributesAndroidInjector
     @ContributesAndroidInjector(modules = [ExampleActivityModule::class])
-    abstract fun exampleActivity(): ExampleActivity
+    abstract fun exampleActivity(): DrawerActivity
 
     //    If activity such as CustomFontViewsActivity does not use Dagger Android (neither itself or in child fragments)
 //    we can skip declaring it.
@@ -88,6 +89,11 @@ abstract class ExampleActivityModule {
 abstract class ViewModelMapModule {
     @Binds @Singleton
     abstract fun viewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+
+    @Binds @IntoMap
+    @ViewModelKey(MainActivityVM::class)
+    abstract fun mainActivityVM(model: MainActivityVM): ViewModel
 
     @Binds @IntoMap
     @ViewModelKey(ToolbarViewModel::class)
