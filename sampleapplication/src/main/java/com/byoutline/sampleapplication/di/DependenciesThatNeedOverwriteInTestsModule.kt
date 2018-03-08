@@ -1,6 +1,5 @@
 package com.byoutline.sampleapplication.di
 
-import android.support.annotation.VisibleForTesting
 import android.support.v7.app.AppCompatActivity
 import com.byoutline.sampleapplication.MainActivityItem
 import com.byoutline.sampleapplication.MainActivityItems
@@ -19,9 +18,9 @@ import kotlin.reflect.KClass
 
 
 @Module
-open class DependenciesThatNeedOverwriteInTestsModule {
-    @Provides @MainActivityItems @Reusable @VisibleForTesting
-    open fun examples() = listOf(
+class DependenciesThatNeedOverwriteInTestsModule {
+    @Provides @MainActivityItems @Reusable
+    fun examples() = listOf(
             i(DrawerActivity::class, "Drawer with fragments"),
             i(NetworkChangeActivity::class, "Network change observer"),
             i(DrawableActivityExample::class, "Rounded drawables"),

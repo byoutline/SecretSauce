@@ -5,10 +5,14 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.rule.ActivityTestRule
 import com.byoutline.sampleapplication.SampleApp
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
+import org.junit.rules.TestRule
+import org.junit.runner.Description
+import org.junit.runners.model.Statement
 
 class DaggerActivityTestRule<T : Activity>(
         activityClass: Class<T>,
         private val dependenciesOverriddenForTestsModule: DependenciesOverriddenForTestsModule,
+        private val extraRules: Array<TestRule>,
         initialTouchMode: Boolean = true,
         launchActivity: Boolean = true
 ) : ActivityTestRule<T>(activityClass, initialTouchMode, launchActivity) {
@@ -21,6 +25,14 @@ class DaggerActivityTestRule<T : Activity>(
                 .dependenciesOverriddenForTestsModule(dependenciesOverriddenForTestsModule)
                 .build()
         app.setComponents(component)
+    }
+
+    override fun apply(base: Statement?, description: Description?): Statement {
+        var result = super.apply(base, description)
+        for (rule in extraRules) {
+            result = rule.apply(result, description)
+        }
+        return result
     }
 }
 

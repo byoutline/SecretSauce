@@ -21,12 +21,12 @@ class RxLifecycleActivity : ClassNameAsToolbarTitleActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindContentView<RxlifecycleActivityBinding>(R.layout.rxlifecycle_activity).apply {
-            viewModel = getVMWithAutoLifecycle(RxLifecycleViewModel::class)
+            viewModel = getVMWithAutoLifecycle(RxLifecycleVM::class)
         }
     }
 }
 
-class RxLifecycleViewModel @Inject constructor() : AttachableViewModelRx<Any>() {
+open class RxLifecycleVM @Inject constructor() : AttachableViewModelRx<Any>() {
 
     val value = ObservableLong()
     override fun onAttach(view: Any) {

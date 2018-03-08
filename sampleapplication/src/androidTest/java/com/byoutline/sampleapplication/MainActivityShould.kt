@@ -8,8 +8,7 @@ import org.junit.Test
 import kotlin.reflect.KClass
 
 class MainActivityShould {
-    @Rule @JvmField
-    val rule = activityTestRule<MainActivity>(examples = listOf(
+    @get:Rule val rule = activityTestRule<MainActivity>(examples = listOf(
             i(AppCompatActivity::class, "Test example 0"),
             i(AppCompatActivity::class, "Test example 1"),
             i(AppCompatActivity::class, "Test example 2")
@@ -20,14 +19,10 @@ class MainActivityShould {
         recyclerView(R.id.mainActivityRV) {
             sizeIs(3)
             atPosition(0) {
-                displayed {
-                    text("Test example 0 (AppCompatActivity)")
-                }
+                displayed { text("Test example 0 (AppCompatActivity)") }
             }
             atPosition(2) {
-                displayed {
-                    text("Test example 2 (AppCompatActivity)")
-                }
+                displayed { text("Test example 2 (AppCompatActivity)") }
             }
         }
     }

@@ -17,7 +17,7 @@ import com.byoutline.sampleapplication.draweractivity.*
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity
 import com.byoutline.sampleapplication.rx.RxLifecycleActivity
-import com.byoutline.sampleapplication.rx.RxLifecycleViewModel
+import com.byoutline.sampleapplication.rx.RxLifecycleVM
 import com.byoutline.sampleapplication.waitlayout.WaitActivity
 import com.byoutline.secretsauce.di.ViewModelFactory
 import com.byoutline.secretsauce.di.ViewModelKey
@@ -108,8 +108,8 @@ abstract class ViewModelMapModule {
     abstract fun countingViewModel(model: CountingViewModel): ViewModel
 
     @Binds @IntoMap
-    @ViewModelKey(RxLifecycleViewModel::class)
-    abstract fun rxLifecycleViewModel(model: RxLifecycleViewModel): ViewModel
+    @ViewModelKey(RxLifecycleVM::class)
+    abstract fun rxLifecycleViewModel(model: RxLifecycleVM): ViewModel
 
     @Binds @IntoMap
     @ViewModelKey(DataBindingViewModel::class)
