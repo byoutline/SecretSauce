@@ -40,16 +40,11 @@ android {
     }
 }
 
-configurations {
-    javadocDeps
-}
-
 dependencies {
     implementation deps.kotlin_stdlib
 
     api "com.android.support:appcompat-v7:$support_version"
     api "com.android.support:recyclerview-v7:$support_version"
-    javadocDeps "com.android.support:support-annotations:$support_version"
 
     implementation "com.google.dagger:dagger-android-support:$dagger_ver"
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"

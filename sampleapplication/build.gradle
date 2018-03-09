@@ -39,6 +39,9 @@ android {
               minifyEnabled false
               proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled false
+        }
     }
     dataBinding.enabled = true
 
@@ -51,9 +54,9 @@ apply plugin: 'kotlin-kapt'
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    compile project(':SecretSauce')
-    compile project(':waitlayout')
-    compile project(':sampleapplication:daggerexamplelib')
+    implementation project(':SecretSauce')
+    implementation project(':waitlayout')
+    implementation project(':sampleapplication:daggerexamplelib')
 
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
@@ -72,7 +75,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation 'com.android.support.test:rules:1.0.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation "com.android.support:support-annotations:$support_version"
     androidTestImplementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT'
     androidTestImplementation 'com.jraska:falcon:2.0.1'
@@ -99,4 +101,3 @@ spoon {
     debug = true
     instrumentationArgs = ["takeScreenshots=true"]
 }
-

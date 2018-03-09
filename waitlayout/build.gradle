@@ -4,15 +4,6 @@ repositories {
     mavenCentral()
 }
 apply from: '../gradle/dependencies.gradle'
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
-    }
-}
-apply from: '../gradle/byoutline/robospockTests.gradle'
 apply from: '../gradle/byoutline/checkGenerics.gradle'
 
 dependencies {

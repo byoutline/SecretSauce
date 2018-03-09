@@ -11,9 +11,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -26,18 +23,14 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-v4:27.0.2'
-    compile project(':SecretSauce')
-    compile project(':sampleapplication:daggerexamplelib:javalib')
+    implementation project(':SecretSauce')
+    implementation ("com.android.support:support-v4:$support_version")
+    api project(':sampleapplication:daggerexamplelib:javalib')
 
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
     kapt "com.android.databinding:compiler:$build_tools_version"
 
-    implementation "com.android.support:design:$support_version"
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
-
-apply plugin: 'kotlin-android-extensions'
