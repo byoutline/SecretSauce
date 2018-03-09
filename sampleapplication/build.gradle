@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.jaredsburrows:gradle-spoon-plugin:1.4.0"
+//        classpath "com.jaredsburrows:gradle-spoon-plugin:1.4.0"
         classpath "gradle.plugin.com.metova:cappuccino-plugin:0.7.3"
     }
 }
@@ -93,11 +93,11 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
-apply plugin: "com.jaredsburrows.spoon"
+//apply plugin: "com.jaredsburrows.spoon"
 
-spoon {
-    noAnimations = true
-    adbTimeout = 60 * 10
-    debug = true
-    instrumentationArgs = ["takeScreenshots=true"]
-}
+//spoon {
+//    noAnimations = true
+//    adbTimeout = 60 * 10
+//    debug = true
+//    instrumentationArgs = ["takeScreenshots=true"]
+//}
