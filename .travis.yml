@@ -17,6 +17,7 @@ android:
   components:
     - tools
     - build-tools-27.0.2
+    - build-tools-26.0.2 # Why spoon plugin, why?
     - platform-tools
     - extra-google-m2repository
     - extra-android-m2repository
