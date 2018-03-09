@@ -58,6 +58,7 @@ dependencies {
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation 'androidx.core:core-ktx:0.2'
 
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.android.support:design:$support_version"
@@ -96,5 +97,6 @@ spoon {
     noAnimations = true
     adbTimeout = 60 * 10
     debug = true
+    instrumentationArgs = ["takeScreenshots=true"]
 }
 
