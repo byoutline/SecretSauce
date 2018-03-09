@@ -1,31 +1,26 @@
 package com.byoutline.sampleapplication
 
 import android.support.annotation.ColorRes
+import br.com.concretesolutions.kappuccino.actions.ClickActions
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import com.byoutline.espressohelpers.ActivityRobot
 import com.byoutline.espressohelpers.activityTestRule
+import com.byoutline.espressohelpers.withRobot
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
-import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity2
 import org.junit.Rule
 import org.junit.Test
 
 
 class ContextDependenciesActivityShould {
-    val robot = ContextDependenciesActivityRobot()
-    @get:Rule val rule = activityTestRule<ContextDependenciesActivity>(robot = robot)
+    @get:Rule val rule = activityTestRule(ContextDependenciesActivity::class, ContextDependenciesActivityRobot())
 
     @Test
-    fun setBackgroundColorFromTheme() {
-        robot.verifyThatTVHasBackgroundColor(R.color.contextDependencyYellow)
-    }
-}
-
-class ContextDependenciesActivity2Should {
-    val robot = ContextDependenciesActivityRobot()
-    @get:Rule val rule = activityTestRule<ContextDependenciesActivity2>(robot = robot)
-    @Test
-    fun setBackgroundColorFromTheme() {
-        robot.verifyThatTVHasBackgroundColor(R.color.contextDependencyBlue)
+    fun setChangeBGColorDependingOnTheme() {
+        rule.withRobot {
+            verifyThatTVHasBackgroundColor(R.color.contextDependencyYellow)
+            navigateToActivityWithDifferentTheme()
+            verifyThatTVHasBackgroundColor(R.color.contextDependencyBlue)
+        }
     }
 }
 
@@ -39,5 +34,11 @@ class ContextDependenciesActivityRobot : ActivityRobot() {
             }
         }
         takeScreenshot("Theme_Background")
+    }
+
+    fun navigateToActivityWithDifferentTheme() {
+        ClickActions.click {
+            id(R.id.context_dependencies_btn)
+        }
     }
 }

@@ -2,19 +2,21 @@ buildscript {
     repositories {
         maven { url 'http://repo.spring.io/plugins-release' }
         mavenCentral()
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
         google()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 
     dependencies {
         classpath "com.jaredsburrows:gradle-spoon-plugin:1.4.0"
+        classpath "gradle.plugin.com.metova:cappuccino-plugin:0.7.3"
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: "com.metova.cappuccino-animations"
 
 apply from: '../gradle/dependencies.gradle'
 
@@ -72,6 +74,10 @@ dependencies {
     androidTestImplementation "com.android.support:support-annotations:$support_version"
     androidTestImplementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT'
+    androidTestImplementation 'com.jraska:falcon:2.0.1'
+    androidTestImplementation("com.metova:cappuccino:0.9.1") {
+        transitive = false
+    }
     androidTestImplementation deps.dagger_android
     kaptAndroidTest deps.dagger_android_apt
     androidTestImplementation 'br.com.concretesolutions:kappuccino:1.1.0'

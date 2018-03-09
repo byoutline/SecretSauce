@@ -1,4 +1,4 @@
-package com.byoutline.espressohelpers
+package com.byoutline.sampleapplication.dioverrides
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
