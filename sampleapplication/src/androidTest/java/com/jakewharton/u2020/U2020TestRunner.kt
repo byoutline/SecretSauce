@@ -7,7 +7,7 @@ import android.os.PowerManager
 import android.os.PowerManager.*
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnitRunner
-import androidx.content.systemService
+import androidx.core.content.systemService
 import com.byoutline.espressohelpers.ActivityRobot
 import com.metova.cappuccino.animations.SystemAnimations
 

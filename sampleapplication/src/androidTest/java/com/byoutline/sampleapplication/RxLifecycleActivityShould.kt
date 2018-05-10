@@ -1,9 +1,9 @@
 package com.byoutline.sampleapplication
 
-import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import com.byoutline.espressohelpers.activityTestRule
 import com.byoutline.sampleapplication.rx.RxLifecycleActivity
 import com.byoutline.sampleapplication.rx.RxLifecycleVM
+import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class RxLifecycleActivityShould {
 
     @Test
     fun displayProvidedValue() {
-        displayed { text("Current Rx provided value: 42") }
+        assertDisplayed("Current Rx provided value: 42")
     }
 }
 

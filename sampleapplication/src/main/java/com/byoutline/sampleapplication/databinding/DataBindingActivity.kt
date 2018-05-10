@@ -52,7 +52,7 @@ class DataBindingViewModel @Inject constructor(
         simulateExternalChange()
         // lets assume that we have to map values before passing them to views
         // (otherwise there would be no point of duplicating observables)
-        externalObs.subscribeTillDetach { extObs -> field1 = extObs.field1 }
+        externalObs.subscribeTillDetach(BR.field1) { this@DataBindingViewModel.field1 = field1 }
         externalObs.bool.subscribeBoolTillDetach { bool = it }
         externalObs.field2.subscribeFieldTillDetach { field2 = it }
         super.onAttach(view)

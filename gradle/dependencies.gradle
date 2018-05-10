@@ -1,20 +1,20 @@
 ext {
     compile_sdk_ver = 27
-    build_tools_ver = '27.0.2'
+    build_tools_ver = '27.0.3'
     target_sdk_ver = 27
 
-    support_version = '27.1.0'
+    support_version = '27.1.1'
     cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
 
-    android_arch_lifecycle_ver = '1.1.0'
-    dagger_ver = '2.14.1'
+    android_arch_lifecycle_ver = '1.1.1'
+    dagger_ver = '2.16'
     espresso_version = '3.0.1'
 
     deps = [
             dagger_android    : ['javax.inject:javax.inject:1', "com.google.dagger:dagger:$dagger_ver", "com.google.dagger:dagger-android-support:$dagger_ver"],
             dagger_android_apt: ["com.google.dagger:dagger-compiler:$dagger_ver", "com.google.dagger:dagger-android-processor:$dagger_ver"],
             kotlin_stdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            rx_java :  'io.reactivex.rxjava2:rxjava:2.1.10'
+            rx_java :  'io.reactivex.rxjava2:rxjava:2.1.12'
     ]
 }

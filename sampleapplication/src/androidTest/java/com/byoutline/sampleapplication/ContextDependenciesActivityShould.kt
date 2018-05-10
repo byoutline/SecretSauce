@@ -1,12 +1,12 @@
 package com.byoutline.sampleapplication
 
 import android.support.annotation.ColorRes
-import br.com.concretesolutions.kappuccino.actions.ClickActions
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import com.byoutline.espressohelpers.ActivityRobot
 import com.byoutline.espressohelpers.activityTestRule
 import com.byoutline.espressohelpers.withRobot
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
+import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import org.junit.Rule
 import org.junit.Test
 
@@ -37,8 +37,6 @@ class ContextDependenciesActivityRobot : ActivityRobot() {
     }
 
     fun navigateToActivityWithDifferentTheme() {
-        ClickActions.click {
-            id(R.id.context_dependencies_btn)
-        }
+        clickOn(R.id.context_dependencies_btn)
     }
 }

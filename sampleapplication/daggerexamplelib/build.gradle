@@ -32,5 +32,5 @@ dependencies {
     kapt "com.android.databinding:compiler:$build_tools_version"
 
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

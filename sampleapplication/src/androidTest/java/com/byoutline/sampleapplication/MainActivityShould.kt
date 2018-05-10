@@ -3,6 +3,7 @@ package com.byoutline.sampleapplication
 import android.support.v7.app.AppCompatActivity
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import com.byoutline.espressohelpers.activityTestRule
+import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import org.junit.Rule
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -16,6 +17,7 @@ class MainActivityShould {
 
     @Test
     fun displayAllItemsFromRepository() {
+        assertRecyclerViewItemCount(R.id.mainActivityRV, 3)
         recyclerView(R.id.mainActivityRV) {
             sizeIs(3)
             atPosition(0) {

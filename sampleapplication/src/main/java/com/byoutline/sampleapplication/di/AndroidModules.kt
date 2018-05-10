@@ -46,9 +46,9 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector(modules = [ExampleActivityModule::class])
     abstract fun exampleActivity(): DrawerActivity
 
-    //    If activity such as CustomFontViewsActivity does not use Dagger Android (neither itself or in child fragments)
-//    we can skip declaring it.
-//    @ContributesAndroidInjector abstract fun customFontViewsActivity(): CustomFontViewsActivity
+    // If activity such as CustomFontViewsActivity does not use Dagger Android (neither itself or in child fragments)
+    // we can skip declaring it.
+    // @ContributesAndroidInjector abstract fun customFontViewsActivity(): CustomFontViewsActivity
     // But we can also declare such an activities if we expect that it may need Dagger Android in the future
     @ContributesAndroidInjector abstract fun waitActivity(): WaitActivity
 

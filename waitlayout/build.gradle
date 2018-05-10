@@ -1,8 +1,5 @@
 apply plugin: 'com.android.library'
 
-repositories {
-    mavenCentral()
-}
 apply from: '../gradle/dependencies.gradle'
 apply from: '../gradle/byoutline/checkGenerics.gradle'
 

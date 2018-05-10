@@ -3,7 +3,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+ - `subscribeTillDetach`/`observableCallback` for objects that are Observable (and supposedly have multiple fields)
+ now requires passing `BR` fields IDs. Only when one of fields with matching ID (or 0) is changed
+ then callback will be called
+ - Bump dependencies
+ 
 ## [Build 0.8.0-alpha4] - 2018-03-02
  - Bump dependencies
  

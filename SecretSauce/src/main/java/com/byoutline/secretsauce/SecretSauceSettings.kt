@@ -45,7 +45,6 @@ object SecretSauceSettings {
             setFastJodaTimeZoneProvider: Boolean = true,
             useFragmentViewModelProvider: Boolean = this.useFragmentViewModelProvider
     ) {
-        require(containerViewId > 0 || containerViewId == ID_NOT_SET) { "containerViewId cannot be negative, given: $containerViewId" }
         require(bindingViewModelId > 0 || bindingViewModelId == ID_NOT_SET) { "containerViewId cannot be negative, given: $containerViewId" }
         if (containerViewId != ID_NOT_SET) this.containerViewId = containerViewId
         if (bindingViewModelId != ID_NOT_SET) brViewModelId = bindingViewModelId

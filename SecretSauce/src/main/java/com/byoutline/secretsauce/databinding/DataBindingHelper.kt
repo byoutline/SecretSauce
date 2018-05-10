@@ -103,12 +103,15 @@ object DataBindingHelper {
      * Shorter syntax to create [Observable.OnPropertyChangedCallback] for [Observable].
      * Result can be set as listener only to [Observable] of matching type [T],
      * otherwise it will ignore any *propertyChanged* notifications.
+     * [brs] - fields which change should trigger the callback. (It will be also triggered when id is 0)
      */
-    inline fun <reified T : Observable> observableCallback(crossinline callback: (T) -> Unit): Observable.OnPropertyChangedCallback {
+    inline fun <reified T : Observable> observableCallback(vararg brs: Int, crossinline action: T.() -> Unit): Observable.OnPropertyChangedCallback {
         return object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 val state = sender as? T ?: return
-                callback(state)
+                if (propertyId == 0 || propertyId in brs) {
+                    action(state)
+                }
             }
         }
     }
