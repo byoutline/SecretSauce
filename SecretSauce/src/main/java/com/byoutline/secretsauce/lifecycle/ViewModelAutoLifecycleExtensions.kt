@@ -61,8 +61,9 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMW
         @Suppress("UNCHECKED_CAST")
         view: VIEW = this as? VIEW
                 ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
-): VIEWMODEL  = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider)
+        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
+        recursive: Boolean  = false
+): VIEWMODEL  = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider, recursive)
 
 /**
  * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.
