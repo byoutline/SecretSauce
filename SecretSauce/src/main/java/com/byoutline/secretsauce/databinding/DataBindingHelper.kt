@@ -28,6 +28,11 @@ import kotlin.properties.ReadWriteProperty
  */
 interface DataBindingObservable : Observable {
     fun <T> Observable.observable(initialValue: T, propertyId: Int): ReadWriteProperty<Any?, T>
+    fun <T> Observable.observable(
+        initialValue: T,
+        propertyId: Int,
+        afterChangeCallback: (newValue: T) -> Unit
+    ): ReadWriteProperty<Any?, T>
 }
 
 /**
@@ -52,14 +57,28 @@ open class DataBindingObservableImpl : DataBindingObservable {
     private val propertyChangeRegistry = PropertyChangeRegistry()
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) =
-            propertyChangeRegistry.add(callback)
+        propertyChangeRegistry.add(callback)
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) =
-            propertyChangeRegistry.remove(callback)
+        propertyChangeRegistry.remove(callback)
 
-    override fun <T> Observable.observable(initialValue: T, propertyId: Int) = Delegates.observable(initialValue) { _, _, _ ->
-        propertyChangeRegistry.notifyChange(this, propertyId)
-    }
+    override fun <T> Observable.observable(initialValue: T, propertyId: Int) =
+        Delegates.observable(initialValue) { _, oldVal, newVal ->
+            if (oldVal != newVal) {
+                propertyChangeRegistry.notifyChange(this, propertyId)
+            }
+        }
+
+    override fun <T> Observable.observable(
+        initialValue: T,
+        propertyId: Int,
+        afterChangeCallback: (newValue: T) -> Unit
+    ) = Delegates.observable(initialValue) { _, oldVal, newVal ->
+            if (oldVal != newVal) {
+                propertyChangeRegistry.notifyChange(this, propertyId)
+                afterChangeCallback(newVal)
+            }
+        }
 }
 
 object DataBindingHelper {
@@ -105,7 +124,10 @@ object DataBindingHelper {
      * otherwise it will ignore any *propertyChanged* notifications.
      * [brs] - fields which change should trigger the callback. (It will be also triggered when id is 0)
      */
-    inline fun <reified T : Observable> observableCallback(vararg brs: Int, crossinline action: T.() -> Unit): Observable.OnPropertyChangedCallback {
+    inline fun <reified T : Observable> observableCallback(
+        vararg brs: Int,
+        crossinline action: T.() -> Unit
+    ): Observable.OnPropertyChangedCallback {
         return object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 val state = sender as? T ?: return
@@ -116,7 +138,6 @@ object DataBindingHelper {
         }
     }
 }
-
 
 /**
  * Inflates view via [BINDING] class and sets [viewModel] into given [brVariableId].
@@ -139,12 +160,12 @@ object DataBindingHelper {
  * @param [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  */
 fun <BINDING : ViewDataBinding> inflateAndSetVM(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        @LayoutRes layoutId: Int,
-        viewModel: Any,
-        brVariableId: Int = SecretSauceSettings.getBrViewModelId(),
-        attachToParent: Boolean = false
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    @LayoutRes layoutId: Int,
+    viewModel: Any,
+    brVariableId: Int = SecretSauceSettings.getBrViewModelId(),
+    attachToParent: Boolean = false
 ): BINDING {
     val binding = DataBindingUtil.inflate<BINDING>(inflater, layoutId, container, attachToParent)
     binding.setVariable(brVariableId, viewModel)
@@ -155,7 +176,7 @@ fun <BINDING : ViewDataBinding> inflateAndSetVM(
  * Alias for [DataBindingUtil.setContentView]
  */
 fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
-        DataBindingUtil.setContentView(this, layoutId)
+    DataBindingUtil.setContentView(this, layoutId)
 
 /**
  * Sets content view via DataBinding ands sets given [viewModel] as binding variable.
@@ -164,9 +185,9 @@ fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layo
  * @see [DataBindingUtil.setContentView]
  */
 fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(
-        @LayoutRes layoutId: Int,
-        viewModel: Any,
-        brVariableId: Int = SecretSauceSettings.getBrViewModelId()
+    @LayoutRes layoutId: Int,
+    viewModel: Any,
+    brVariableId: Int = SecretSauceSettings.getBrViewModelId()
 ): BINDING {
     val binding: BINDING = bindContentView(layoutId)
     binding.setVariable(brVariableId, viewModel)
