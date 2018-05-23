@@ -29,7 +29,6 @@ dependencies {
 
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
-    kapt "com.android.databinding:compiler:$build_tools_version"
 
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

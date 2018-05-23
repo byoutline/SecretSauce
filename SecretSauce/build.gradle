@@ -10,7 +10,6 @@ apply from: '../gradle/dependencies.gradle'
 
 android {
     compileSdkVersion compile_sdk_ver
-    buildToolsVersion build_tools_ver
 
     defaultConfig {
         minSdkVersion 14
@@ -43,15 +42,16 @@ android {
 dependencies {
     implementation deps.kotlin_stdlib
 
-    api "com.android.support:appcompat-v7:$support_version"
-    api "com.android.support:recyclerview-v7:$support_version"
+    api deps.appcompat
+    api deps.recyclerview
 
     implementation "com.google.dagger:dagger-android-support:$dagger_ver"
-    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation deps.lifecycle
     // resolve conflict caused by support-compat
 
+    //noinspection GradleDependency
     provided 'com.squareup.picasso:picasso:2.5.2'
-    provided 'com.android.databinding:baseLibrary:3.0.1'
+    provided 'com.android.databinding:baseLibrary:3.1.2'
     provided files('libs/binding-library-1.1.jar')
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     implementation 'joda-time:joda-time:2.9.9'

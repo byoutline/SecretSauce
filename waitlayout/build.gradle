@@ -9,7 +9,6 @@ dependencies {
 
 android {
     compileSdkVersion compile_sdk_ver
-    buildToolsVersion build_tools_ver
 
     defaultConfig {
         minSdkVersion 14

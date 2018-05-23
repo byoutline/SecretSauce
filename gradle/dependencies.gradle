@@ -1,6 +1,5 @@
 ext {
     compile_sdk_ver = 27
-    build_tools_ver = '27.0.3'
     target_sdk_ver = 27
 
     support_version = '27.1.1'
@@ -14,7 +13,12 @@ ext {
     deps = [
             dagger_android    : ['javax.inject:javax.inject:1', "com.google.dagger:dagger:$dagger_ver", "com.google.dagger:dagger-android-support:$dagger_ver"],
             dagger_android_apt: ["com.google.dagger:dagger-compiler:$dagger_ver", "com.google.dagger:dagger-android-processor:$dagger_ver"],
-            kotlin_stdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            rx_java :  'io.reactivex.rxjava2:rxjava:2.1.12'
+            kotlin_stdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            rx_java           : 'io.reactivex.rxjava2:rxjava:2.1.12',
+            junit             : 'junit:junit:4.12',
+            lifecycle         : "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver",
+            appcompat         : "com.android.support:appcompat-v7:$support_version",
+            recyclerview      : "com.android.support:recyclerview-v7:$support_version",
+            espresso          : ['androidx.test:runner:1.1.0-alpha2', 'androidx.test.espresso:espresso-core:3.1.0-alpha2']
     ]
 }
