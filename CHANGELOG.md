@@ -4,6 +4,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [Build 0.8.0-beta2] - 2018-05-24
+* `DataBindingObservableImpl` now has `observable` function that accepts callback to be
+called after the value has been changed. This callback now receives both old and new value of the field.
+
 ## [Build 0.8.0-beta1] - 2018-05-23
 * `DataBindingObservableImpl` now has `observable` function that accepts callback to be
 called after the value has been changed

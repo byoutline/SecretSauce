@@ -31,7 +31,7 @@ interface DataBindingObservable : Observable {
     fun <T> Observable.observable(
         initialValue: T,
         propertyId: Int,
-        afterChangeCallback: (newValue: T) -> Unit
+        afterChangeCallback: (oldVal: T, newVal: T) -> Unit
     ): ReadWriteProperty<Any?, T>
 }
 
@@ -72,11 +72,11 @@ open class DataBindingObservableImpl : DataBindingObservable {
     override fun <T> Observable.observable(
         initialValue: T,
         propertyId: Int,
-        afterChangeCallback: (newValue: T) -> Unit
+        afterChangeCallback: (oldVal: T, newVal: T) -> Unit
     ) = Delegates.observable(initialValue) { _, oldVal, newVal ->
             if (oldVal != newVal) {
                 propertyChangeRegistry.notifyChange(this, propertyId)
-                afterChangeCallback(newVal)
+                afterChangeCallback(oldVal, newVal)
             }
         }
 }
