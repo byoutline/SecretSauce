@@ -32,7 +32,7 @@ class DataBindingActivity : ClassNameAsToolbarTitleActivity() {
 
 class DataBindingViewModel @Inject constructor(
 ) : AttachableViewModelRx<Any>(),
-        DataBindingObservable by DataBindingObservableImpl() {
+    DataBindingObservable by DataBindingObservableImpl() {
     // Assume that this value is changed externally
     private val externalObs = ExternalObs()
 
@@ -60,8 +60,8 @@ class DataBindingViewModel @Inject constructor(
 
     private fun simulateExternalChange() {
         RxObservable.interval(1, TimeUnit.SECONDS)
-                .subscribe { externalObs.increment() }
-                .disposeOnDetach()
+            .subscribe { externalObs.increment() }
+            .disposeOnDetach()
     }
 }
 

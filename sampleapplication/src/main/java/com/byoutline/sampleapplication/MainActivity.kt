@@ -12,12 +12,12 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import javax.inject.Inject
 import javax.inject.Qualifier
 
-
 class MainActivity : ClassNameAsToolbarTitleActivity(), MainActivityItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindContentView<ActivityMainBinding>(R.layout.activity_main).viewModel = getVMWithAutoLifecycle(MainActivityVM::class)
+        bindContentView<ActivityMainBinding>(R.layout.activity_main).viewModel =
+            getVMWithAutoLifecycle(MainActivityVM::class)
     }
 
     override fun onItemClick(item: MainActivityItem) {
@@ -29,16 +29,16 @@ class MainActivity : ClassNameAsToolbarTitleActivity(), MainActivityItemClickLis
     }
 }
 
-
 class MainActivityVM @Inject constructor(
-        @MainActivityItems val items: List<MainActivityItem>
+    @MainActivityItems val items: List<MainActivityItem>
 ) : AttachableViewModel<MainActivityItemClickListener>() {
     private val listener: MainActivityItemClickListener = object : MainActivityItemClickListener {
         override fun onItemClick(item: MainActivityItem) {
             view?.onItemClick(item)
         }
     }
-    val itemBinding: ItemBinding<MainActivityItem> = ItemBinding.of<MainActivityItem>(BR.item, R.layout.main_activity_item)
+    val itemBinding: ItemBinding<MainActivityItem> =
+        ItemBinding.of<MainActivityItem>(BR.item, R.layout.main_activity_item)
             .bindExtra(BR.listener, listener)
 }
 

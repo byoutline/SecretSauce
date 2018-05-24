@@ -38,7 +38,7 @@ class AndroidLibSubmoduleDaggerActivityRobot : ActivityRobot() {
                 }
 
                 override fun matchesSafely(item: String): Boolean =
-                        item.startsWith(textPrefix)
+                    item.startsWith(textPrefix)
             })
             text(R.string.fragment_label)
         }

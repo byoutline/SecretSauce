@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
 import com.byoutline.cachedfield.CachedField;
 import com.byoutline.cachedfield.CachedFieldWithArg;
 import com.byoutline.cachedfield.cachedendpoint.CachedEndpointWithArg;

@@ -13,7 +13,11 @@ import com.byoutline.sampleapplication.daggerexample.DaggerExampleFragmentModule
 import com.byoutline.sampleapplication.daggerexample.DaggerExampleMainActivityModule
 import com.byoutline.sampleapplication.databinding.DataBindingActivity
 import com.byoutline.sampleapplication.databinding.DataBindingViewModel
-import com.byoutline.sampleapplication.draweractivity.*
+import com.byoutline.sampleapplication.draweractivity.CountingViewModel
+import com.byoutline.sampleapplication.draweractivity.DrawerActivity
+import com.byoutline.sampleapplication.draweractivity.FirstFragment
+import com.byoutline.sampleapplication.draweractivity.SecondFragment
+import com.byoutline.sampleapplication.draweractivity.ToolbarViewModel
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkChangeActivity
 import com.byoutline.sampleapplication.rx.RxLifecycleActivity
@@ -27,7 +31,6 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import javax.inject.Singleton
-
 
 /**
  * Register activities with Android Dagger.
@@ -89,7 +92,6 @@ abstract class ExampleActivityModule {
 abstract class ViewModelMapModule {
     @Binds @Singleton
     abstract fun viewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
 
     @Binds @IntoMap
     @ViewModelKey(MainActivityVM::class)

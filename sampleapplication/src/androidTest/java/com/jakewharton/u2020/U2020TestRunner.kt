@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.os.Bundle
 import android.os.PowerManager
-import android.os.PowerManager.*
+import android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP
+import android.os.PowerManager.FULL_WAKE_LOCK
+import android.os.PowerManager.ON_AFTER_RELEASE
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnitRunner
 import androidx.core.content.systemService
 import com.byoutline.espressohelpers.ActivityRobot
 import com.metova.cappuccino.animations.SystemAnimations
-
 
 class U2020TestRunner : AndroidJUnitRunner() {
     private lateinit var wakeLock: PowerManager.WakeLock
@@ -30,7 +31,7 @@ class U2020TestRunner : AndroidJUnitRunner() {
 
         // Wake up the screen.
         wakeLock = app.systemService<PowerManager>()
-                .newWakeLock(FULL_WAKE_LOCK or ACQUIRE_CAUSES_WAKEUP or ON_AFTER_RELEASE, name)
+            .newWakeLock(FULL_WAKE_LOCK or ACQUIRE_CAUSES_WAKEUP or ON_AFTER_RELEASE, name)
         wakeLock.acquire()
 
         SystemAnimations.disableAll(InstrumentationRegistry.getTargetContext())

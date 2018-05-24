@@ -1,6 +1,11 @@
 package com.byoutline.secretsauce.databinding
 
-import android.databinding.*
+import android.databinding.DataBindingUtil
+import android.databinding.Observable
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
+import android.databinding.PropertyChangeRegistry
+import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
@@ -74,11 +79,11 @@ open class DataBindingObservableImpl : DataBindingObservable {
         propertyId: Int,
         afterChangeCallback: (oldVal: T, newVal: T) -> Unit
     ) = Delegates.observable(initialValue) { _, oldVal, newVal ->
-            if (oldVal != newVal) {
-                propertyChangeRegistry.notifyChange(this, propertyId)
-                afterChangeCallback(oldVal, newVal)
-            }
+        if (oldVal != newVal) {
+            propertyChangeRegistry.notifyChange(this, propertyId)
+            afterChangeCallback(oldVal, newVal)
         }
+    }
 }
 
 object DataBindingHelper {

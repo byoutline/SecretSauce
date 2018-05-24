@@ -12,6 +12,7 @@ gen/
 # Android Studio
 /.idea/*
 !/.idea/codeStyleSettings.xml
+!/.idea/codeStyles
 !/.idea/vcs.xml
 .gradle
 local.properties
@@ -45,3 +46,4 @@ build/
 # Fastlane
 Gemfile.lock
 fastlane/report.xml
+.bundle/

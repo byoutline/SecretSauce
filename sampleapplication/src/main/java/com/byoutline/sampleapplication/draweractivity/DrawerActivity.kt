@@ -19,8 +19,8 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class DrawerActivity : ClassNameAsToolbarTitleActivity(),
-        HasSupportFragmentInjector,
-        NavigationView.OnNavigationItemSelectedListener {
+    HasSupportFragmentInjector,
+    NavigationView.OnNavigationItemSelectedListener {
     @Inject
     lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
 

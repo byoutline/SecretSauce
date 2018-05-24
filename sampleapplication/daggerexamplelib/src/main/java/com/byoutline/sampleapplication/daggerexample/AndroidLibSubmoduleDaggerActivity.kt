@@ -40,19 +40,16 @@ class AndroidLibSubmoduleDaggerActivity : ClassNameAsToolbarTitleActivity(), Has
     }
 }
 
-
 class DependencyA @Inject constructor()
 class DependencyB @Inject constructor()
 class ColorMixer @Inject constructor(context: Context, dependencyA: DependencyA, dependencyB: DependencyB) {
     @ColorInt val color = ContextCompat.getColor(context, R.color.button_material_light)
 }
 
-
 @Module(includes = [DaggerExampleMainActivityFragmentsModule::class])
 class DaggerExampleMainActivityModule : com.byoutline.sampleapplication.daggerexample.ContextModule() {
     @Provides fun act(a: AndroidLibSubmoduleDaggerActivity): Activity = a
 }
-
 
 @Module
 abstract class DaggerExampleMainActivityFragmentsModule {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/indigo"
-            tools:context="com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample">
+    tools:context="com.byoutline.sampleapplication.roundedimageview.DrawableActivityExample">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             app:border_color="@color/colorAccent"
             app:border_width="5dp"
             app:corner_radius="10dp"
-            app:is_oval="false"/>
+            app:is_oval="false" />
 
         <com.byoutline.secretsauce.views.RoundedImageView
             android:id="@+id/roundedView2"
@@ -39,7 +39,7 @@
             app:border_color="@color/colorAccent"
             app:border_width="5dp"
             app:corner_radius="10dp"
-            app:is_oval="true"/>
+            app:is_oval="true" />
 
         <com.byoutline.secretsauce.views.RoundedImageView
             android:id="@+id/roundedView3"
@@ -53,7 +53,7 @@
             app:border_color="@color/colorAccent"
             app:border_width="10dp"
             app:corner_radius="10dp"
-            app:is_oval="true"/>
+            app:is_oval="true" />
 
         <com.byoutline.secretsauce.views.RoundedImageView
             android:id="@+id/roundedView4"
@@ -69,7 +69,7 @@
             app:border_width="5dp"
             app:corner_radius="10dp"
             app:is_oval="false"
-            app:round_background="true"/>
+            app:round_background="true" />
 
         <com.byoutline.secretsauce.views.RoundedImageView
             android:id="@+id/roundedView5"
@@ -87,7 +87,7 @@
             app:border_width="5dp"
             app:corner_radius="30dp"
             app:is_oval="false"
-            app:round_background="false"/>
+            app:round_background="false" />
 
     </LinearLayout>
 </ScrollView>

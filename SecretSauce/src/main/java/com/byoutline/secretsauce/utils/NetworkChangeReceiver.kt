@@ -19,8 +19,10 @@ import com.byoutline.secretsauce.lifecycle.AttachableViewModel
  * @author Sebastian Kacprzak <nait at naitbit.com>
  */
 class NetworkChangeReceiver
-(private val connectivityManager: ConnectivityManager,
- val connectedOrConnecting: ObservableBoolean = ObservableBoolean()) : BroadcastReceiver() {
+(
+    private val connectivityManager: ConnectivityManager,
+    val connectedOrConnecting: ObservableBoolean = ObservableBoolean()
+) : BroadcastReceiver() {
     private var context: Context? = null
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -30,7 +32,10 @@ class NetworkChangeReceiver
     @SuppressLint("MissingPermission")
     fun connected(): Boolean {
         val ctx = context ?: return true
-        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(
+                ctx,
+                Manifest.permission.ACCESS_NETWORK_STATE
+            ) != PackageManager.PERMISSION_GRANTED) {
             LogUtils.LOGW(TAG, "No permission to read connection state, returning connected=true")
             return true
         }
@@ -40,8 +45,10 @@ class NetworkChangeReceiver
 
     fun register(context: Context) {
         this.context = context
-        context.registerReceiver(this,
-                IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        context.registerReceiver(
+            this,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
     }
 
     fun unregister(context: Context) {

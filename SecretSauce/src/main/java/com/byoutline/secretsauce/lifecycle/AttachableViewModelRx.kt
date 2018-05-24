@@ -45,7 +45,8 @@ abstract class AttachableViewModelRx<T> : AttachableViewModel<T>() {
      */
     @Synchronized
     inline fun <reified T : Observable> T.subscribeTillDetach(vararg brs: Int, crossinline action: T.() -> Unit) {
-        val observableCallback: Observable.OnPropertyChangedCallback = DataBindingHelper.observableCallback(*brs, action = action)
+        val observableCallback: Observable.OnPropertyChangedCallback =
+            DataBindingHelper.observableCallback(*brs, action = action)
         subscribeTillDetach(observableCallback)
     }
 }

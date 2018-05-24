@@ -2,6 +2,7 @@ package com.byoutline.secretsauce.listeners;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 /**

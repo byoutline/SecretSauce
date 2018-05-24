@@ -31,8 +31,8 @@ open class RxLifecycleVM @Inject constructor() : AttachableViewModelRx<Any>() {
     val value = ObservableLong()
     override fun onAttach(view: Any) {
         RxObservable.interval(1, TimeUnit.SECONDS)
-                .subscribe { value.set(value.get() + 1) }
-                .disposeOnDetach()
+            .subscribe { value.set(value.get() + 1) }
+            .disposeOnDetach()
         super.onAttach(view)
     }
 }

@@ -9,11 +9,13 @@ import org.junit.Test
 import kotlin.reflect.KClass
 
 class MainActivityShould {
-    @get:Rule val rule = activityTestRule<MainActivity>(examples = listOf(
+    @get:Rule val rule = activityTestRule<MainActivity>(
+        examples = listOf(
             i(AppCompatActivity::class, "Test example 0"),
             i(AppCompatActivity::class, "Test example 1"),
             i(AppCompatActivity::class, "Test example 2")
-    ))
+        )
+    )
 
     @Test
     fun displayAllItemsFromRepository() {

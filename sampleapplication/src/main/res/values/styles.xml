@@ -28,9 +28,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="customFontStyle2">
         <item name="android:fontFamily">@font/angelinevintage_demo</item>
@@ -48,12 +48,12 @@
         <item name="android:listPreferredItemHeightSmall">50dp</item>
     </style>
 
-	<style name="waitLayoutHorizontalLayoutStyle">
+    <style name="waitLayoutHorizontalLayoutStyle">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">64dp</item>
-		<item name="android:gravity">center_vertical</item>
-	</style>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 
 </resources>

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.byoutline.sampleapplication.draweractivity.CountingViewModel"/>
+            type="com.byoutline.sampleapplication.draweractivity.CountingViewModel" />
     </data>
 
     <LinearLayout

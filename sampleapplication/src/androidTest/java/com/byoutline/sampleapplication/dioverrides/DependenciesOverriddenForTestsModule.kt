@@ -8,8 +8,8 @@ import dagger.Provides
 
 @Module
 class DependenciesOverriddenForTestsModule(
-        private val examples: List<MainActivityItem>?,
-        private val defaults: DependenciesThatNeedOverwriteInTestsModule = DependenciesThatNeedOverwriteInTestsModule()
+    private val examples: List<MainActivityItem>?,
+    private val defaults: DependenciesThatNeedOverwriteInTestsModule = DependenciesThatNeedOverwriteInTestsModule()
 ) {
     @Provides @MainActivityItems
     fun examples() = examples ?: defaults.examples()

@@ -8,7 +8,6 @@ import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.di.ActivityInjectorApp
 import com.byoutline.secretsauce.di.AppInjector
 
-
 /**
  * Application entry point that configures Dagger and SecretSauce.
  */
@@ -25,8 +24,8 @@ open class SampleApp : ActivityInjectorApp() {
 
     private fun createGlobalComponent(): AppComponent {
         return DaggerAppComponent.builder()
-                .networkActivityModule(NetworkActivityModule(this))
-                .build()
+            .networkActivityModule(NetworkActivityModule(this))
+            .build()
     }
 
     @VisibleForTesting
@@ -35,10 +34,10 @@ open class SampleApp : ActivityInjectorApp() {
         mainComponent.inject(this)
         AppInjector.init(this)
         SecretSauceSettings.set(
-                debug = BuildConfig.DEBUG,
-                containerViewId = R.id.container,
-                bindingViewModelId = BR.viewModel,
-                viewModelFactoryProvider = { viewModelFactory }
+            debug = BuildConfig.DEBUG,
+            containerViewId = R.id.container,
+            bindingViewModelId = BR.viewModel,
+            viewModelFactoryProvider = { viewModelFactory }
         )
     }
 }

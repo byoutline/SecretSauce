@@ -4,7 +4,6 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Inject
 
-
 /**
  * This class demonstrates that Dagger Android can use Dagger Modules that comes from "Pure Java" modules.
  */

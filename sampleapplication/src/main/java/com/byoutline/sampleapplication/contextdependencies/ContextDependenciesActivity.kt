@@ -67,7 +67,6 @@ class ContextDependenciesActivity2 : ClassNameAsToolbarTitleActivity(), Injectab
     }
 }
 
-
 class ContextDependency @Inject constructor(context: Context) {
     @ColorInt val color: Int
 
@@ -81,7 +80,6 @@ class ContextDependency @Inject constructor(context: Context) {
 class ResourceDependency @Inject constructor(resources: Resources) {
     val string: String = resources.getString(R.string.context_dependencies_str)
 }
-
 
 /**
  * Let the Android Dagger know that it can use [ContextDependenciesActivity] as regular activity.

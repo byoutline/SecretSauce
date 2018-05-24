@@ -10,7 +10,6 @@ import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import org.junit.Rule
 import org.junit.Test
 
-
 class ContextDependenciesActivityShould {
     @get:Rule val rule = activityTestRule(ContextDependenciesActivity::class, ContextDependenciesActivityRobot())
 
@@ -23,7 +22,6 @@ class ContextDependenciesActivityShould {
         }
     }
 }
-
 
 class ContextDependenciesActivityRobot : ActivityRobot() {
     fun verifyThatTVHasBackgroundColor(@ColorRes color: Int) {

@@ -40,13 +40,15 @@ class AndroidLibSubmoduleDaggerFragment : Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate layout using Android DataBinding and pass it viewModel
-        return inflateAndSetVM<FragmentDaggerExampleBinding>(inflater, container, R.layout.fragment_dagger_example,
-                getViewModelWithAutoLifecycle(DaggerExampleFragmentVM::class)
+        return inflateAndSetVM<FragmentDaggerExampleBinding>(
+            inflater, container, R.layout.fragment_dagger_example,
+            getViewModelWithAutoLifecycle(DaggerExampleFragmentVM::class)
         ).apply {
             // Although rarely needed when using viewModel you can also manually use @Inject
             // and set values by hand
             fragmentLabel.text = labelText
-            fragmentPureJavaTv.text = getString(R.string.fragment_pure_java_dep, dependencyFromPureJavaModule.javaClass.simpleName)
+            fragmentPureJavaTv.text =
+                getString(R.string.fragment_pure_java_dep, dependencyFromPureJavaModule.javaClass.simpleName)
         }.root
     }
 }
@@ -63,7 +65,7 @@ abstract class DaggerExampleFragmentModule {
 }
 
 class DaggerExampleFragmentVM @Inject constructor(
-        val counter: Counter
+    val counter: Counter
 ) : AttachableViewModel<Any>() {
 
     override fun onAttach(view: Any) {

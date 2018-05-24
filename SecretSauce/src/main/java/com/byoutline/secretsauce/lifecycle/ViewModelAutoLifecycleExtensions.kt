@@ -16,10 +16,10 @@ import kotlin.reflect.KClass
  * This method is an alias for [getViewModelWithAutoLifecycle]
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getVMWithAutoLifecycle(
-        clazz: KClass<VIEWMODEL>,
-        @Suppress("UNCHECKED_CAST")
-        view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
+    clazz: KClass<VIEWMODEL>,
+    @Suppress("UNCHECKED_CAST")
+    view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
 ): VIEWMODEL = getViewModelWithAutoLifecycle(clazz, view)
 
 /**
@@ -29,10 +29,10 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
  * *Remember to call it before `onActivityStarted`!*
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
-        clazz: KClass<VIEWMODEL>,
-        @Suppress("UNCHECKED_CAST")
-        view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
+    clazz: KClass<VIEWMODEL>,
+    @Suppress("UNCHECKED_CAST")
+    view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz")
 ): VIEWMODEL {
     val viewModel = getViewModel<VIEWMODEL>()
     application.registerActivityLifecycleCallbacks(ViewModelAutoLifecycleA(application, view, viewModel))
@@ -57,13 +57,13 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMWithAutoLifecycle(
-        modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
-        @Suppress("UNCHECKED_CAST")
-        view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
-        recursive: Boolean  = false
-): VIEWMODEL  = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider, recursive)
+    modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
+    @Suppress("UNCHECKED_CAST")
+    view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
+    useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
+    recursive: Boolean = false
+): VIEWMODEL = getViewModelWithAutoLifecycle(modelClass, view, useFragmentViewModelProvider, recursive)
 
 /**
  * Creates [AttachableViewModel] and registers it in [Fragment] lifecycle.
@@ -75,12 +75,12 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMW
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
-        modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
-        @Suppress("UNCHECKED_CAST")
-        view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
-        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
-        recursive: Boolean = false
+    modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
+    @Suppress("UNCHECKED_CAST")
+    view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $modelClass"),
+    useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider,
+    recursive: Boolean = false
 ): VIEWMODEL {
     val viewModel = getViewModel(modelClass, useFragmentViewModelProvider)
     val auto = ViewModelAutoLifecycleF(view, viewModel)
@@ -95,8 +95,8 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVie
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
 inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
-        modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
-        useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
+    modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
+    useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
 ): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(context!!)
     val provider = if (useFragmentViewModelProvider) {
@@ -123,11 +123,11 @@ inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
  * If you do not need viewModel in `onCreateView` then use `getViewModelWithAutoLifecycle` directly instead.
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
-        clazz: KClass<VIEWMODEL>,
-        @Suppress("UNCHECKED_CAST")
-        view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+    clazz: KClass<VIEWMODEL>,
+    @Suppress("UNCHECKED_CAST")
+    view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
+    mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModelWithAutoLifecycle(VIEWMODEL::class, view)
 }
@@ -148,10 +148,10 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyVi
  * If you do not need viewModel in `onCreate` then use `getViewModelWithAutoLifecycle` directly instead.
  */
 inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModelWithAutoLifecycle(
-        clazz: KClass<VIEWMODEL>,
-        @Suppress("UNCHECKED_CAST") view: VIEW = this as? VIEW
-                ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+    clazz: KClass<VIEWMODEL>,
+    @Suppress("UNCHECKED_CAST") view: VIEW = this as? VIEW
+        ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
+    mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModelWithAutoLifecycle(clazz, view)
 }
@@ -166,7 +166,8 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
  */
 inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModel<VIEWMODEL>()
 }
 
@@ -180,7 +181,8 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
  */
 inline fun <reified VIEWMODEL : ViewModel> Fragment.lazyViewModel(
-        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE): Lazy<VIEWMODEL> = lazy(mode) {
+    mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModel<VIEWMODEL>()
 }
 

@@ -5,7 +5,6 @@ import android.support.annotation.StringRes
 import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.utils.internal.ToastDisplayer
 
-
 /**
  * Use this method to show Toast only in Debug apk, thanks to it you wont have to
  * delete all occurrences of Toasts before release :)

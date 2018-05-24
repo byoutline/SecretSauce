@@ -27,7 +27,6 @@ object SecretSauceSettings {
     }
     var useFragmentViewModelProvider: Boolean = true
 
-
     /**
      * @param debug - If true enables debug toasts, and low priority logs in [com.byoutline.secretsauce.utils.LogUtils]
      * @param containerViewId - Default value for [com.byoutline.secretsauce.activities.showFragment]
@@ -38,12 +37,12 @@ object SecretSauceSettings {
      * @param useFragmentViewModelProvider - Default lifecycle for ViewModels [com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle]
      */
     fun set(
-            debug: Boolean = DEBUG,
-            @IdRes containerViewId: Int = this.containerViewId ?: ID_NOT_SET,
-            bindingViewModelId: Int = brViewModelId ?: ID_NOT_SET,
-            viewModelFactoryProvider: (ctx: Context) -> ViewModelProvider.Factory = this.viewModelFactoryProvider,
-            setFastJodaTimeZoneProvider: Boolean = true,
-            useFragmentViewModelProvider: Boolean = this.useFragmentViewModelProvider
+        debug: Boolean = DEBUG,
+        @IdRes containerViewId: Int = this.containerViewId ?: ID_NOT_SET,
+        bindingViewModelId: Int = brViewModelId ?: ID_NOT_SET,
+        viewModelFactoryProvider: (ctx: Context) -> ViewModelProvider.Factory = this.viewModelFactoryProvider,
+        setFastJodaTimeZoneProvider: Boolean = true,
+        useFragmentViewModelProvider: Boolean = this.useFragmentViewModelProvider
     ) {
         require(bindingViewModelId > 0 || bindingViewModelId == ID_NOT_SET) { "containerViewId cannot be negative, given: $containerViewId" }
         if (containerViewId != ID_NOT_SET) this.containerViewId = containerViewId
@@ -53,7 +52,10 @@ object SecretSauceSettings {
         this.viewModelFactoryProvider = viewModelFactoryProvider
         this.useFragmentViewModelProvider = useFragmentViewModelProvider
         if (setFastJodaTimeZoneProvider) {
-            System.setProperty("org.joda.time.DateTimeZone.Provider", "com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider")
+            System.setProperty(
+                "org.joda.time.DateTimeZone.Provider",
+                "com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider"
+            )
         }
     }
 }
