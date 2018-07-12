@@ -49,15 +49,14 @@ fun Activity.registerLifecycleCallbacksForThisActivityOnly(callbacksToWrap: Appl
     application.registerActivityLifecycleCallbacks(wrapped)
 }
 
-
 /**
  * Wrapper for regular [Application.ActivityLifecycleCallbacks] that passes lifecycle callbacks
  * only if they concern declared activity. Also it automatically unregister itself from application.
  * This is supposed to help avoid boilerplate in lifecycle callback.
  */
 private class SingleActivityLifecycleCallbacks(
-        private val view: Activity,
-        private val delegate: Application.ActivityLifecycleCallbacks
+    private val view: Activity,
+    private val delegate: Application.ActivityLifecycleCallbacks
 ) : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(a: Activity?, savedInstanceState: Bundle?) {
         if (a === view) delegate.onActivityCreated(a, savedInstanceState)

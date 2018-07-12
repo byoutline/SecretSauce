@@ -16,14 +16,12 @@
 
 package com.byoutline.secretsauce.di
 
-
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
-
 
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
@@ -33,6 +31,10 @@ interface Injectable
 
 object AppInjector {
 
+    /**
+     * Registers Activity Lifecycle listener in [Application] so [AndroidInjection.inject] will be automatically called
+     * for activities marked as: [HasSupportFragmentInjector] or [Injectable] and for Fragments marked as [Injectable].
+     */
     fun init(app: Application) {
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -58,13 +60,16 @@ object AppInjector {
             AndroidInjection.inject(activity)
         }
         (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
-                object : FragmentManager.FragmentLifecycleCallbacks() {
-                    override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?,
-                                                   savedInstanceState: Bundle?) {
-                        if (f is Injectable) {
-                            AndroidSupportInjection.inject(f)
-                        }
+            object : FragmentManager.FragmentLifecycleCallbacks() {
+                override fun onFragmentCreated(
+                    fm: FragmentManager?, f: Fragment?,
+                    savedInstanceState: Bundle?
+                ) {
+                    if (f is Injectable) {
+                        AndroidSupportInjection.inject(f)
                     }
-                }, true)
+                }
+            }, true
+        )
     }
 }

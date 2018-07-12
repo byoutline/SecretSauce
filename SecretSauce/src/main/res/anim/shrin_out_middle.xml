@@ -7,10 +7,10 @@
         android:fromYScale="1.3"
         android:toYScale="1"
         android:pivotX="50%p"
-        android:pivotY="50%p"/>
+        android:pivotY="50%p" />
 
     <alpha
         android:duration="@integer/dialog_pop_up"
         android:fromAlpha="0"
-        android:toAlpha="1"/>
+        android:toAlpha="1" />
 </set>

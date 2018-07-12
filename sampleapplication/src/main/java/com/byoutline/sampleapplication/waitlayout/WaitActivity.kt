@@ -5,15 +5,14 @@ import android.databinding.DataBindingUtil
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.byoutline.observablecachedfield.ObservableCachedFieldBuilder
 import com.byoutline.observablecachedfield.ObservableCachedFieldWithArg
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.sampleapplication.databinding.ActivityWaitLayoutBinding
 import com.byoutline.secretsauce.views.WaitLayout
 
-
-class WaitActivity : AppCompatActivity() {
+class WaitActivity : ClassNameAsToolbarTitleActivity() {
     private val viewModel = WaitActivityViewModel()
     private lateinit var binding: ActivityWaitLayoutBinding
 
@@ -28,8 +27,10 @@ class WaitActivity : AppCompatActivity() {
         with(viewModel) {
             binding.waitLayout1Wl.showProgressOf(sleepField1.field)
             binding.waitLayout2Wl.showProgressOf(sleepField2.field)
-            binding.waitLayoutCombinedWl.showProgressOf(sleepField1.field,
-                    sleepField2.field)
+            binding.waitLayoutCombinedWl.showProgressOf(
+                sleepField1.field,
+                sleepField2.field
+            )
 
         }
     }
@@ -58,14 +59,12 @@ internal class SleepField(workerName: String) {
     }
 }
 
-private fun sleepCachedField(workerName: String): ObservableCachedFieldWithArg<String, Int>
-        = ObservableCachedFieldBuilder()
-        .withValueProviderWithArg { arg: Int ->
-            Thread.sleep(arg.toLong())
-            return@withValueProviderWithArg "Worker: $workerName has slept $arg ms."
-        }
-        .build()
-
+private fun sleepCachedField(workerName: String): ObservableCachedFieldWithArg<String, Int> = ObservableCachedFieldBuilder()
+    .withValueProviderWithArg { arg: Int ->
+        Thread.sleep(arg.toLong())
+        return@withValueProviderWithArg "Worker: $workerName has slept $arg ms."
+    }
+    .build()
 
 @BindingAdapter("showProgress")
 fun showProgress(view: WaitLayout, show: Boolean) {

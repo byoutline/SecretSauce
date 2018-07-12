@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.webkit.WebView;
+
 import com.byoutline.secretsauce.R;
 import com.byoutline.secretsauce.utils.LogUtils;
 import com.byoutline.shadow.org.apache.http.util.EncodingUtils;

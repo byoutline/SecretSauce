@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="indigo">#E8EAF6</color>
+    <color name="contextDependencyYellow">#B8BF00</color>
+    <color name="contextDependencyBlue">#2222FF</color>
 </resources>

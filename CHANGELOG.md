@@ -4,6 +4,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [Build 0.8.0] - 2018-06-12
+### Added
+ - `DataBindingObservableImpl` now has `observable` function that accepts callback to be
+ called after the value has been changed. This callback receives both old and new value of the field.
+ 
+ - `AttachableViewModelRx.disposeOnDetach` now returns `Disposable` to allow for further chaining.
+ 
+ - `getViewModelWithAutoLifecycle` and `Fragment.getVMWithAutoLifecycle` now exposes `recursive` parameter
+  (needed fe: when using with Android Navigation Architecture Component, or when we attach to DialogFragment)
+  
+### Changed
+ - `DataBindingObservableImpl` now only notifies callbacks only if new value is different from the old one.
+
+ - `subscribeTillDetach`/`observableCallback` for objects that are Observable (and supposedly have multiple fields)
+ now requires passing `BR` fields IDs. Only when one of fields with matching ID (or 0) is changed
+ then callback will be called
+ 
+ - `useFragmentViewModelProvider` default value changed - ViewModels requested by Fragments will now use Fragment lifecycle by default. 
+ If you want to change to previous behaviour you can set flag globally in [SecretSauceSettings].
+ 
+ - `RxJava2` dependency is now marked as `implementation` to avoid adding it as a transitive dependency to project that 
+  don't need it. NOTE: you must have RxJava in classpath to use `AttachableViewModelRx`
+  
+ - Bump dependencies
+ 
 ## [Build 0.7.0] - 2018-02-05
 ### Added
  - Binding Adapter - `srcId` calls `setImageResource`

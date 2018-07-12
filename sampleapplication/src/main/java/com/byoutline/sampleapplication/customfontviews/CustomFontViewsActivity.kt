@@ -1,14 +1,14 @@
 package com.byoutline.sampleapplication.customfontviews
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.secretsauce.utils.showToast
 import com.byoutline.secretsauce.views.LinkTextView
 
-class CustomFontViewsActivity : AppCompatActivity() {
+class CustomFontViewsActivity : ClassNameAsToolbarTitleActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -4,8 +4,8 @@ import android.databinding.Bindable
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.byoutline.sampleapplication.BR
+import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R
 import com.byoutline.secretsauce.databinding.DataBindingObservable
 import com.byoutline.secretsauce.databinding.DataBindingObservableImpl
@@ -20,7 +20,7 @@ import io.reactivex.Observable as RxObservable
  * Auto incrementing counter produced by Rx, that survives rotation and does not leak.
  * Locking the screen/moving to other app will pause the counter.
  */
-class DataBindingActivity : AppCompatActivity() {
+class DataBindingActivity : ClassNameAsToolbarTitleActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class DataBindingActivity : AppCompatActivity() {
 
 class DataBindingViewModel @Inject constructor(
 ) : AttachableViewModelRx<Any>(),
-        DataBindingObservable by DataBindingObservableImpl() {
+    DataBindingObservable by DataBindingObservableImpl() {
     // Assume that this value is changed externally
     private val externalObs = ExternalObs()
 
@@ -52,7 +52,7 @@ class DataBindingViewModel @Inject constructor(
         simulateExternalChange()
         // lets assume that we have to map values before passing them to views
         // (otherwise there would be no point of duplicating observables)
-        externalObs.subscribeTillDetach { extObs -> field1 = extObs.field1 }
+        externalObs.subscribeTillDetach(BR.field1) { this@DataBindingViewModel.field1 = field1 }
         externalObs.bool.subscribeBoolTillDetach { bool = it }
         externalObs.field2.subscribeFieldTillDetach { field2 = it }
         super.onAttach(view)
@@ -60,8 +60,8 @@ class DataBindingViewModel @Inject constructor(
 
     private fun simulateExternalChange() {
         RxObservable.interval(1, TimeUnit.SECONDS)
-                .subscribe { externalObs.increment() }
-                .disposeOnDetach()
+            .subscribe { externalObs.increment() }
+            .disposeOnDetach()
     }
 }
 

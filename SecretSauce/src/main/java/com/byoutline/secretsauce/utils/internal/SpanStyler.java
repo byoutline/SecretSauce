@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
+
 import com.byoutline.secretsauce.utils.CustomClickableSpan;
 import com.byoutline.secretsauce.utils.CustomTypefaceSpan;
 

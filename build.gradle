@@ -1,13 +1,16 @@
 buildscript {
-    ext.kotlin_version = '1.2.21'
-    ext.build_tools_version = '3.0.1'
+    ext {
+        kotlin_version = '1.2.51'
+        build_tools_version = '3.1.2'
+    }
     repositories {
-        maven { url "https://jcenter.bintray.com/" }
-        maven { url "https://maven.google.com" }
+        mavenCentral()
+        google()
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "com.android.tools.build:gradle:$build_tools_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -16,6 +19,6 @@ allprojects {
     repositories {
         mavenCentral()
         maven { url "https://maven.google.com" }
+        jcenter()
     }
 }
-

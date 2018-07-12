@@ -14,13 +14,13 @@ import com.byoutline.secretsauce.SecretSauceSettings
 fun FragmentActivity.hideKeyboard() {
     currentFocus?.let { focused ->
         (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
-                ?.hideSoftInputFromWindow(focused.windowToken, 0)
+            ?.hideSoftInputFromWindow(focused.windowToken, 0)
     }
 }
 
 fun FragmentActivity.showKeyboard() {
     (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
-            ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }
 
 fun FragmentActivity.finishFragment() {
@@ -37,9 +37,9 @@ fun FragmentActivity.finishFragment() {
  */
 @SuppressLint("ResourceType")
 fun FragmentActivity.showFragment(
-        fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
-        animations: Array<Int>? = null,
-        @IdRes containerViewId: Int = SecretSauceSettings.getContainerViewId()
+    fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
+    animations: Array<Int>? = null,
+    @IdRes containerViewId: Int = SecretSauceSettings.getContainerViewId()
 ) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {

@@ -10,7 +10,6 @@ apply from: '../gradle/dependencies.gradle'
 
 android {
     compileSdkVersion compile_sdk_ver
-    buildToolsVersion build_tools_ver
 
     defaultConfig {
         minSdkVersion 14
@@ -35,38 +34,32 @@ android {
         textReport true
     }
 
-    dataBinding {
-        enabled true
-    }
-}
-
-configurations {
-    javadocDeps
+    dataBinding.enabled true
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation deps.kotlin_stdlib
 
-    api "com.android.support:appcompat-v7:$support_version"
-    api "com.android.support:recyclerview-v7:$support_version"
-    javadocDeps "com.android.support:support-annotations:$support_version"
+    api deps.appcompat
+    api deps.recyclerview
 
     implementation "com.google.dagger:dagger-android-support:$dagger_ver"
-    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation deps.lifecycle
     // resolve conflict caused by support-compat
-    api 'android.arch.lifecycle:runtime:1.0.3'
 
-    provided 'com.squareup.picasso:picasso:2.5.2'
-    provided 'com.android.databinding:baseLibrary:3.0.1'
+    //noinspection GradleDependency
+    provided 'com.squareup.picasso:picasso:2.71828'
+    provided 'com.android.databinding:baseLibrary:3.1.3'
     provided files('libs/binding-library-1.1.jar')
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
-    implementation 'joda-time:joda-time:2.9.9'
+    implementation 'joda-time:joda-time:2.10'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation deps.rx_java
 }
 
 configurations.all {
     resolutionStrategy.force "com.android.support:support-v4:$support_version"
+    resolutionStrategy.force "com.android.support:exifinterface:$support_version"
 }
 
 apply from: 'maven-push.gradle'

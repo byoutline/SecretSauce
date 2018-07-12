@@ -35,11 +35,11 @@ def getSnapshotRepositoryUrl() {
 }
 
 def getRepositoryUsername() {
-    return hasProperty('USERNAME') ? USERNAME : (hasProperty('NEXUS_USERNAME')?NEXUS_USERNAME:"")
+    return hasProperty('USERNAME') ? USERNAME : (hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : "")
 }
 
 def getRepositoryPassword() {
-    return hasProperty('PASSWORD') ? PASSWORD : (hasProperty('NEXUS_PASSWORD')?NEXUS_PASSWORD:"")
+    return hasProperty('PASSWORD') ? PASSWORD : (hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : "")
 }
 
 afterEvaluate { project ->
@@ -139,7 +139,6 @@ afterEvaluate { project ->
             failOnError false
             source = android.sourceSets.main.java.source
             classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-            classpath += configurations.javadocDeps
             classpath += configurations.compile
         }
 

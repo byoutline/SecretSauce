@@ -13,6 +13,11 @@ import com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
+/**
+ * Example that displays:
+ * * Setting Toolbar name
+ * * attaching activity scoped ViewModel to Android DataBinding
+ */
 class FirstFragment : CountingFragment() {
     override fun getToolbarTitle(): String = getString(R.string.first_fragment)
 }
@@ -23,9 +28,10 @@ class SecondFragment : CountingFragment() {
 
 abstract class CountingFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflateAndSetVM<FragmentShowDialogBinding>(inflater, container, R.layout.fragment_show_dialog,
-                    viewModel = getVMWithAutoLifecycle(CountingViewModel::class)
-            ).root
+        inflateAndSetVM<FragmentShowDialogBinding>(
+            inflater, container, R.layout.fragment_show_dialog,
+            viewModel = getVMWithAutoLifecycle(CountingViewModel::class, useFragmentViewModelProvider = false)
+        ).root
 }
 
 class CountingViewModel @Inject constructor() : AttachableViewModel<BaseFragment>() {
@@ -43,9 +49,11 @@ class CountingViewModel @Inject constructor() : AttachableViewModel<BaseFragment
         val activityClicks = activityScoped.incrementAndGet()
         val viewClicks = viewScoped.incrementAndGet()
         AlertDialog.Builder(ctx).apply {
-            setMessage("${v.getToolbarTitle()}\n" +
+            setMessage(
+                "${v.getToolbarTitle()}\n" +
                     "Activity scoped clicks: $activityClicks\n" +
-                    "View scoped clicks: $viewClicks")
+                    "View scoped clicks: $viewClicks"
+            )
             setPositiveButton("OK", null)
             show()
         }

@@ -2,6 +2,7 @@ package com.byoutline.secretsauce.listeners;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 /**
@@ -24,7 +25,7 @@ public class PicassoScrollListener extends RecyclerView.OnScrollListener {
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         int currentSpeed = Math.abs(dx) + Math.abs(dy);
-        final Picasso picasso = Picasso.with(context);
+        final Picasso picasso = Picasso.get();
         if (currentSpeed > SPEED_THRESHOLD) {
             picasso.pauseTag(context);
         } else {
@@ -34,7 +35,7 @@ public class PicassoScrollListener extends RecyclerView.OnScrollListener {
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-        final Picasso picasso = Picasso.with(context);
+        final Picasso picasso = Picasso.get();
         if (newState == RecyclerView.SCROLL_STATE_IDLE || newState == RecyclerView.SCROLL_STATE_DRAGGING) {
             picasso.resumeTag(context);
         } else {

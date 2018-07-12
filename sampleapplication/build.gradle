@@ -2,23 +2,27 @@ buildscript {
     repositories {
         maven { url 'http://repo.spring.io/plugins-release' }
         mavenCentral()
+        google()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+        classpath "com.jaredsburrows:gradle-spoon-plugin:1.4.0"
+        classpath "gradle.plugin.com.metova:cappuccino-plugin:0.7.3"
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: "com.metova.cappuccino-animations"
 
 apply from: '../gradle/dependencies.gradle'
 
 android {
     compileSdkVersion compile_sdk_ver
-    buildToolsVersion build_tools_ver
 
     defaultConfig {
         applicationId "com.byoutline.sampleapplication"
@@ -32,56 +36,71 @@ android {
     }
     buildTypes {
         debug {
-              minifyEnabled false
-              proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
         }
     }
-    dataBinding {
-        enabled = true
-    }
-
+    dataBinding.enabled = true
 
     dexOptions {
         javaMaxHeapSize System.getenv('CI') ? "2g" : "4g"
     }
 }
 
-
-ext {
-    espresso_version = '3.0.1'
-}
-
 apply plugin: 'kotlin-kapt'
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    compile project(':SecretSauce')
-    compile project(':waitlayout')
+    implementation project(':SecretSauce')
+    implementation project(':waitlayout')
+    implementation project(':sampleapplication:daggerexamplelib')
 
-    implementation "com.google.dagger:dagger:$dagger_ver"
-    kapt "com.google.dagger:dagger-compiler:$dagger_ver"
-    implementation "com.google.dagger:dagger-android-support:$dagger_ver"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_ver"
+    implementation deps.dagger_android
+    kapt deps.dagger_android_apt
     implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation 'androidx.core:core-ktx:0.3'
 
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation "com.android.support:design:$support_version"
     implementation "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"
-    implementation 'com.jakewharton.timber:timber:4.6.0'
-    kapt "com.android.databinding:compiler:$build_tools_version"
+    implementation 'com.jakewharton.timber:timber:4.7.0'
+    implementation deps.rx_java
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
 
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation 'com.android.support.test:rules:1.0.1'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation "com.android.support:support-annotations:$support_version"
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation "com.google.code.findbugs:jsr305:$jsr_305_version"
-    androidTestImplementation 'com.squareup.spoon:spoon-client:1.7.1'
+    androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-20180301.201542-44'
+    androidTestImplementation 'com.jraska:falcon:2.0.1'
+    androidTestImplementation("com.metova:cappuccino:0.9.1") {
+        transitive = false
+    }
+    androidTestImplementation deps.dagger_android
+    kaptAndroidTest deps.dagger_android_apt
+    androidTestImplementation 'br.com.concretesolutions:kappuccino:1.1.0'
+    androidTestImplementation('com.schibsted.spain:barista:2.4.0') {
+        exclude group: 'com.android.support'
+        exclude group: 'org.jetbrains.kotlin'
+    }
 }
 
-apply plugin: 'spoon'
+
+repositories {
+    jcenter()
+    google()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+apply plugin: "com.jaredsburrows.spoon"
 
 spoon {
     noAnimations = true
     adbTimeout = 60 * 10
     debug = true
+    instrumentationArgs = ["takeScreenshots=true"]
 }

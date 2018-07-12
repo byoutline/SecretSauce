@@ -1,128 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<data>
+    <data>
 
-		<variable
-			name="viewModel"
-			type="com.byoutline.sampleapplication.waitlayout.WaitActivityViewModel"
-			/>
-	</data>
+        <variable
+            name="viewModel"
+            type="com.byoutline.sampleapplication.waitlayout.WaitActivityViewModel" />
+    </data>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:padding="8dp"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-		<LinearLayout style="@style/waitLayoutHorizontalLayoutStyle">
+        <LinearLayout style="@style/waitLayoutHorizontalLayoutStyle">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="16sp"
-				android:text="Worker 1:"
-				/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Worker 1:" />
 
-			<com.byoutline.secretsauce.views.WaitLayout
-				android:id="@+id/wait_layout_1_wl"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+            <com.byoutline.secretsauce.views.WaitLayout
+                android:id="@+id/wait_layout_1_wl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-				<Button
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Sleep 500ms"
-					android:onClick="@{() -> viewModel.sleepField1.onClick(500)}"
-					/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sleep 500ms"
+                    android:onClick="@{() -> viewModel.sleepField1.onClick(500)}" />
 
 
-			</com.byoutline.secretsauce.views.WaitLayout>
+            </com.byoutline.secretsauce.views.WaitLayout>
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@{viewModel.sleepField1.text}"
-				tools:text="Worker has not slept"
-				/>
-		</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.sleepField1.text}"
+                tools:text="Worker has not slept" />
+        </LinearLayout>
 
-		<LinearLayout style="@style/waitLayoutHorizontalLayoutStyle">
+        <LinearLayout style="@style/waitLayoutHorizontalLayoutStyle">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="16sp"
-				android:text="Worker 2:"
-				/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Worker 2:" />
 
-			<com.byoutline.secretsauce.views.WaitLayout
-				android:id="@+id/wait_layout_2_wl"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				>
+            <com.byoutline.secretsauce.views.WaitLayout
+                android:id="@+id/wait_layout_2_wl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-				<Button
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Sleep 2000ms"
-					android:onClick="@{() -> viewModel.sleepField2.onClick(2000)}"
-					/>
-			</com.byoutline.secretsauce.views.WaitLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sleep 2000ms"
+                    android:onClick="@{() -> viewModel.sleepField2.onClick(2000)}" />
+            </com.byoutline.secretsauce.views.WaitLayout>
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@{viewModel.sleepField2.text}"
-				tools:text="Worker has not slept"
-				/>
-		</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.sleepField2.text}"
+                tools:text="Worker has not slept" />
+        </LinearLayout>
 
-		<com.byoutline.secretsauce.views.WaitLayout
-			android:id="@+id/wait_layout_combined_wl"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			>
+        <com.byoutline.secretsauce.views.WaitLayout
+            android:id="@+id/wait_layout_combined_wl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="24sp"
-				android:text="Combined worker state\n(either worker 1 or 2 is working)"
-				/>
-		</com.byoutline.secretsauce.views.WaitLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Combined worker state\n(either worker 1 or 2 is working)" />
+        </com.byoutline.secretsauce.views.WaitLayout>
 
-		<LinearLayout
-			style="@style/waitLayoutHorizontalLayoutStyle"
-			android:layout_marginTop="60dp"
-			>
+        <LinearLayout
+            style="@style/waitLayoutHorizontalLayoutStyle"
+            android:layout_marginTop="60dp">
 
-			<com.byoutline.secretsauce.views.WaitLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				app:showProgress="@{viewModel.obsBool}"
-				>
+            <com.byoutline.secretsauce.views.WaitLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:showProgress="@{viewModel.obsBool}">
 
-				<TextView
-					android:layout_margin="10dp"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="ObservableBoolean\n(toggle to change busy status):"
-					android:gravity="center_vertical"
-					/>
-			</com.byoutline.secretsauce.views.WaitLayout>
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ObservableBoolean\n(toggle to change busy status):"
+                    android:gravity="center_vertical" />
+            </com.byoutline.secretsauce.views.WaitLayout>
 
-			<CheckBox
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:checked="@={viewModel.obsBool}"
-				/>
-		</LinearLayout>
-	</LinearLayout>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={viewModel.obsBool}" />
+        </LinearLayout>
+    </LinearLayout>
 </layout>

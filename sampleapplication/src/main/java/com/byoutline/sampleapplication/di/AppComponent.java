@@ -12,7 +12,8 @@ import dagger.android.AndroidInjectionModule;
 @Component(modules = {
         ActivitiesModule.class,
         ViewModelMapModule.class,
-        AndroidInjectionModule.class
+        AndroidInjectionModule.class,
+        DependenciesThatNeedOverwriteInTestsModule.class
 })
 public interface AppComponent {
 

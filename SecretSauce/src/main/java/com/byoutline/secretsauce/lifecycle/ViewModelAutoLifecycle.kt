@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentManager
  * Attaches and detaches [AttachableViewModel] to Fragment.
  */
 class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
-        val view: VIEW,
-        val viewModel: VIEWMODEL
+    val view: VIEW,
+    val viewModel: VIEWMODEL
 ) : FragmentManager.FragmentLifecycleCallbacks() {
 
     override fun onFragmentStarted(fm: FragmentManager?, f: Fragment?) {
@@ -31,9 +31,9 @@ class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
  * Attaches and detaches [AttachableViewModel] to activity.
  */
 class ViewModelAutoLifecycleA<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
-        private val application: Application,
-        private val view: VIEW,
-        private val viewModel: VIEWMODEL
+    private val application: Application,
+    private val view: VIEW,
+    private val viewModel: VIEWMODEL
 ) : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(a: Activity?, savedInstanceState: Bundle?) {}
