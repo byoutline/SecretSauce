@@ -4,7 +4,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [Build 0.8.0] - 2018-06-12
+## [0.8.0] - 2018-06-12
 ### Added
  - `DataBindingObservableImpl` now has `observable` function that accepts callback to be
  called after the value has been changed. This callback receives both old and new value of the field.
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   
  - Bump dependencies
  
-## [Build 0.7.0] - 2018-02-05
+## [0.7.0] - 2018-02-05
 ### Added
  - Binding Adapter - `srcId` calls `setImageResource`
  - `ActivityLifecycleCallbacksAdapter` - adapter for `Application.ActivityLifecycleCallbacks` were methods does nothing. 
