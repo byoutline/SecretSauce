@@ -7,6 +7,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.rule.GrantPermissionRule
 import com.byoutline.sampleapplication.MainActivityItem
 import com.byoutline.sampleapplication.SampleApp
+import com.byoutline.sampleapplication.dioverrides.DaggerAppComponentTest
 import com.byoutline.sampleapplication.dioverrides.DependenciesOverriddenForTestsModule
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule
 import com.squareup.spoon.SpoonRule

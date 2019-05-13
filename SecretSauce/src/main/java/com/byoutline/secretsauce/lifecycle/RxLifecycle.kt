@@ -31,11 +31,11 @@ fun Fragment.invokeOnStopped(action: () -> Unit) {
     val fragment = this
     activity!!.supportFragmentManager.registerFragmentLifecycleCallbacks(object :
         FragmentManager.FragmentLifecycleCallbacks() {
-        override fun onFragmentStopped(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
             if (f === fragment) action()
         }
 
-        override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment?) {
+        override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
             if (f === fragment) fm.unregisterFragmentLifecycleCallbacks(this)
         }
     }, false)

@@ -4,11 +4,11 @@ apply plugin: 'kotlin-kapt'
 apply from: '../../gradle/dependencies.gradle'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion compile_sdk_ver
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion target_sdk_ver
         versionCode 1
         versionName "1.0"
     }

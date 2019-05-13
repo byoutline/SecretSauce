@@ -14,15 +14,15 @@ class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
     val viewModel: VIEWMODEL
 ) : FragmentManager.FragmentLifecycleCallbacks() {
 
-    override fun onFragmentStarted(fm: FragmentManager?, f: Fragment?) {
+    override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
         if (f === view) viewModel.onAttach(view)
     }
 
-    override fun onFragmentStopped(fm: FragmentManager?, f: Fragment?) {
+    override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
         if (f === view) viewModel.onDetach()
     }
 
-    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment?) {
+    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
         if (f === view) fm.unregisterFragmentLifecycleCallbacks(this)
     }
 }

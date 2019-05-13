@@ -13,7 +13,7 @@ update_needed() {
 }
 
 # always update
-for pack in "android-27" "platform-tools"  ;
+for pack in "android-28" "platform-tools"  ;
     do echo y | android update sdk -u -a -t ${pack} ;
 done ;
 
@@ -24,4 +24,4 @@ then cat ${PROP} && for pack in "tools" "extra-android-m2repository" "extra-goog
 done ;
 fi
 
-if [ ! -e $ANDROID_HOME/build-tools/27.0.3 ]; then echo y | android update sdk -u -a -t "build-tools-27.0.3"; fi
+if [ ! -e $ANDROID_HOME/build-tools/28.0.3 ]; then echo y | android update sdk -u -a -t "build-tools-28.0.3"; fi
