@@ -57,9 +57,14 @@ interface DataBindingObservable : Observable {
  *         private set
  * }
  * ```
+ *
+ * @param propertyChangeRegistry Instance of [PropertyChangeRegistry] to use as a delegate.
+ * Passing non-default value can be used if one wants to use `by observable` syntax only for
+ * some fields in class.
  */
-open class DataBindingObservableImpl : DataBindingObservable {
-    private val propertyChangeRegistry = PropertyChangeRegistry()
+open class DataBindingObservableImpl(
+    private val propertyChangeRegistry: PropertyChangeRegistry = PropertyChangeRegistry()
+) : DataBindingObservable {
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) =
         propertyChangeRegistry.add(callback)
