@@ -33,7 +33,7 @@ object SecretSauceSettings {
      * @param bindingViewModelId - Default value for DataBinding methods that set ViewModel
      * @param viewModelFactoryProvider - Required for using getViewModel and related extension function
      * @param setFastJodaTimeZoneProvider - If true System property will be set so Joda time uses [com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider]
-     * which is faster on Android. If you are not using Joda time this will do nothing relevant.
+     * which is faster on Android. If there is no Joda dependency in classpath this will do nothing.
      * @param useFragmentViewModelProvider - Default lifecycle for ViewModels [com.byoutline.secretsauce.lifecycle.getVMWithAutoLifecycle]
      */
     fun set(
@@ -52,10 +52,18 @@ object SecretSauceSettings {
         this.viewModelFactoryProvider = viewModelFactoryProvider
         this.useFragmentViewModelProvider = useFragmentViewModelProvider
         if (setFastJodaTimeZoneProvider) {
+            setFastJodaTimeZoneProvider()
+        }
+    }
+
+    private fun setFastJodaTimeZoneProvider() {
+        try {
+            Class.forName("org.joda.time.DateTimeZone")
             System.setProperty(
                 "org.joda.time.DateTimeZone.Provider",
                 "com.byoutline.secretsauce.utils.JdkBasedTimeZoneProvider"
             )
+        } catch (ignored: ClassNotFoundException) {
         }
     }
 }
