@@ -60,30 +60,30 @@ dependencies {
 
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
-    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     compileOnly 'javax.annotation:jsr250-api:1.0'
-    implementation "com.android.support:design:$support_version"
+    implementation 'com.google.android.material:material:1.0.0'
     implementation "com.byoutline.observablecachedfield:observablecachedfield:$cachedfield_ver"
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation deps.rx_java
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.0.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:3.0.0'
 
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-20181030.172820-51'
     androidTestImplementation 'com.jraska:falcon:2.1.1'
-    androidTestImplementation 'androidx.core:core-ktx:0.3'
+    androidTestImplementation 'androidx.core:core-ktx:1.0.1'
     androidTestImplementation("com.metova:cappuccino:0.9.1") {
         transitive = false
     }
     androidTestImplementation deps.dagger_android
     kaptAndroidTest deps.dagger_android_apt
-    androidTestImplementation 'br.com.concretesolutions:kappuccino:1.1.0'
-    androidTestImplementation('com.schibsted.spain:barista:2.4.0') {
+    androidTestImplementation 'br.com.concretesolutions:kappuccino:1.2.1'
+    androidTestImplementation('com.schibsted.spain:barista:2.10.0') {
         exclude group: 'com.android.support'
         exclude group: 'org.jetbrains.kotlin'
     }

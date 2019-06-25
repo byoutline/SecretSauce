@@ -1,6 +1,6 @@
 package com.byoutline.sampleapplication.di
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.byoutline.sampleapplication.MainActivityItem
 import com.byoutline.sampleapplication.MainActivityItems
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity

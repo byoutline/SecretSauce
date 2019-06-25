@@ -5,7 +5,7 @@
 
         <variable
             name="connected"
-            type="android.databinding.ObservableBoolean" />
+            type="androidx.databinding.ObservableBoolean" />
     </data>
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/networkTv"
             style="@style/customFontStyle2"
             android:layout_width="match_parent"

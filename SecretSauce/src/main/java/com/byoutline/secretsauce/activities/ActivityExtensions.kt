@@ -2,28 +2,28 @@ package com.byoutline.secretsauce.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.annotation.IdRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentTransaction
+import androidx.annotation.IdRes
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import android.view.inputmethod.InputMethodManager
 import com.byoutline.secretsauce.R
 import com.byoutline.secretsauce.SecretSauceSettings
 
-fun FragmentActivity.hideKeyboard() {
+fun androidx.fragment.app.FragmentActivity.hideKeyboard() {
     currentFocus?.let { focused ->
         (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
             ?.hideSoftInputFromWindow(focused.windowToken, 0)
     }
 }
 
-fun FragmentActivity.showKeyboard() {
+fun androidx.fragment.app.FragmentActivity.showKeyboard() {
     (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
         ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }
 
-fun FragmentActivity.finishFragment() {
+fun androidx.fragment.app.FragmentActivity.finishFragment() {
     supportFragmentManager.popBackStack()
     hideKeyboard()
 }
@@ -36,14 +36,14 @@ fun FragmentActivity.finishFragment() {
  *                   animation is applied
  */
 @SuppressLint("ResourceType")
-fun FragmentActivity.showFragment(
-    fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
+fun androidx.fragment.app.FragmentActivity.showFragment(
+    fragment: androidx.fragment.app.Fragment, addToBackStack: Boolean, replace: Boolean = true,
     animations: Array<Int>? = null,
     @IdRes containerViewId: Int = SecretSauceSettings.getContainerViewId()
 ) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        fragmentTransaction.setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         fragmentTransaction.setTransitionStyle(R.style.FragAnimation)
         if (animations.size == 2) {
             fragmentTransaction.setCustomAnimations(animations[0], animations[1])
@@ -68,7 +68,7 @@ fun FragmentActivity.showFragment(
 /**
  * Shows or replaces [DialogFragment] with given [tagUid]
  */
-fun FragmentActivity.showDialogFragment(dialog: DialogFragment, tagUid: String) {
+fun androidx.fragment.app.FragmentActivity.showDialogFragment(dialog: androidx.fragment.app.DialogFragment, tagUid: String) {
     val ft = supportFragmentManager.beginTransaction()
     val prev = supportFragmentManager.findFragmentByTag(tagUid)
     if (prev != null) {
@@ -84,8 +84,8 @@ fun FragmentActivity.showDialogFragment(dialog: DialogFragment, tagUid: String) 
  * @param uid unique dialog id that is set as tag.
  * @return true if dialog was dismissed, false otherwise
  */
-fun FragmentActivity.dismissDialogWithUid(uid: String): Boolean {
-    val dialog = supportFragmentManager.findFragmentByTag(uid) as? DialogFragment
+fun androidx.fragment.app.FragmentActivity.dismissDialogWithUid(uid: String): Boolean {
+    val dialog = supportFragmentManager.findFragmentByTag(uid) as? androidx.fragment.app.DialogFragment
 
     val ft = supportFragmentManager.beginTransaction()
     if (dialog != null && dialog.isAdded) {
@@ -96,7 +96,7 @@ fun FragmentActivity.dismissDialogWithUid(uid: String): Boolean {
     return false
 }
 
-fun FragmentActivity.clearBackStack() {
+fun androidx.fragment.app.FragmentActivity.clearBackStack() {
     val fragmentManager = supportFragmentManager
     while (fragmentManager.backStackEntryCount > 0) {
         fragmentManager.popBackStackImmediate()

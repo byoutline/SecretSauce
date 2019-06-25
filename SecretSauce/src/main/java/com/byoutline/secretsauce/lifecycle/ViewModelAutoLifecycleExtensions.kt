@@ -1,9 +1,9 @@
 package com.byoutline.secretsauce.lifecycle
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.byoutline.secretsauce.SecretSauceSettings
 import kotlin.reflect.KClass
 
@@ -15,7 +15,7 @@ import kotlin.reflect.KClass
  *
  * This method is an alias for [getViewModelWithAutoLifecycle]
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getVMWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.FragmentActivity.getVMWithAutoLifecycle(
     clazz: KClass<VIEWMODEL>,
     @Suppress("UNCHECKED_CAST")
     view: VIEW = this as? VIEW
@@ -28,7 +28,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
  *
  * *Remember to call it before `onActivityStarted`!*
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.getViewModelWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.FragmentActivity.getViewModelWithAutoLifecycle(
     clazz: KClass<VIEWMODEL>,
     @Suppress("UNCHECKED_CAST")
     view: VIEW = this as? VIEW
@@ -42,7 +42,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
 /**
  * Convenience method to get [VIEWMODEL] using Activity context and ViewModelProvider
  */
-inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEWMODEL {
+inline fun <reified VIEWMODEL : ViewModel> androidx.fragment.app.FragmentActivity.getViewModel(): VIEWMODEL {
     val factory = SecretSauceSettings.viewModelFactoryProvider(this)
     return ViewModelProviders.of(this, factory).get(VIEWMODEL::class.java)
 }
@@ -56,7 +56,7 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.getViewModel(): VIEW
  * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.Fragment.getVMWithAutoLifecycle(
     modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
     @Suppress("UNCHECKED_CAST")
     view: VIEW = this as? VIEW
@@ -74,7 +74,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVMW
  * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getViewModelWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.Fragment.getViewModelWithAutoLifecycle(
     modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
     @Suppress("UNCHECKED_CAST")
     view: VIEW = this as? VIEW
@@ -94,7 +94,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.getVie
  * @param useFragmentViewModelProvider Declares how long you want your ViewModel to exist - you can either use
  * fragment or activity lifecycle. By default it has value declared in [SecretSauceSettings].
  */
-inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
+inline fun <reified VIEWMODEL : ViewModel> androidx.fragment.app.Fragment.getViewModel(
     modelClass: KClass<VIEWMODEL> = VIEWMODEL::class,
     useFragmentViewModelProvider: Boolean = SecretSauceSettings.useFragmentViewModelProvider
 ): VIEWMODEL {
@@ -122,7 +122,7 @@ inline fun <reified VIEWMODEL : ViewModel> Fragment.getViewModel(
  * Usually this is done in `onCreateView`.
  * If you do not need viewModel in `onCreateView` then use `getViewModelWithAutoLifecycle` directly instead.
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyViewModelWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.Fragment.lazyViewModelWithAutoLifecycle(
     clazz: KClass<VIEWMODEL>,
     @Suppress("UNCHECKED_CAST")
     view: VIEW = this as? VIEW
@@ -147,7 +147,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> Fragment.lazyVi
  * Usually this is done in `onCreate`.
  * If you do not need viewModel in `onCreate` then use `getViewModelWithAutoLifecycle` directly instead.
  */
-inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivity.lazyViewModelWithAutoLifecycle(
+inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> androidx.fragment.app.FragmentActivity.lazyViewModelWithAutoLifecycle(
     clazz: KClass<VIEWMODEL>,
     @Suppress("UNCHECKED_CAST") view: VIEW = this as? VIEW
         ?: throw IllegalArgumentException("`this` must be a type of view for viewModel: $clazz"),
@@ -165,7 +165,7 @@ inline fun <reified VIEWMODEL : AttachableViewModel<VIEW>, VIEW> FragmentActivit
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
  */
-inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
+inline fun <reified VIEWMODEL : ViewModel> androidx.fragment.app.FragmentActivity.lazyViewModel(
     mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModel<VIEWMODEL>()
@@ -180,7 +180,7 @@ inline fun <reified VIEWMODEL : ViewModel> FragmentActivity.lazyViewModel(
  * By default [LazyThreadSafetyMode.NONE] is used.
  * If you are unsure which thread will call [VIEWMODEL] first use other thread safety mode.
  */
-inline fun <reified VIEWMODEL : ViewModel> Fragment.lazyViewModel(
+inline fun <reified VIEWMODEL : ViewModel> androidx.fragment.app.Fragment.lazyViewModel(
     mode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<VIEWMODEL> = lazy(mode) {
     getViewModel<VIEWMODEL>()

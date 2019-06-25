@@ -1,13 +1,13 @@
 package com.byoutline.secretsauce.databinding
 
-import android.databinding.DataBindingUtil
-import android.databinding.Observable
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
-import android.databinding.PropertyChangeRegistry
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
-import android.support.v4.app.FragmentActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import androidx.databinding.PropertyChangeRegistry
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.byoutline.secretsauce.SecretSauceSettings
@@ -185,7 +185,7 @@ fun <BINDING : ViewDataBinding> inflateAndSetVM(
 /**
  * Alias for [DataBindingUtil.setContentView]
  */
-fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
+fun <BINDING : ViewDataBinding> androidx.fragment.app.FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
     DataBindingUtil.setContentView(this, layoutId)
 
 /**
@@ -194,7 +194,7 @@ fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layo
  * @param [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  * @see [DataBindingUtil.setContentView]
  */
-fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(
+fun <BINDING : ViewDataBinding> androidx.fragment.app.FragmentActivity.bindContentViewAndSetVM(
     @LayoutRes layoutId: Int,
     viewModel: Any,
     brVariableId: Int = SecretSauceSettings.getBrViewModelId()

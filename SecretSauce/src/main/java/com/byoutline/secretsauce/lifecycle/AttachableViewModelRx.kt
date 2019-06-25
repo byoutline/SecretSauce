@@ -1,9 +1,9 @@
 package com.byoutline.secretsauce.lifecycle
 
-import android.databinding.BaseObservable
-import android.databinding.Observable
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.BaseObservable
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import com.byoutline.secretsauce.databinding.DataBindingHelper
 import io.reactivex.disposables.Disposable
 

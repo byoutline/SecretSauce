@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
  - `Joda` dependency is now optional. If it is not found in classpath `setFastJodaTimeZoneProvider`
  from `SecretSauceSettings` will be ignored. 
+ - Migrate to androidX
   
 ## [0.8.0] - 2018-06-12
 ### Added

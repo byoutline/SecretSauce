@@ -2,7 +2,7 @@ package com.byoutline.secretsauce.di
 
 import android.app.Activity
 import android.app.Application
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

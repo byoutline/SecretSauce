@@ -1,7 +1,7 @@
 package com.byoutline.secretsauce.utils
 
 import android.content.Context
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.byoutline.secretsauce.SecretSauceSettings
 import com.byoutline.secretsauce.utils.internal.ToastDisplayer
 

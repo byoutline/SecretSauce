@@ -1,7 +1,7 @@
 package com.byoutline.sampleapplication.customfontviews
 
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.widget.TextView
 import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R

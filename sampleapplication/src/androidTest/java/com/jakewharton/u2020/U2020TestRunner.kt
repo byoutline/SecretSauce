@@ -7,9 +7,9 @@ import android.os.PowerManager
 import android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP
 import android.os.PowerManager.FULL_WAKE_LOCK
 import android.os.PowerManager.ON_AFTER_RELEASE
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnitRunner
+import androidx.test.runner.AndroidJUnitRunner
 import androidx.core.content.systemService
+import androidx.test.platform.app.InstrumentationRegistry
 import com.byoutline.espressohelpers.ActivityRobot
 import com.metova.cappuccino.animations.SystemAnimations
 

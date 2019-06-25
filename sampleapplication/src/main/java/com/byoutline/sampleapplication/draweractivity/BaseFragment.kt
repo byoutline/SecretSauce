@@ -1,9 +1,9 @@
 package com.byoutline.sampleapplication.draweractivity
 
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableField
+import androidx.lifecycle.ViewModel
+import androidx.databinding.ObservableField
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.byoutline.secretsauce.activities.hideKeyboard
 import javax.inject.Inject
 

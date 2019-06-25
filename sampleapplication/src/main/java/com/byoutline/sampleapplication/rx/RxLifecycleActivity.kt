@@ -1,6 +1,6 @@
 package com.byoutline.sampleapplication.rx
 
-import android.databinding.ObservableLong
+import androidx.databinding.ObservableLong
 import android.os.Bundle
 import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R

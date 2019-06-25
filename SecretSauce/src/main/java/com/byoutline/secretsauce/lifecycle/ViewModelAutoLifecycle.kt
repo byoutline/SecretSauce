@@ -3,8 +3,8 @@ package com.byoutline.secretsauce.lifecycle
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 /**
  * Attaches and detaches [AttachableViewModel] to Fragment.
@@ -12,17 +12,17 @@ import android.support.v4.app.FragmentManager
 class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
     val view: VIEW,
     val viewModel: VIEWMODEL
-) : FragmentManager.FragmentLifecycleCallbacks() {
+) : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
 
-    override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
+    override fun onFragmentStarted(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
         if (f === view) viewModel.onAttach(view)
     }
 
-    override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
+    override fun onFragmentStopped(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
         if (f === view) viewModel.onDetach()
     }
 
-    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
+    override fun onFragmentDestroyed(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
         if (f === view) fm.unregisterFragmentLifecycleCallbacks(this)
     }
 }

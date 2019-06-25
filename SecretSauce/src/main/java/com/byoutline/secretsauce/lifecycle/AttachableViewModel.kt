@@ -1,6 +1,6 @@
 package com.byoutline.secretsauce.lifecycle
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 /**
  * [ViewModel] that needs to communicate with the view [T].
