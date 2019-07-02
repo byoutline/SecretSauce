@@ -185,7 +185,7 @@ fun <BINDING : ViewDataBinding> inflateAndSetVM(
 /**
  * Alias for [DataBindingUtil.setContentView]
  */
-fun <BINDING : ViewDataBinding> androidx.fragment.app.FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
+fun <BINDING : ViewDataBinding> FragmentActivity.bindContentView(@LayoutRes layoutId: Int): BINDING =
     DataBindingUtil.setContentView(this, layoutId)
 
 /**
@@ -194,7 +194,7 @@ fun <BINDING : ViewDataBinding> androidx.fragment.app.FragmentActivity.bindConte
  * @param [brVariableId] is required unless it was set globally via [SecretSauceSettings.set].
  * @see [DataBindingUtil.setContentView]
  */
-fun <BINDING : ViewDataBinding> androidx.fragment.app.FragmentActivity.bindContentViewAndSetVM(
+fun <BINDING : ViewDataBinding> FragmentActivity.bindContentViewAndSetVM(
     @LayoutRes layoutId: Int,
     viewModel: Any,
     brVariableId: Int = SecretSauceSettings.getBrViewModelId()

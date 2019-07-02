@@ -12,17 +12,17 @@ import androidx.fragment.app.FragmentManager
 class ViewModelAutoLifecycleF<out VIEWMODEL : AttachableViewModel<VIEW>, VIEW>(
     val view: VIEW,
     val viewModel: VIEWMODEL
-) : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
+) : FragmentManager.FragmentLifecycleCallbacks() {
 
-    override fun onFragmentStarted(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
+    override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
         if (f === view) viewModel.onAttach(view)
     }
 
-    override fun onFragmentStopped(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
+    override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
         if (f === view) viewModel.onDetach()
     }
 
-    override fun onFragmentDestroyed(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
+    override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
         if (f === view) fm.unregisterFragmentLifecycleCallbacks(this)
     }
 }

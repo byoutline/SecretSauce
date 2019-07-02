@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 
-fun androidx.fragment.app.FragmentActivity.invokeOnStopped(action: () -> Unit) {
+fun FragmentActivity.invokeOnStopped(action: () -> Unit) {
     val activity = this
     application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
         override fun onActivityCreated(a: Activity?, savedInstanceState: Bundle?) {}
@@ -27,15 +27,15 @@ fun androidx.fragment.app.FragmentActivity.invokeOnStopped(action: () -> Unit) {
     })
 }
 
-fun androidx.fragment.app.Fragment.invokeOnStopped(action: () -> Unit) {
+fun Fragment.invokeOnStopped(action: () -> Unit) {
     val fragment = this
     activity!!.supportFragmentManager.registerFragmentLifecycleCallbacks(object :
-        androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
-        override fun onFragmentStopped(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
+        FragmentManager.FragmentLifecycleCallbacks() {
+        override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
             if (f === fragment) action()
         }
 
-        override fun onFragmentDestroyed(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
+        override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
             if (f === fragment) fm.unregisterFragmentLifecycleCallbacks(this)
         }
     }, false)

@@ -11,19 +11,19 @@ import android.view.inputmethod.InputMethodManager
 import com.byoutline.secretsauce.R
 import com.byoutline.secretsauce.SecretSauceSettings
 
-fun androidx.fragment.app.FragmentActivity.hideKeyboard() {
+fun FragmentActivity.hideKeyboard() {
     currentFocus?.let { focused ->
         (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
             ?.hideSoftInputFromWindow(focused.windowToken, 0)
     }
 }
 
-fun androidx.fragment.app.FragmentActivity.showKeyboard() {
+fun FragmentActivity.showKeyboard() {
     (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
         ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }
 
-fun androidx.fragment.app.FragmentActivity.finishFragment() {
+fun FragmentActivity.finishFragment() {
     supportFragmentManager.popBackStack()
     hideKeyboard()
 }
@@ -36,8 +36,8 @@ fun androidx.fragment.app.FragmentActivity.finishFragment() {
  *                   animation is applied
  */
 @SuppressLint("ResourceType")
-fun androidx.fragment.app.FragmentActivity.showFragment(
-    fragment: androidx.fragment.app.Fragment, addToBackStack: Boolean, replace: Boolean = true,
+fun FragmentActivity.showFragment(
+    fragment: Fragment, addToBackStack: Boolean, replace: Boolean = true,
     animations: Array<Int>? = null,
     @IdRes containerViewId: Int = SecretSauceSettings.getContainerViewId()
 ) {
@@ -68,7 +68,7 @@ fun androidx.fragment.app.FragmentActivity.showFragment(
 /**
  * Shows or replaces [DialogFragment] with given [tagUid]
  */
-fun androidx.fragment.app.FragmentActivity.showDialogFragment(dialog: androidx.fragment.app.DialogFragment, tagUid: String) {
+fun FragmentActivity.showDialogFragment(dialog: DialogFragment, tagUid: String) {
     val ft = supportFragmentManager.beginTransaction()
     val prev = supportFragmentManager.findFragmentByTag(tagUid)
     if (prev != null) {
@@ -84,8 +84,8 @@ fun androidx.fragment.app.FragmentActivity.showDialogFragment(dialog: androidx.f
  * @param uid unique dialog id that is set as tag.
  * @return true if dialog was dismissed, false otherwise
  */
-fun androidx.fragment.app.FragmentActivity.dismissDialogWithUid(uid: String): Boolean {
-    val dialog = supportFragmentManager.findFragmentByTag(uid) as? androidx.fragment.app.DialogFragment
+fun FragmentActivity.dismissDialogWithUid(uid: String): Boolean {
+    val dialog = supportFragmentManager.findFragmentByTag(uid) as? DialogFragment
 
     val ft = supportFragmentManager.beginTransaction()
     if (dialog != null && dialog.isAdded) {
@@ -96,7 +96,7 @@ fun androidx.fragment.app.FragmentActivity.dismissDialogWithUid(uid: String): Bo
     return false
 }
 
-fun androidx.fragment.app.FragmentActivity.clearBackStack() {
+fun FragmentActivity.clearBackStack() {
     val fragmentManager = supportFragmentManager
     while (fragmentManager.backStackEntryCount > 0) {
         fragmentManager.popBackStackImmediate()
