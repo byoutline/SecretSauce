@@ -2,11 +2,11 @@ package com.byoutline.secretsauce.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.annotation.IdRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentTransaction
+import androidx.annotation.IdRes
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import android.view.inputmethod.InputMethodManager
 import com.byoutline.secretsauce.R
 import com.byoutline.secretsauce.SecretSauceSettings
@@ -43,7 +43,7 @@ fun FragmentActivity.showFragment(
 ) {
     val fragmentTransaction = supportFragmentManager.beginTransaction()
     if (animations != null) {
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        fragmentTransaction.setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         fragmentTransaction.setTransitionStyle(R.style.FragAnimation)
         if (animations.size == 2) {
             fragmentTransaction.setCustomAnimations(animations[0], animations[1])

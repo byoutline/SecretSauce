@@ -24,12 +24,12 @@ android {
 
 dependencies {
     implementation project(':SecretSauce')
-    implementation("com.android.support:support-v4:$support_version")
+    implementation('androidx.legacy:legacy-support-v4:1.0.0')
     api project(':sampleapplication:daggerexamplelib:javalib')
 
     implementation deps.dagger_android
     kapt deps.dagger_android_apt
 
-    implementation "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

@@ -1,7 +1,7 @@
 package com.byoutline.secretsauce.databinding;
 
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;

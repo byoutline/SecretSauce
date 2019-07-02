@@ -2,9 +2,9 @@ package com.byoutline.espressohelpers
 
 import android.Manifest
 import android.app.Activity
-import android.support.test.InstrumentationRegistry
-import android.support.test.rule.ActivityTestRule
-import android.support.test.rule.GrantPermissionRule
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
 import com.byoutline.sampleapplication.MainActivityItem
 import com.byoutline.sampleapplication.SampleApp
 import com.byoutline.sampleapplication.dioverrides.DaggerAppComponentTest

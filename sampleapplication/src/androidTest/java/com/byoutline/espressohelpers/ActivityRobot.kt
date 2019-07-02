@@ -1,6 +1,6 @@
 package com.byoutline.espressohelpers
 
-import android.support.test.rule.ActivityTestRule
+import androidx.test.rule.ActivityTestRule
 import com.jraska.falcon.Falcon
 import com.squareup.spoon.SpoonRule
 

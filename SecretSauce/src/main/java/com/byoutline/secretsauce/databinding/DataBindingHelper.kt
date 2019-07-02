@@ -1,13 +1,13 @@
 package com.byoutline.secretsauce.databinding
 
-import android.databinding.DataBindingUtil
-import android.databinding.Observable
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
-import android.databinding.PropertyChangeRegistry
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
-import android.support.v4.app.FragmentActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import androidx.databinding.PropertyChangeRegistry
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.byoutline.secretsauce.SecretSauceSettings

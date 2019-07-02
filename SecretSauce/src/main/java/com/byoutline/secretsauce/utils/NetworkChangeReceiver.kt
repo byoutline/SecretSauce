@@ -7,10 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.databinding.ObservableBoolean
+import androidx.databinding.ObservableBoolean
 import android.net.ConnectivityManager
 import android.os.Build
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.byoutline.secretsauce.lifecycle.AttachableViewModel
 
 /**

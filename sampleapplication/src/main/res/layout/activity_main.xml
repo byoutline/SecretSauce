@@ -5,21 +5,19 @@
 
     <data>
 
-        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-
         <variable
             name="viewModel"
             type="com.byoutline.sampleapplication.MainActivityVM" />
     </data>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainActivityRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/indigo"
         app:itemBinding="@{viewModel.itemBinding}"
         app:items="@{viewModel.items}"
-        app:layoutManager="@{LayoutManagers.linear()}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context="com.byoutline.sampleapplication.MainActivity" />
 
 </layout>

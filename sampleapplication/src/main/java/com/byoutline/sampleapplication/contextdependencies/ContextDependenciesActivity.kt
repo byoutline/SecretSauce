@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.util.TypedValue
 import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.R

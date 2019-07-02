@@ -1,6 +1,6 @@
 package com.byoutline.sampleapplication
 
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting
 import com.byoutline.sampleapplication.di.AppComponent
 import com.byoutline.sampleapplication.di.DaggerAppComponent
 import com.byoutline.sampleapplication.networkchangereceiver.NetworkActivityModule

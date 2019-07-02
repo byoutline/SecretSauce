@@ -8,7 +8,7 @@
             type="com.byoutline.sampleapplication.draweractivity.ToolbarViewModel" />
     </data>
 
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:minHeight="?attr/actionBarSize"
         android:title="">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/toolbar_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,5 +29,5 @@
             android:textSize="20sp"
             tools:text="fragment name" />
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 </layout>

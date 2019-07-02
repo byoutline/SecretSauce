@@ -6,9 +6,8 @@ ext {
     cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
 
-    android_arch_lifecycle_ver = '1.1.1'
-    dagger_ver = '2.16'
-    espresso_version = '3.0.1'
+    dagger_ver = '2.22.1'
+    espresso_version = '3.2.0'
 
     deps = [
             dagger_android    : ['javax.inject:javax.inject:1', "com.google.dagger:dagger:$dagger_ver", "com.google.dagger:dagger-android-support:$dagger_ver"],
@@ -16,9 +15,9 @@ ext {
             kotlin_stdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             rx_java           : 'io.reactivex.rxjava2:rxjava:2.2.4',
             junit             : 'junit:junit:4.12',
-            lifecycle         : "android.arch.lifecycle:extensions:$android_arch_lifecycle_ver",
-            appcompat         : "com.android.support:appcompat-v7:$support_version",
-            recyclerview      : "com.android.support:recyclerview-v7:$support_version",
-            espresso          : ['androidx.test:runner:1.1.0', 'androidx.test.espresso:espresso-core:3.1.0']
+            lifecycle         : 'androidx.lifecycle:lifecycle-extensions:2.0.0',
+            appcompat         : 'androidx.appcompat:appcompat:1.0.2',
+            recyclerview      : 'androidx.recyclerview:recyclerview:1.0.0',
+            espresso          : ['androidx.test:runner:1.1.1', 'androidx.test.espresso:espresso-core:3.1.1']
     ]
 }

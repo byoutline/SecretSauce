@@ -1,9 +1,9 @@
 package com.byoutline.secretsauce.lifecycle
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.byoutline.secretsauce.SecretSauceSettings
 import kotlin.reflect.KClass
 

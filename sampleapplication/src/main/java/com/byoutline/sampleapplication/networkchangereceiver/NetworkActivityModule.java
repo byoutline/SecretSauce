@@ -2,7 +2,7 @@ package com.byoutline.sampleapplication.networkchangereceiver;
 
 import android.app.Application;
 import android.content.Context;
-import android.databinding.ObservableBoolean;
+import androidx.databinding.ObservableBoolean;
 import android.net.ConnectivityManager;
 
 import com.byoutline.secretsauce.utils.NetworkChangeReceiver;

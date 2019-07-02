@@ -1,8 +1,8 @@
 package com.byoutline.sampleapplication.databinding
 
-import android.databinding.Bindable
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.Bindable
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import android.os.Bundle
 import com.byoutline.sampleapplication.BR
 import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity

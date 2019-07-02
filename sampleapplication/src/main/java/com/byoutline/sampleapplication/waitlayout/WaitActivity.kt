@@ -1,9 +1,9 @@
 package com.byoutline.sampleapplication.waitlayout
 
-import android.databinding.BindingAdapter
-import android.databinding.DataBindingUtil
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import android.os.Bundle
 import com.byoutline.observablecachedfield.ObservableCachedFieldBuilder
 import com.byoutline.observablecachedfield.ObservableCachedFieldWithArg

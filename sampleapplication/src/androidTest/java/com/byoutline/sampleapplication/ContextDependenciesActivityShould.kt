@@ -1,6 +1,6 @@
 package com.byoutline.sampleapplication
 
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorRes
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import com.byoutline.espressohelpers.ActivityRobot
 import com.byoutline.espressohelpers.activityTestRule

@@ -3,9 +3,9 @@ package com.byoutline.sampleapplication.daggerexample
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.ColorInt
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorInt
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import com.byoutline.sampleapplication.ClassNameAsToolbarTitleActivity
 import com.byoutline.sampleapplication.daggerexample.databinding.ActivityDaggerExampleMainBinding
 import com.byoutline.secretsauce.activities.showFragment

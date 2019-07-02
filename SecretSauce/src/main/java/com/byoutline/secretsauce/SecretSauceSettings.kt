@@ -1,8 +1,8 @@
 package com.byoutline.secretsauce
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import android.content.Context
-import android.support.annotation.IdRes
+import androidx.annotation.IdRes
 
 /**
  * Initializes some variables globally for SecretSauce.

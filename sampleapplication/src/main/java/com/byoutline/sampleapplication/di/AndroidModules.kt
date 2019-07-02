@@ -1,7 +1,7 @@
 package com.byoutline.sampleapplication.di
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.byoutline.sampleapplication.MainActivity
 import com.byoutline.sampleapplication.MainActivityVM
 import com.byoutline.sampleapplication.contextdependencies.ContextDependenciesActivity
