@@ -3,7 +3,7 @@
 ViewGroup which may have directly one child, and can display spinner on it. 
 Particularly useful when data is loaded when the view is displayed on the screen.
 
-###How to use?
+### How to use?
 
 You can use it as any other layout.For example:
 
@@ -13,6 +13,7 @@ You can use it as any other layout.For example:
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
+        <!-- Layout that will be covered by progress indicator/disabled -->
         <LinearLayout
             android:id="@+id/example_linear_layout"
             android:layout_width="match_parent"
@@ -31,13 +32,14 @@ You can use it as any other layout.For example:
                 tools:text="@string/something" />
 
         </LinearLayout>
+        
 </com.byoutline.secretsauce.views.WaitLayout>
 ```
 
 In addition, to make it possible to react on CachedField changes, you must add:
 ```
 ...
-WaitLayout exampleWaitLayout =(WaitLayout)findViewById(R.id.exampleWaitLayout);
+WaitLayout exampleWaitLayout = (WaitLayout)findViewById(R.id.exampleWaitLayout);
 ...
 exampleWaitLayout.showProgressOf(cachedField);
 ...
