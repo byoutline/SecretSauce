@@ -8,16 +8,16 @@ Collection of utility classes that are common for multiple android projects.
 
 Contains: 
   * Activity Extension functions for hiding and showing keyboards, showing fragments with animations, default date picker, and more 
-  * [WebViewActivity](https://github.com/byoutline/SecretSauce/blob/feature/sample/WebViewActivityUsing.md) (for displaying basic full screen webview, that accepts URL and data to post) 
+  * [WebViewActivity](WebViewActivityUsing.md) (for displaying basic full screen webview, that accepts URL and data to post) 
   * [WaitLayout] - Displays spinner on any item, can synchronize with CachedFields and CachedEndpoints. This part is available in separate artifact
   * PicassoScrollListener (that stops loading images during fast scroll) 
   * LogUtils (for situation when Timber is not appropriate) 
   * [NetworkChangeReceiver] - wrapper from BroadcastReceiver that sets current state to Android ObservableBoolean 
   * AnimationRunnable (helps with custom view transitions between two states) 
   * [Checkable views] 
-  * [LinkTextView](https://github.com/byoutline/SecretSauce/blob/feature/sample/CustomViewUse.md) (TextView where URLs are clickable) 
-  * [RoundedDrawable, RoundedImageView](https://github.com/byoutline/SecretSauce/blob/feature/sample/RoundedDrawableUsing.md) 
-  * [ViewUtils](https://github.com/byoutline/SecretSauce/blob/feature/sample/ViewUtilsUsing.md) (set styled text fragments, convert dp to px, convert dp to pixel, and more)
+  * [LinkTextView](CustomViewUse.md) (TextView where URLs are clickable) 
+  * [RoundedDrawable, RoundedImageView](RoundedDrawableUsing.md) 
+  * [ViewUtils](ViewUtilsUsing.md) (set styled text fragments, convert dp to px, convert dp to pixel, and more)
   * Toast Context extension functions
   * JdkBasedTimeZoneProvider (for faster loading of JodaTime)
   * BindingAdapters - Common Android DataBinding adapters
