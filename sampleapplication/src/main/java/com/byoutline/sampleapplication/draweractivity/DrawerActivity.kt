@@ -15,16 +15,17 @@ import com.byoutline.secretsauce.databinding.bindContentView
 import com.byoutline.secretsauce.lifecycle.lazyViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 class DrawerActivity : ClassNameAsToolbarTitleActivity(),
-    HasSupportFragmentInjector,
+    HasAndroidInjector,
     NavigationView.OnNavigationItemSelectedListener {
     @Inject
     lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingFragmentInjector
+    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+    override fun androidInjector() = androidInjector
 
     val toolbarViewModel by lazyViewModel<ToolbarViewModel>()
     private lateinit var binding: ActivityDrawerBinding

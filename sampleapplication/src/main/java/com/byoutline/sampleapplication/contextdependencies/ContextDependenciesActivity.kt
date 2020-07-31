@@ -18,23 +18,20 @@ import com.byoutline.secretsauce.di.Injectable
 import dagger.Module
 import dagger.Provides
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
-import io.reactivex.Observable as RxObservable
 
 /**
  * This activity has dependencies that require some [Context] scoped data.
  */
-class ContextDependenciesActivity : ClassNameAsToolbarTitleActivity(), HasActivityInjector, Injectable {
+class ContextDependenciesActivity : ClassNameAsToolbarTitleActivity(), HasAndroidInjector, Injectable {
 
     @Inject
     lateinit var contextDependency: ContextDependency
     @Inject
     lateinit var resourceDependency: ResourceDependency
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
-
-    override fun activityInjector() = activityInjector
+    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+    override fun androidInjector() = androidInjector
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

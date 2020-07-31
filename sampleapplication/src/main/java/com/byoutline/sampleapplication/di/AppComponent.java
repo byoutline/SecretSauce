@@ -1,6 +1,6 @@
 package com.byoutline.sampleapplication.di;
 
-import com.byoutline.secretsauce.di.ActivityInjectorApp;
+import com.byoutline.sampleapplication.SampleApp;
 
 import javax.inject.Singleton;
 
@@ -17,5 +17,5 @@ import dagger.android.AndroidInjectionModule;
 })
 public interface AppComponent {
 
-    void inject(ActivityInjectorApp o);
+    void inject(SampleApp o);
 }
