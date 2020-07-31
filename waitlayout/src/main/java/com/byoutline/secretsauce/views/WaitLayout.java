@@ -28,7 +28,7 @@ import java.util.List;
  * and progress will be shown and hidden automatically.
  * </p>
  *
- * @author Sebastian Kacprzak <nait at naitbit.com>
+ * @author Sebastian Kacprzak nait at naitbit.com
  */
 public class WaitLayout extends FrameLayout implements CachedFieldsIdleListener {
     private static final int BASE_PROGRESSBAR_SIZE = 76;
