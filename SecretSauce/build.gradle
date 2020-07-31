@@ -49,7 +49,7 @@ dependencies {
 
     //noinspection GradleDependency
     compileOnly 'com.squareup.picasso:picasso:2.71828'
-    compileOnly 'androidx.databinding:databinding-common:3.4.0'
+    compileOnly 'androidx.databinding:databinding-common:4.0.1'
     compileOnly files('libs/binding-library-1.1.jar')
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
     provided 'joda-time:joda-time:2.10'
