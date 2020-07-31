@@ -1,0 +1,72 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-28-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "sampleapplication/build.gradle" }}
+      #      - run:
+      #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+      #         command: sudo chmod +x ./gradlew
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "sampleapplication/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ../ci/container0.sh
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: SecretSauce/build/outputs
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: SecretSauce/build/reports
+
+#general:
+#  artifacts:
+#    - "sampleapplication/build/outputs"
+#    - "sampleapplication/build/reports"
+#    - "SecretSauce/build/outputs"
+#    - "SecretSauce/build/reports"
+#
+#machine:
+#  java:
+#    version: oraclejdk8
+#  environment:
+#    GRADLE_OPTS: "-Xmx2g"
+#    _JAVA_OPTIONS: "-Xms256m -Xmx1536m"
+#    CIRCLE_JDK_VERSION: oraclejdk8
+#    JAVA8_HOME: "/usr/lib/jvm/jdk1.8.0"
+#    TERM: "dumb"
+#    ADB_INSTALL_TIMEOUT: "10"
+#  post:
+#    # Turn off unneded services to free memory.
+#    - for service in "apache2" "beanstalkd" "cassandra" "elasticsearch" "memcached" "mysql" "neo4j-service" "postgresql" "rabbitmq-server" ; do sudo service $service stop; done
+#
+#
+#dependencies:
+#  pre:
+#    - ci/update_android_dependencies.sh
+#  cache_directories:
+#    - ~/.android
+#    - /usr/local/android-sdk-linux/tools
+#    - /usr/local/android-sdk-linux/extras
+#    - /usr/local/android-sdk-linux/build-tools/27.0.3
+#  override:
+#    - ./gradlew dependencies
+#  post:
+#    - mksdcard -l e 512M mysdcard.img
+#    - echo n | android create avd -n testing16 -f -t android-16
+#
+#
+#test:
+#  override:
+#    - case $CIRCLE_NODE_INDEX in 0) ci/container0.sh ;; 1) ci/container1.sh ;; esac:
+#          parallel: true
