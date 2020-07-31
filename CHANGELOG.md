@@ -11,6 +11,9 @@ newer Dagger versions
  - Maintenance Updates:
    * Dagger 2.27
    * Kotlin 1.3.72
+   * Gradle 6.5.1
+   * AGP 4.0.1, targetSDK 29
+   * AndroidX updates
 
 ## [0.9.0] - 2019-07-02
 ### Added

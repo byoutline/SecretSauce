@@ -40,19 +40,18 @@ android {
 dependencies {
     implementation deps.kotlin_stdlib
 
-    api deps.appcompat
-    api deps.recyclerview
+    api deps.androidx.appcompat
+    api deps.androidx.recyclerview
 
     implementation "com.google.dagger:dagger-android-support:$dagger_ver"
-    implementation deps.lifecycle
-    // resolve conflict caused by support-compat
+    implementation deps.androidx.lifecycle_ext
 
     //noinspection GradleDependency
     compileOnly 'com.squareup.picasso:picasso:2.71828'
     compileOnly 'androidx.databinding:databinding-common:4.0.1'
     compileOnly files('libs/binding-library-1.1.jar')
     implementation "com.google.code.findbugs:jsr305:$jsr_305_version"
-    provided 'joda-time:joda-time:2.10'
+    compileOnly 'joda-time:joda-time:2.10'
 
     implementation deps.rx_java
 }
