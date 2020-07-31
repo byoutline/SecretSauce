@@ -16,12 +16,12 @@ env:
 android:
   components:
     - tools
-    - build-tools-28.0.3
+    - build-tools-29.0.2
     - build-tools-26.0.2 # Why spoon plugin, why?
     - platform-tools
     - extra-google-m2repository
     - extra-android-m2repository
-    - android-28
+    - android-29
 
 licenses:
     - 'android-sdk-license-.+'
@@ -29,7 +29,9 @@ licenses:
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
   # workaround for https://github.com/travis-ci/travis-ci/issues/8874
-  - yes | sdkmanager "platforms;android-27"
+  - yes | sdkmanager "platforms;android-29"
 
 script: ./gradlew build  #connectedCheck- espresso test  run on Circle CI
