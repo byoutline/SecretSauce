@@ -5,7 +5,7 @@ ext {
     cachedfield_ver = '1.7.0'
     jsr_305_version = '3.0.0'
 
-    dagger_ver = '2.22.1'
+    dagger_ver = '2.27'
     espresso_version = '3.2.0'
 
     deps = [

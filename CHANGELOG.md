@@ -3,6 +3,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+ActivityInjectorApp was removed, it does not seem too usefull with
+newer Dagger versions
+
+### Changed
+ - Maintenance Updates:
+   * Dagger 2.27
+   * Kotlin 1.3.72
 
 ## [0.9.0] - 2019-07-02
 ### Added
