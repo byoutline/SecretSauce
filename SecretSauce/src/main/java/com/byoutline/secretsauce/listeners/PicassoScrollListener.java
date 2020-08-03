@@ -1,45 +1,44 @@
 package com.byoutline.secretsauce.listeners;
 
-import android.content.Context;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 /**
- * Pauses picasso operations marked with given context tag, when view
+ * Pauses picasso operations marked with given tag, when view
  * is scrolled quickly.
  *
  * @author Sebastian Kacprzak <sebastian.kacprzak at byoutline.com>
  */
 public class PicassoScrollListener extends RecyclerView.OnScrollListener {
     private static final int SPEED_THRESHOLD = 24;
-    private final Context context;
-
+    private final Object tag;
     /**
-     * @param context must by equal to tag that was set in picasso(usually activity context).
+     * @param tag must by equal to tag that was set in picasso
      */
-    public PicassoScrollListener(Context context) {
-        this.context = context;
+    public PicassoScrollListener(Object tag) {
+        this.tag = tag;
     }
 
     @Override
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         int currentSpeed = Math.abs(dx) + Math.abs(dy);
         final Picasso picasso = Picasso.get();
         if (currentSpeed > SPEED_THRESHOLD) {
-            picasso.pauseTag(context);
+            picasso.pauseTag(tag);
         } else {
-            picasso.resumeTag(context);
+            picasso.resumeTag(tag);
         }
     }
 
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         final Picasso picasso = Picasso.get();
         if (newState == RecyclerView.SCROLL_STATE_IDLE || newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-            picasso.resumeTag(context);
+            picasso.resumeTag(tag);
         } else {
-            picasso.pauseTag(context);
+            picasso.pauseTag(tag);
         }
     }
 }
