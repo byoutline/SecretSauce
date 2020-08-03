@@ -3,8 +3,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+ - `PicassoScrollListener` now allows any type of tag (not only Context).
+ 
 ### Removed
-ActivityInjectorApp was removed, it does not seem too usefull with
+ActivityInjectorApp was removed, it does not seem too useful with
 newer Dagger versions
 
 ### Changed
